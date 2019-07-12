@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -28,6 +28,8 @@
  */
 package org.mybatis.generator.config.xml;
 
+import static org.mybatis.generator.config.TableSetConfiguration.ATTR_SUFFIX_AS_PACKAGE;
+import static org.mybatis.generator.config.TableSetConfiguration.SUFFIX_AS_PACKAGE_VALUE_TRUE;
 import static org.mybatis.generator.internal.util.StringUtility.isTrue;
 import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
 import static org.mybatis.generator.internal.util.messages.Messages.getString;
@@ -40,26 +42,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
-import org.mybatis.generator.config.ColumnOverride;
-import org.mybatis.generator.config.ColumnRenamingRule;
-import org.mybatis.generator.config.CommentGeneratorConfiguration;
-import org.mybatis.generator.config.Configuration;
-import org.mybatis.generator.config.ConnectionFactoryConfiguration;
-import org.mybatis.generator.config.Context;
-import org.mybatis.generator.config.DomainObjectRenamingRule;
-import org.mybatis.generator.config.GeneratedKey;
-import org.mybatis.generator.config.IgnoredColumn;
-import org.mybatis.generator.config.IgnoredColumnException;
-import org.mybatis.generator.config.IgnoredColumnPattern;
-import org.mybatis.generator.config.JDBCConnectionConfiguration;
-import org.mybatis.generator.config.JavaClientGeneratorConfiguration;
-import org.mybatis.generator.config.JavaModelGeneratorConfiguration;
-import org.mybatis.generator.config.JavaTypeResolverConfiguration;
-import org.mybatis.generator.config.ModelType;
-import org.mybatis.generator.config.PluginConfiguration;
-import org.mybatis.generator.config.PropertyHolder;
-import org.mybatis.generator.config.SqlMapGeneratorConfiguration;
-import org.mybatis.generator.config.TableConfiguration;
+import org.mybatis.generator.config.*;
 import org.mybatis.generator.exception.XMLParserException;
 import org.mybatis.generator.internal.ObjectFactory;
 import org.w3c.dom.Element;
@@ -205,7 +188,9 @@ public class MyBatisGeneratorConfigurationParser {
                 parseSqlMapGenerator(context, childNode);
             } else if ("javaClientGenerator".equals(childNode.getNodeName())) { //$NON-NLS-1$
                 parseJavaClientGenerator(context, childNode);
-            } else if ("table".equals(childNode.getNodeName())) { //$NON-NLS-1$
+            } else if ("tableSet".equals(childNode.getNodeName())) { //$NON-NLS-1$
+                parseTableSet(context, childNode);
+            } else if ("table".equals(childNode.getNodeName())) {
                 parseTable(context, childNode);
             }
         }
@@ -236,6 +221,34 @@ public class MyBatisGeneratorConfigurationParser {
             }
         }
     }
+
+    /**
+     * 增加tableSet结点，只有一个属性 suffixAsPackage。
+     * @param context
+     * @param node
+     */
+    protected void parseTableSet(Context context, Node node) {
+        Properties attributes = parseAttributes(node);
+        TableSetConfiguration tableSetConfiguration = new TableSetConfiguration();
+        String suffixAsPackage = attributes.getProperty(ATTR_SUFFIX_AS_PACKAGE); //$NON-NLS-1$
+        if(suffixAsPackage == null || !SUFFIX_AS_PACKAGE_VALUE_TRUE.equals(suffixAsPackage.toLowerCase())) {
+            tableSetConfiguration.setSuffixAsPackage(false);
+        } else {
+            tableSetConfiguration.setSuffixAsPackage(true);
+        }
+
+        NodeList nodeList = node.getChildNodes();
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node childNode = nodeList.item(i);
+            if (childNode.getNodeType() != Node.ELEMENT_NODE) {
+                continue;
+            }
+            if ("table".equals(childNode.getNodeName())) {
+                parseTable(context, childNode);
+            }
+        }
+    }
+
 
     protected void parseTable(Context context, Node node) {
         TableConfiguration tc = new TableConfiguration(context);

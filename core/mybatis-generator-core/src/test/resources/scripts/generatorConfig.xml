@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-       Copyright 2006-2018 the original author or authors.
+       Copyright 2006-2019 the original author or authors.
 
        Licensed under the Apache License, Version 2.0 (the "License");
        you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
 -->
 <!DOCTYPE generatorConfiguration PUBLIC
  "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
- "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+ "http://www.exlley.com/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
   <properties resource="scripts/database.properties"/>
@@ -47,7 +47,7 @@
     <javaClientGenerator type="XMLMAPPER" targetPackage="mbg.test.mb3.generated.flat.mapper"  targetProject="MAVEN">
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
-
+    <tableSet>
     <table tableName="FieldsOnly" domainObjectName="subpackage.Fieldsonly"/>
     <table tableName="PKOnly" />
     <table tableName="PKFields" alias="B" >
@@ -76,6 +76,7 @@
     <table tableName="EnumTest">
       <columnOverride column="name" javaType="mbg.test.mb3.common.TestEnum"/>
     </table>
+    </tableSet>
   </context>
 
   <context id="HierarchicalJava5" targetRuntime="MyBatis3" defaultModelType="hierarchical">
@@ -102,7 +103,7 @@
     <javaClientGenerator type="XMLMAPPER" targetPackage="mbg.test.mb3.generated.hierarchical.mapper"  targetProject="MAVEN">
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
-
+    <tableSet>
     <table tableName="FieldsOnly" domainObjectName="subpackage.FieldsOnlyEntity"
            mapperName="different.subpackage.FieldsOnlyMapper" />
     <table tableName="PKOnly" />
@@ -131,6 +132,7 @@
     <table tableName="EnumTest">
       <columnOverride column="name" javaType="mbg.test.mb3.common.TestEnum"/>
     </table>
+    </tableSet>
   </context>
 
   <context id="ConditionalJava5" targetRuntime="MyBatis3" defaultModelType="conditional">
@@ -153,7 +155,7 @@
     <javaClientGenerator type="XMLMAPPER" targetPackage="mbg.test.mb3.generated.conditional.mapper"  targetProject="MAVEN">
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
-
+    <tableSet>
     <table tableName="FieldsOnly" />
     <table tableName="PKOnly" />
     <table tableName="PKFields" alias="B" >
@@ -178,6 +180,7 @@
       <columnOverride column="id7$$" delimitedColumnName="true" />
       <columnOverride column="class" property="dbClass" />
     </table>
+    </tableSet>
   </context>
 
   <context id="miscellaneousTests" targetRuntime="MyBatis3">
@@ -208,7 +211,7 @@
     <javaClientGenerator type="XMLMAPPER" targetPackage="mbg.test.mb3.generated.miscellaneous.mapper"  targetProject="MAVEN">
       <property name="rootInterface" value="mbg.test.common.BaseInterface" />
     </javaClientGenerator>
-
+    <tableSet>
     <table tableName="BlobsOnly" /> <!-- should generate a warning -->
     <table tableName="NonExistantTable" /> <!-- should generate a warning -->
     <table tableName="PKFields" domainObjectName="MyObject" mapperName="MyMapper" alias="A" >
@@ -247,6 +250,7 @@
     <table tableName="suffix_rename">
       <domainObjectRenamingRule searchString="^Suffix" replaceString=""/>
     </table>
+    </tableSet>
   </context>
   
   <context id="miscellaneousTests_NoClient" targetRuntime="MyBatis3">
@@ -263,9 +267,10 @@
 
     <sqlMapGenerator targetPackage="mbg.test.mb3.generated.miscellaneous.xml"
                      targetProject="MAVEN"/>
-
+    <tableSet>
     <table schema="mbgtest" tableName="AnotherAwfulTable" />
     <table tableName="NameView" />
+    </tableSet>
   </context>
 
   <context id="miscellaneousTests_ModelOnly1">
@@ -277,9 +282,10 @@
 
     <javaModelGenerator targetPackage="mbg.test.mb3.generated.miscellaneous.modelonly1.model" targetProject="MAVEN">
     </javaModelGenerator>
-
+    <tableSet>
     <table schema="mbgtest" tableName="AnotherAwfulTable" />
     <table tableName="NameView" />
+  </tableSet>
   </context>
 
   <context id="miscellaneousTests_ModelOnly2">
@@ -298,7 +304,7 @@
     <!-- this should, effectively, be ignored as this is model only -->
     <javaClientGenerator type="XMLMAPPER" targetPackage="mbg.test.mb3.generated.miscellaneous.modelonly2.mapper" targetProject="MAVEN">
     </javaClientGenerator>
-    
+    <tableSet>
     <table tableName="FieldsOnly" />
     <table tableName="PKFields" >
       <property name="modelOnly" value="true" />
@@ -306,6 +312,7 @@
     <table tableName="PKBlobs" >
       <property name="modelOnly" value="true" />
     </table>
+  </tableSet>
   </context>
 
   <context id="miscellaneousTests_immutable" targetRuntime="MyBatis3" defaultModelType="hierarchical">
@@ -323,7 +330,7 @@
 
     <javaClientGenerator type="XMLMAPPER" targetPackage="mbg.test.mb3.generated.hierarchical.immutable.mapper"  targetProject="MAVEN">
     </javaClientGenerator>
-
+    <tableSet>
     <table tableName="FieldsOnly" />
     <table tableName="FieldsBlobs" />
     <table tableName="PKOnly" />
@@ -337,6 +344,7 @@
     <table tableName="CompoundKey">
       <property name="constructorBased" value="true"/>
     </table>
+  </tableSet>
   </context>
 
   <context id="miscellaneousTests_immutable_conditional" targetRuntime="MyBatis3" defaultModelType="conditional">
@@ -354,7 +362,7 @@
 
     <javaClientGenerator type="XMLMAPPER" targetPackage="mbg.test.mb3.generated.conditional.immutable.mapper"  targetProject="MAVEN">
     </javaClientGenerator>
-
+  <tableSet>
     <table tableName="FieldsOnly" />
     <table tableName="FieldsBlobs" />
     <table tableName="PKOnly" />
@@ -368,6 +376,7 @@
     <table tableName="CompoundKey">
       <property name="constructorBased" value="true"/>
     </table>
+  </tableSet>
   </context>
 
   <context id="FlatJava5_Annotated" defaultModelType="flat">
@@ -386,7 +395,7 @@
     <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="mbg.test.mb3.generated.annotated.flat.mapper"  targetProject="MAVEN">
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
-
+  <tableSet>
     <table tableName="FieldsOnly" domainObjectName="subpackage.Fieldsonly"/>
     <table tableName="PKOnly" />
     <table tableName="PKFields" alias="B" >
@@ -412,6 +421,7 @@
       <columnOverride column="id7$$" delimitedColumnName="true" />
       <columnOverride column="class" property="dbClass" />
     </table>
+  </tableSet>
   </context>
 
   <context id="HierarchicalJava5_Annotated" targetRuntime="MyBatis3" defaultModelType="hierarchical">
@@ -429,7 +439,7 @@
     <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="mbg.test.mb3.generated.annotated.hierarchical.mapper"  targetProject="MAVEN">
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
-
+  <tableSet>
     <table tableName="FieldsOnly" />
     <table tableName="PKOnly" />
     <table tableName="PKFields" alias="B" >
@@ -454,6 +464,7 @@
       <columnOverride column="id7$$" delimitedColumnName="true" />
       <columnOverride column="class" property="dbClass" />
     </table>
+  </tableSet>
   </context>
 
   <context id="ConditionalJava5_Annotated" targetRuntime="MyBatis3" defaultModelType="conditional">
@@ -472,7 +483,7 @@
     <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="mbg.test.mb3.generated.annotated.conditional.mapper"  targetProject="MAVEN">
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
-
+  <tableSet>
     <table tableName="FieldsOnly" />
     <table tableName="PKOnly" />
     <table tableName="PKFields" alias="B" >
@@ -497,6 +508,7 @@
       <columnOverride column="id7$$" delimitedColumnName="true" />
       <columnOverride column="class" property="dbClass" />
     </table>
+  </tableSet>
   </context>
 
   <context id="miscellaneousTests_Annotated" targetRuntime="MyBatis3">
@@ -523,7 +535,7 @@
     <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="mbg.test.mb3.generated.annotated.miscellaneous.mapper"  targetProject="MAVEN">
       <property name="rootInterface" value="mbg.test.common.BaseInterface" />
     </javaClientGenerator>
-
+  <tableSet>
     <table tableName="BlobsOnly" />
     <table tableName="NonExistantTable" />
     <table tableName="PKFields" domainObjectName="MyObject" alias="A" >
@@ -553,6 +565,7 @@
       <columnOverride column="ID_PLUS1" isGeneratedAlways="true" />
       <columnOverride column="ID_PLUS2" isGeneratedAlways="true" />
     </table>
+  </tableSet>
   </context>
   
   <context id="miscellaneousTests_immutable_Annotated" targetRuntime="MyBatis3" defaultModelType="hierarchical">
@@ -567,7 +580,7 @@
 
     <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="mbg.test.mb3.generated.annotated.hierarchical.Immutable.Mapper"  targetProject="MAVEN">
     </javaClientGenerator>
-
+  <tableSet>
     <table tableName="FieldsOnly" />
     <table tableName="FieldsBlobs" />
     <table tableName="PKOnly" />
@@ -578,6 +591,7 @@
       <columnOverride column="wierd$Field" delimitedColumnName="true"/>
     </table>
     <table tableName="PKFieldsBlobs" alias="A" />
+  </tableSet>
   </context>
 
   <context id="FlatJava5_Mixed" defaultModelType="flat">
@@ -600,7 +614,7 @@
     <javaClientGenerator type="MIXEDMAPPER" targetPackage="mbg.test.mb3.generated.mixed.flat.mapper"  targetProject="MAVEN">
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
-
+  <tableSet>
     <table tableName="FieldsOnly" />
     <table tableName="PKOnly" />
     <table tableName="PKFields" alias="B" >
@@ -625,6 +639,7 @@
       <columnOverride column="id7$$" delimitedColumnName="true" />
       <columnOverride column="class" property="dbClass" />
     </table>
+  </tableSet>
   </context>
 
   <context id="HierarchicalJava5_Mixed" targetRuntime="MyBatis3" defaultModelType="hierarchical">
@@ -646,7 +661,7 @@
     <javaClientGenerator type="MIXEDMAPPER" targetPackage="mbg.test.mb3.generated.mixed.hierarchical.mapper"  targetProject="MAVEN">
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
-
+  <tableSet>
     <table tableName="FieldsOnly" />
     <table tableName="PKOnly" />
     <table tableName="PKFields" alias="B" >
@@ -671,6 +686,7 @@
       <columnOverride column="id7$$" delimitedColumnName="true" />
       <columnOverride column="class" property="dbClass" />
     </table>
+  </tableSet>
   </context>
 
   <context id="ConditionalJava5_Mixed" targetRuntime="MyBatis3" defaultModelType="conditional">
@@ -693,7 +709,7 @@
     <javaClientGenerator type="MIXEDMAPPER" targetPackage="mbg.test.mb3.generated.mixed.conditional.mapper"  targetProject="MAVEN">
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
-
+  <tableSet>
     <table tableName="FieldsOnly" />
     <table tableName="PKOnly" />
     <table tableName="PKFields" alias="B" >
@@ -718,6 +734,7 @@
       <columnOverride column="id7$$" delimitedColumnName="true" />
       <columnOverride column="class" property="dbClass" />
     </table>
+  </tableSet>
   </context>
 
   <context id="miscellaneousTests_Mixed" targetRuntime="MyBatis3">
@@ -748,7 +765,7 @@
     <javaClientGenerator type="MIXEDMAPPER" targetPackage="mbg.test.mb3.generated.mixed.miscellaneous.mapper"  targetProject="MAVEN">
       <property name="rootInterface" value="mbg.test.common.BaseInterface" />
     </javaClientGenerator>
-
+  <tableSet>
     <table tableName="BlobsOnly" />
     <table tableName="NonExistantTable" />
     <table tableName="PKFields" domainObjectName="MyObject" alias="A" >
@@ -770,6 +787,7 @@
     <table tableName="EnumTest">
       <columnOverride column="name" javaType="mbg.test.mb3.common.TestEnum"/>
     </table>
+  </tableSet>
   </context>
   
   <context id="miscellaneousTests_immutable_Mixed" targetRuntime="MyBatis3" defaultModelType="hierarchical">
@@ -788,7 +806,7 @@
     
     <javaClientGenerator type="MIXEDMAPPER" targetPackage="mbg.test.mb3.generated.mixed.hierarchical.Immutable.Mapper"  targetProject="MAVEN">
     </javaClientGenerator>
-
+  <tableSet>
     <table tableName="FieldsOnly" />
     <table tableName="FieldsBlobs" />
     <table tableName="PKOnly" />
@@ -799,6 +817,7 @@
       <columnOverride column="wierd$Field" delimitedColumnName="true"/>
     </table>
     <table tableName="PKFieldsBlobs" alias="A" />
+  </tableSet>
   </context>
 
   <context id="simple" targetRuntime="MyBatis3Simple">
@@ -822,7 +841,7 @@
     <javaClientGenerator type="XMLMAPPER" targetPackage="mbg.test.mb3.generated.simple.mapper"  targetProject="MAVEN">
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
-
+  <tableSet>
     <table tableName="FieldsOnly" />
     <table tableName="PKOnly" />
     <table tableName="PKFields" alias="B" >
@@ -849,6 +868,7 @@
       <columnOverride column="id7$$" delimitedColumnName="true" />
       <columnOverride column="class" property="dbClass" />
     </table>
+  </tableSet>
   </context>
 
   <context id="simple-annotated" targetRuntime="MyBatis3Simple">
@@ -868,7 +888,7 @@
     <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="mbg.test.mb3.generated.simpleannotated.mapper"  targetProject="MAVEN">
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
-
+  <tableSet>
     <table tableName="FieldsOnly" />
     <table tableName="PKOnly" />
     <table tableName="PKFields" alias="B" >
@@ -895,5 +915,6 @@
       <columnOverride column="id7$$" delimitedColumnName="true" />
       <columnOverride column="class" property="dbClass" />
     </table>
+  </tableSet>
   </context>
 </generatorConfiguration>

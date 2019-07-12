@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -57,6 +57,7 @@ public class Context extends PropertyHolder {
 
     private JavaClientGeneratorConfiguration javaClientGeneratorConfiguration;
 
+    private TableSetConfiguration tableSetConfiguration;
     private ArrayList<TableConfiguration> tableConfigurations;
 
     private ModelType defaultModelType;
@@ -500,5 +501,13 @@ public class Context extends PropertyHolder {
 
     public void setJava8Targeted(boolean isJava8Targeted) {
         this.isJava8Targeted = isJava8Targeted;
+    }
+
+    public TableSetConfiguration getTableSetConfiguration() {
+        return tableSetConfiguration;
+    }
+
+    public void setTableSetConfiguration(TableSetConfiguration tableSetConfiguration) {
+        this.tableSetConfiguration = tableSetConfiguration;
     }
 }
