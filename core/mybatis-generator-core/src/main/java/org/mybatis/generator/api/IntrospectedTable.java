@@ -813,23 +813,23 @@ public abstract class IntrospectedTable {
     }
 
     protected void calculateModelAttributes() {
-        String pakkage = calculateJavaModelPackage();
+        String modelPackage = calculateJavaModelPackage();
 
         StringBuilder sb = new StringBuilder();
-        sb.append(pakkage);
+        sb.append(modelPackage);
         sb.append('.');
         sb.append(fullyQualifiedTable.getDomainObjectName());
         sb.append("Key"); //$NON-NLS-1$
         setPrimaryKeyType(sb.toString());
 
         sb.setLength(0);
-        sb.append(pakkage);
+        sb.append(modelPackage);
         sb.append('.');
         sb.append(fullyQualifiedTable.getDomainObjectName());
         setBaseRecordType(sb.toString());
 
         sb.setLength(0);
-        sb.append(pakkage);
+        sb.append(modelPackage);
         sb.append('.');
         sb.append(fullyQualifiedTable.getDomainObjectName());
         sb.append("WithBLOBs"); //$NON-NLS-1$
@@ -1141,4 +1141,5 @@ public abstract class IntrospectedTable {
     public void setTableType(String tableType) {
         this.tableType = tableType;
     }
+    
 }

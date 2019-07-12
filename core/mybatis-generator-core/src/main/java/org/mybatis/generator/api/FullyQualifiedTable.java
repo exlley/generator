@@ -44,6 +44,9 @@ public class FullyQualifiedTable {
     private String beginningDelimiter;
     private String endingDelimiter;
     private DomainObjectRenamingRule domainObjectRenamingRule;
+    private String name;
+    private boolean springEnabled;
+    private boolean suffixAsPackage;
 
     /**
      * This object is used to hold information related to the table itself, not the columns in the
@@ -95,6 +98,7 @@ public class FullyQualifiedTable {
             boolean ignoreQualifiersAtRuntime, String runtimeCatalog,
             String runtimeSchema, String runtimeTableName,
             boolean delimitIdentifiers, DomainObjectRenamingRule domainObjectRenamingRule,
+            boolean springEnabled, boolean suffixAsPackage,
             Context context) {
         super();
         this.introspectedCatalog = introspectedCatalog;
@@ -106,6 +110,11 @@ public class FullyQualifiedTable {
         this.runtimeTableName = runtimeTableName;
         this.domainObjectRenamingRule = domainObjectRenamingRule;
 
+        if (stringHasValue(runtimeTableName)) {
+            this.name =  runtimeTableName;
+        } else {
+            this.name =  introspectedTableName;
+        }
         if (stringHasValue(domainObjectName)) {
             int index = domainObjectName.lastIndexOf('.');
             if (index == -1) {
@@ -118,6 +127,21 @@ public class FullyQualifiedTable {
 
         if (alias == null) {
             this.alias = null;
+        } else if(alias.equals("")) {
+            String[] strings = splitWithDelimiters(name);
+            if(strings.length == 1) {
+                if(strings[0].length() >= 3) {
+                    alias = strings[0].substring(0, 3).toLowerCase();
+                } else {
+                    alias = strings[0].toLowerCase();
+                }
+            } else {
+                StringBuffer sb = new StringBuffer();
+                for (String s : strings) {
+                    sb.append(s.toUpperCase());
+                }
+                alias = sb.toString().toLowerCase();
+            }
         } else {
             this.alias = alias.trim();
         }
@@ -126,6 +150,8 @@ public class FullyQualifiedTable {
                 .getBeginningDelimiter() : ""; //$NON-NLS-1$
         endingDelimiter = delimitIdentifiers ? context.getEndingDelimiter()
                 : ""; //$NON-NLS-1$
+        this.springEnabled = springEnabled;
+        this.suffixAsPackage = suffixAsPackage;
     }
 
     public String getIntrospectedCatalog() {
@@ -196,21 +222,33 @@ public class FullyQualifiedTable {
             return domainObjectName;
         }
 
-        String finalDomainObjectName;
-        if (stringHasValue(runtimeTableName)) {
-            finalDomainObjectName =  getCamelCaseString(runtimeTableName, true);
-        } else {
-            finalDomainObjectName =  getCamelCaseString(introspectedTableName, true);
+        String packageName = "";
+        String restName = name;
+        if(suffixAsPackage) {
+            packageName = splitWithDelimiters(name)[0];
+            int pos = packageName.length();
+            if(pos > 0 && pos < name.length() -1) {
+                packageName = name.substring(0, pos-1).toLowerCase();
+                restName = name.substring(pos + 1);
+            }
         }
 
+
+        String finalDomainObjectName;
+
+
         if (domainObjectRenamingRule != null) {
+            finalDomainObjectName = getCamelCaseString(name, true, false);
             Pattern pattern = Pattern.compile(domainObjectRenamingRule.getSearchString());
             String replaceString = domainObjectRenamingRule.getReplaceString();
             replaceString = replaceString == null ? "" : replaceString; //$NON-NLS-1$
             Matcher matcher = pattern.matcher(finalDomainObjectName);
             finalDomainObjectName = getFirstCharacterUppercase(matcher.replaceAll(replaceString));
+        } else {
+            finalDomainObjectName = getCamelCaseString(restName, true, false);
         }
-        return finalDomainObjectName;
+
+        return (packageName.isEmpty()? "" :  packageName + '.') + finalDomainObjectName;
     }
 
     @Override
@@ -327,4 +365,10 @@ public class FullyQualifiedTable {
     public String getDomainObjectSubPackage() {
         return domainObjectSubPackage;
     }
+
+
+    public String[] splitWithDelimiters(String value) {
+        return value.split("_|-|\\$|#| |/|&");
+    }
+
 }

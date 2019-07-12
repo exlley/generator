@@ -627,6 +627,8 @@ public class DatabaseIntrospector {
                     tc.getProperty(PropertyRegistry.TABLE_RUNTIME_TABLE_NAME),
                     delimitIdentifiers,
                     tc.getDomainObjectRenamingRule(),
+                    tc.isSpringEnabled(),
+                    tc.isSuffixAsPackage(),
                     context);
 
             IntrospectedTable introspectedTable = ObjectFactory

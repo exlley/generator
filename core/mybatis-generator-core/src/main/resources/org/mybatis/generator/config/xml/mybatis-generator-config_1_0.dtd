@@ -110,7 +110,6 @@
 -->
 <!ELEMENT javaModelGenerator (property*)>
 <!ATTLIST javaModelGenerator
-  withSpring CDATA #IMPLIED
   targetPackage CDATA #REQUIRED
   targetProject CDATA #REQUIRED>
 
@@ -149,13 +148,36 @@
 
 <!ELEMENT tableSet (table*) >
 <!ATTLIST tableSet
-    suffixAsPackage CDATA #IMPLIED>
+    suffixAsPackage (true|false) #IMPLIED
+    springEnabled CDATA #IMPLIED
+    catalog CDATA #IMPLIED
+    schema CDATA #IMPLIED
+    alias CDATA #IMPLIED
+    domainObjectName CDATA #IMPLIED
+    mapperName CDATA #IMPLIED
+    sqlProviderName CDATA #IMPLIED
+    enableInsert CDATA #IMPLIED
+    enableSelectByPrimaryKey CDATA #IMPLIED
+    enableSelectByExample CDATA #IMPLIED
+    enableUpdateByPrimaryKey CDATA #IMPLIED
+    enableDeleteByPrimaryKey CDATA #IMPLIED
+    enableDeleteByExample CDATA #IMPLIED
+    enableCountByExample CDATA #IMPLIED
+    enableUpdateByExample CDATA #IMPLIED
+    selectByPrimaryKeyQueryId CDATA #IMPLIED
+    selectByExampleQueryId CDATA #IMPLIED
+    modelType CDATA #IMPLIED
+    escapeWildcards CDATA #IMPLIED
+    delimitIdentifiers CDATA #IMPLIED
+    delimitAllColumns CDATA #IMPLIED>
 <!--
   The table element is used to specify a database table that will be the source information
   for a set of generated objects.
 -->
 <!ELEMENT table (property*, generatedKey?, domainObjectRenamingRule?, columnRenamingRule?, (columnOverride | ignoreColumn | ignoreColumnsByRegex)*) >
 <!ATTLIST table
+  suffixAsPackage CDATA #IMPLIED
+  springEnabled CDATA #IMPLIED
   catalog CDATA #IMPLIED
   schema CDATA #IMPLIED
   tableName CDATA #REQUIRED

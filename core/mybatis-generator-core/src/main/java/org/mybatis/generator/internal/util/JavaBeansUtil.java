@@ -102,6 +102,12 @@ public class JavaBeansUtil {
 
     public static String getCamelCaseString(String inputString,
             boolean firstCharacterUppercase) {
+
+        return getCamelCaseString(inputString, firstCharacterUppercase, true);
+    }
+
+    public static String getCamelCaseString(String inputString,
+                                            boolean firstCharacterUppercase, boolean force) {
         StringBuilder sb = new StringBuilder();
 
         boolean nextUpperCase = false;
@@ -109,27 +115,31 @@ public class JavaBeansUtil {
             char c = inputString.charAt(i);
 
             switch (c) {
-            case '_':
-            case '-':
-            case '@':
-            case '$':
-            case '#':
-            case ' ':
-            case '/':
-            case '&':
-                if (sb.length() > 0) {
-                    nextUpperCase = true;
-                }
-                break;
+                case '_':
+                case '-':
+                case '@':
+                case '$':
+                case '#':
+                case ' ':
+                case '/':
+                case '&':
+                    if (sb.length() > 0) {
+                        nextUpperCase = true;
+                    }
+                    break;
 
-            default:
-                if (nextUpperCase) {
-                    sb.append(Character.toUpperCase(c));
-                    nextUpperCase = false;
-                } else {
-                    sb.append(Character.toLowerCase(c));
-                }
-                break;
+                default:
+                    if (nextUpperCase) {
+                        sb.append(Character.toUpperCase(c));
+                        nextUpperCase = false;
+                    } else {
+                        if(force) {
+                            sb.append(Character.toLowerCase(c));
+                        } else {
+                            sb.append(c);
+                        }
+                    }
+                    break;
             }
         }
 

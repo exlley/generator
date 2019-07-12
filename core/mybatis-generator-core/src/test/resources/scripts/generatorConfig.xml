@@ -156,7 +156,7 @@
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
     <tableSet>
-    <table tableName="FieldsOnly" />
+    <table tableName="Fields_Only" suffixAsPackage="true" />
     <table tableName="PKOnly" />
     <table tableName="PKFields" alias="B" >
       <columnOverride column="wierd$Field" delimitedColumnName="true"/>

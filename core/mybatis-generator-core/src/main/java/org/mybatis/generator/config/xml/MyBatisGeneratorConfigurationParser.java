@@ -229,13 +229,11 @@ public class MyBatisGeneratorConfigurationParser {
      */
     protected void parseTableSet(Context context, Node node) {
         Properties attributes = parseAttributes(node);
-        TableSetConfiguration tableSetConfiguration = new TableSetConfiguration();
-        String suffixAsPackage = attributes.getProperty(ATTR_SUFFIX_AS_PACKAGE); //$NON-NLS-1$
-        if(suffixAsPackage == null || !SUFFIX_AS_PACKAGE_VALUE_TRUE.equals(suffixAsPackage.toLowerCase())) {
-            tableSetConfiguration.setSuffixAsPackage(false);
-        } else {
-            tableSetConfiguration.setSuffixAsPackage(true);
-        }
+        TableSetConfiguration tableSetConfiguration = new TableSetConfiguration(context);
+
+        tableSetConfiguration.setSuffixAsPackage(isTrue(attributes.getProperty(ATTR_SUFFIX_AS_PACKAGE)));
+        tableSetConfiguration.setSpringEnabled(isTrue(attributes.getProperty("springEnabled")));
+        context.setTableSetConfiguration(tableSetConfiguration);
 
         NodeList nodeList = node.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
@@ -280,6 +278,9 @@ public class MyBatisGeneratorConfigurationParser {
         if (stringHasValue(alias)) {
             tc.setAlias(alias);
         }
+
+        tc.setSuffixAsPackage(isTrue(attributes.getProperty(ATTR_SUFFIX_AS_PACKAGE)));
+        tc.setSpringEnabled(isTrue(attributes.getProperty("springEnabled")));
 
         String enableInsert = attributes.getProperty("enableInsert"); //$NON-NLS-1$
         if (stringHasValue(enableInsert)) {
@@ -608,10 +609,10 @@ public class MyBatisGeneratorConfigurationParser {
     protected void parseJavaModelGenerator(Context context, Node node) {
         JavaModelGeneratorConfiguration javaModelGeneratorConfiguration = new JavaModelGeneratorConfiguration();
 
-        context
-                .setJavaModelGeneratorConfiguration(javaModelGeneratorConfiguration);
+        context.setJavaModelGeneratorConfiguration(javaModelGeneratorConfiguration);
 
         Properties attributes = parseAttributes(node);
+
         String targetPackage = attributes.getProperty("targetPackage"); //$NON-NLS-1$
         String targetProject = attributes.getProperty("targetProject"); //$NON-NLS-1$
 

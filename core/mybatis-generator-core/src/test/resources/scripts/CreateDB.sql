@@ -14,7 +14,7 @@
 --    limitations under the License.
 --
 
-drop table FieldsOnly if exists;
+drop table Fields_Only if exists;
 drop table PKOnly if exists;
 drop table PKFields if exists;
 drop table PKBlobs if exists;
@@ -38,7 +38,7 @@ drop table suffix_rename if exists;
 
 create sequence TestSequence as integer start with 1;
 
-create table FieldsOnly (
+create table Fields_Only (
   IntegerField int,
   DoubleField double,
   FloatField float

@@ -30,6 +30,10 @@ import java.util.Map;
 
 public class TableConfiguration extends PropertyHolder {
 
+    private boolean suffixAsPackage = false;
+
+    private boolean springEnabled = false;
+
     private boolean insertStatementEnabled;
 
     private boolean selectByPrimaryKeyStatementEnabled;
@@ -85,7 +89,11 @@ public class TableConfiguration extends PropertyHolder {
 
     public TableConfiguration(Context context) {
         super();
-
+        TableSetConfiguration tableSetConfiguration = context.getTableSetConfiguration();
+        if(tableSetConfiguration != null) {
+            springEnabled = tableSetConfiguration.isSpringEnabled();
+            suffixAsPackage = tableSetConfiguration.isSuffixAsPackage();
+        }
         this.modelType = context.getDefaultModelType();
 
         columnOverrides = new ArrayList<>();
@@ -468,5 +476,21 @@ public class TableConfiguration extends PropertyHolder {
 
     public void setSqlProviderName(String sqlProviderName) {
         this.sqlProviderName = sqlProviderName;
+    }
+
+    public boolean isSuffixAsPackage() {
+        return suffixAsPackage;
+    }
+
+    public void setSuffixAsPackage(boolean suffixAsPackage) {
+        this.suffixAsPackage = suffixAsPackage;
+    }
+
+    public boolean isSpringEnabled() {
+        return springEnabled;
+    }
+
+    public void setSpringEnabled(boolean springEnabled) {
+        this.springEnabled = springEnabled;
     }
 }

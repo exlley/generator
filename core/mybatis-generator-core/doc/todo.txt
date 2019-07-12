@@ -25,4 +25,8 @@ Core:
     3. Add a way to override default types in the JavaTypeResolver
     4. <tableSet> - to allow specification of common attributes for a set of
        tables
+       该内容已经完成一部分。
+
+    5. Add MySQL pagination。
+    6. Add Spring Support。
     

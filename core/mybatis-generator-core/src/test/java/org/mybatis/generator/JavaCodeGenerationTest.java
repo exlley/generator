@@ -46,6 +46,8 @@ public class JavaCodeGenerationTest {
             StaticJavaParser.parse(is);
         } catch (ParseProblemException e) {
             fail("Generated Java File " + generatedJavaFile.getFileName() + " will not compile");
+            fail(e.getMessage());
+            e.printStackTrace();
         }
     }
 

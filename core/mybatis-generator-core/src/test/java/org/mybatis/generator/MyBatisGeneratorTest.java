@@ -16,8 +16,10 @@
 package org.mybatis.generator;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mybatis.generator.internal.util.JavaBeansUtil.getCamelCaseString;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -87,4 +89,11 @@ public class MyBatisGeneratorTest {
                 });
         assertEquals(3, e.getErrors().size());
     }
+
+    @Test
+    public void simpleTest() {
+        String name = "ab/c_D#E$F-G h@i";
+        System.out.println(Arrays.toString(name.split("_|-|\\$|#| |/|&")));
+    }
+
 }
