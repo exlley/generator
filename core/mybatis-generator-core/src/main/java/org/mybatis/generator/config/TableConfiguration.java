@@ -60,6 +60,8 @@ public class TableConfiguration extends PropertyHolder {
 
     private String selectByExampleQueryId;
 
+    private String selectPaginationByExampleQueryId;
+
     private String catalog;
 
     private String schema;
@@ -243,6 +245,14 @@ public class TableConfiguration extends PropertyHolder {
 
     public void setSelectByExampleQueryId(String selectByExampleQueryId) {
         this.selectByExampleQueryId = selectByExampleQueryId;
+    }
+
+    public String getSelectPaginationByExampleQueryId() {
+        return selectPaginationByExampleQueryId;
+    }
+
+    public void setSelectPaginationByExampleQueryId(String selectPaginationByExampleQueryId) {
+        this.selectPaginationByExampleQueryId = selectPaginationByExampleQueryId;
     }
 
     public String getSelectByPrimaryKeyQueryId() {

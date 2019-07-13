@@ -89,7 +89,9 @@ public abstract class IntrospectedTable {
         ATTR_BLOB_COLUMN_LIST_ID,
         ATTR_MYBATIS3_UPDATE_BY_EXAMPLE_WHERE_CLAUSE_ID,
         ATTR_MYBATIS3_SQL_PROVIDER_TYPE,
-        ATTR_MYBATIS_DYNAMIC_SQL_SUPPORT_TYPE
+        ATTR_MYBATIS_DYNAMIC_SQL_SUPPORT_TYPE,
+        ATTR_SELECT_PAGINATION_BY_EXAMPLE_STATEMENT_ID,
+        ATTR_SELECT_PAGINATION_BY_EXAMPLE_WITH_BLOBS_STATEMENT_ID,
     }
 
     protected TableConfiguration tableConfiguration;
@@ -143,6 +145,10 @@ public abstract class IntrospectedTable {
 
     public String getSelectByExampleQueryId() {
         return tableConfiguration.getSelectByExampleQueryId();
+    }
+
+    public String getSelectPaginationByExampleQueryId() {
+        return tableConfiguration.getSelectPaginationByExampleQueryId();
     }
 
     public String getSelectByPrimaryKeyQueryId() {
@@ -503,6 +509,8 @@ public abstract class IntrospectedTable {
         setBaseColumnListId("Base_Column_List"); //$NON-NLS-1$
         setBlobColumnListId("Blob_Column_List"); //$NON-NLS-1$
         setMyBatis3UpdateByExampleWhereClauseId("Update_By_Example_Where_Clause"); //$NON-NLS-1$
+        setSelectPaginationByExampleStatementId("selectPaginationByExample");
+        setSelectPaginationByExampleWithBLOBsStatementId("selectByPaginationExampleWithBLOBs");
     }
 
     public void setBlobColumnListId(String s) {
@@ -615,6 +623,16 @@ public abstract class IntrospectedTable {
                 InternalAttribute.ATTR_COUNT_BY_EXAMPLE_STATEMENT_ID, s);
     }
 
+    public void setSelectPaginationByExampleWithBLOBsStatementId(String s) {
+        internalAttributes.put(
+                InternalAttribute.ATTR_SELECT_PAGINATION_BY_EXAMPLE_WITH_BLOBS_STATEMENT_ID, s);
+    }
+
+    public void setSelectPaginationByExampleStatementId(String s) {
+        internalAttributes.put(
+                InternalAttribute.ATTR_SELECT_PAGINATION_BY_EXAMPLE_STATEMENT_ID, s);
+    }
+
     public String getBlobColumnListId() {
         return internalAttributes
                 .get(InternalAttribute.ATTR_BLOB_COLUMN_LIST_ID);
@@ -683,6 +701,15 @@ public abstract class IntrospectedTable {
     public String getSelectByExampleWithBLOBsStatementId() {
         return internalAttributes
                 .get(InternalAttribute.ATTR_SELECT_BY_EXAMPLE_WITH_BLOBS_STATEMENT_ID);
+    }
+
+    public String getSelectPaginationByExampleStatementId() {
+        return internalAttributes
+                .get(InternalAttribute.ATTR_SELECT_PAGINATION_BY_EXAMPLE_STATEMENT_ID);
+    }
+    public String getSelectPaginationByExampleWithBLOBsStatementId() {
+        return internalAttributes
+                .get(InternalAttribute.ATTR_SELECT_PAGINATION_BY_EXAMPLE_WITH_BLOBS_STATEMENT_ID);
     }
 
     public String getSelectAllStatementId() {

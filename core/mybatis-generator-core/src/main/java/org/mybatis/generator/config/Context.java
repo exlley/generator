@@ -483,8 +483,7 @@ public class Context extends PropertyHolder {
     }
 
     public boolean autoDelimitKeywords() {
-        return autoDelimitKeywords != null
-                && autoDelimitKeywords.booleanValue();
+        return autoDelimitKeywords != null && autoDelimitKeywords;
     }
 
     public ConnectionFactoryConfiguration getConnectionFactoryConfiguration() {
@@ -510,4 +509,5 @@ public class Context extends PropertyHolder {
     public void setTableSetConfiguration(TableSetConfiguration tableSetConfiguration) {
         this.tableSetConfiguration = tableSetConfiguration;
     }
+
 }

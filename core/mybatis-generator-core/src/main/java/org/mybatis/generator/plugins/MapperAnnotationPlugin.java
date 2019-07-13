@@ -34,10 +34,17 @@ public class MapperAnnotationPlugin extends PluginAdapter {
     public boolean clientGenerated(Interface interfaze, IntrospectedTable introspectedTable) {
 
         if (introspectedTable.getTargetRuntime() == TargetRuntime.MYBATIS3) {
-            // don't need to do this for MYBATIS3_DSQL as that runtime already adds this annotation 
-            interfaze.addImportedType(
-                    new FullyQualifiedJavaType("org.apache.ibatis.annotations.Mapper")); //$NON-NLS-1$
-            interfaze.addAnnotation("@Mapper"); //$NON-NLS-1$
+            // don't need to do this for MYBATIS3_DSQL as that runtime already adds this annotation
+            if(introspectedTable.getTableConfiguration().isSpringEnabled()) {
+                // 如果使用了spring，则引入@Repository注解
+                interfaze.addImportedType(
+                        new FullyQualifiedJavaType("import org.springframework.stereotype.Repository")); //$NON-NLS-1$
+                interfaze.addAnnotation("@Repository"); //$NON-NLS-1$
+            } else {
+                interfaze.addImportedType(
+                        new FullyQualifiedJavaType("org.apache.ibatis.annotations.Mapper")); //$NON-NLS-1$
+                interfaze.addAnnotation("@Mapper"); //$NON-NLS-1$
+            }
         }
         return true;
     }

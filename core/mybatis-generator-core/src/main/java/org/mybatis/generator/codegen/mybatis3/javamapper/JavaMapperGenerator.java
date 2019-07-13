@@ -96,6 +96,8 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
         addUpdateByPrimaryKeySelectiveMethod(interfaze);
         addUpdateByPrimaryKeyWithBLOBsMethod(interfaze);
         addUpdateByPrimaryKeyWithoutBLOBsMethod(interfaze);
+        addSelectPaginationByExampleWithBLOBsMethod(interfaze);
+        addSelectPaginationByExampleWithoutBLOBsMethod(interfaze);
 
         List<CompilationUnit> answer = new ArrayList<>();
         if (context.getPlugins().clientGenerated(interfaze, introspectedTable)) {
@@ -205,6 +207,20 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
         if (introspectedTable.getRules()
                 .generateUpdateByPrimaryKeyWithoutBLOBs()) {
             AbstractJavaMapperMethodGenerator methodGenerator = new UpdateByPrimaryKeyWithoutBLOBsMethodGenerator();
+            initializeAndExecuteGenerator(methodGenerator, interfaze);
+        }
+    }
+
+    protected void addSelectPaginationByExampleWithBLOBsMethod(Interface interfaze) {
+        if (introspectedTable.getRules().generateCountByExample()) {
+            AbstractJavaMapperMethodGenerator methodGenerator = new CountByExampleMethodGenerator();
+            initializeAndExecuteGenerator(methodGenerator, interfaze);
+        }
+    }
+
+    protected void addSelectPaginationByExampleWithoutBLOBsMethod(Interface interfaze) {
+        if (introspectedTable.getRules().generateCountByExample()) {
+            AbstractJavaMapperMethodGenerator methodGenerator = new CountByExampleMethodGenerator();
             initializeAndExecuteGenerator(methodGenerator, interfaze);
         }
     }
