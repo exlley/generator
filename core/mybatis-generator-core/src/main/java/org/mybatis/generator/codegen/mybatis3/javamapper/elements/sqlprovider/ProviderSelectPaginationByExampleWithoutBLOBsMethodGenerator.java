@@ -13,30 +13,29 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
+//  =============================================================================
+//  Copyright (c) 2016~2019 Xi'an Linggu Software Co.Ltd. All rights reserved.
+//  mybatis-generator -- 2019-07-13 22:14
+//  =============================================================================
 package org.mybatis.generator.codegen.mybatis3.javamapper.elements.sqlprovider;
 
-import static org.mybatis.generator.codegen.mybatis3.MyBatis3FormattingUtilities.getSelectListPhrase;
-import static org.mybatis.generator.internal.util.StringUtility.escapeStringForJava;
+import org.mybatis.generator.api.IntrospectedColumn;
+import org.mybatis.generator.api.dom.java.*;
 
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.mybatis.generator.api.IntrospectedColumn;
-import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
-import org.mybatis.generator.api.dom.java.JavaVisibility;
-import org.mybatis.generator.api.dom.java.Method;
-import org.mybatis.generator.api.dom.java.Parameter;
-import org.mybatis.generator.api.dom.java.TopLevelClass;
+import static org.mybatis.generator.codegen.mybatis3.MyBatis3FormattingUtilities.getSelectListPhrase;
+import static org.mybatis.generator.internal.util.StringUtility.escapeStringForJava;
 
 /**
- * 
- * @author Jeff Butler
- * 
+ * @author resky
+ * @version 1.0
+ * @date 2019-07-13
  */
-public class ProviderSelectByExampleWithoutBLOBsMethodGenerator extends AbstractJavaProviderMethodGenerator {
-
-    public ProviderSelectByExampleWithoutBLOBsMethodGenerator(boolean useLegacyBuilder) {
+public class ProviderSelectPaginationByExampleWithoutBLOBsMethodGenerator extends AbstractJavaProviderMethodGenerator {
+    public ProviderSelectPaginationByExampleWithoutBLOBsMethodGenerator(boolean useLegacyBuilder) {
         super(useLegacyBuilder);
     }
 
@@ -122,11 +121,11 @@ public class ProviderSelectByExampleWithoutBLOBsMethodGenerator extends Abstract
     }
 
     public String getMethodName() {
-        return introspectedTable.getSelectByExampleStatementId();
+        return introspectedTable.getSelectPaginationByExampleStatementId();
     }
 
     public boolean callPlugins(Method method, TopLevelClass topLevelClass) {
-        return context.getPlugins().providerSelectByExampleWithoutBLOBsMethodGenerated(method, topLevelClass,
+        return context.getPlugins().providerSelectPaginationByExampleWithoutBLOBsMethodGenerated(method, topLevelClass,
                 introspectedTable);
     }
 }

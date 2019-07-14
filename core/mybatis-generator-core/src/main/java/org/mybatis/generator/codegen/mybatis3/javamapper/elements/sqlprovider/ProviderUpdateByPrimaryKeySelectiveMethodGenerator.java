@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -64,9 +64,8 @@ public class ProviderUpdateByPrimaryKeySelectiveMethodGenerator extends Abstract
         method.setReturnType(FullyQualifiedJavaType.getStringInstance());
         method.setVisibility(JavaVisibility.PUBLIC);
         method.addParameter(new Parameter(fqjt, "record")); //$NON-NLS-1$
-        
-        context.getCommentGenerator().addGeneralMethodComment(method,
-                introspectedTable);
+
+        context.getCommentGenerator().addGeneralMethodComment(method, introspectedTable);
 
         if (useLegacyBuilder) {
             method.addBodyLine("BEGIN();"); //$NON-NLS-1$
@@ -75,11 +74,11 @@ public class ProviderUpdateByPrimaryKeySelectiveMethodGenerator extends Abstract
         }
 
         method.addBodyLine(String.format("%sUPDATE(\"%s\");", //$NON-NLS-1$
-                builderPrefix,
-                escapeStringForJava(introspectedTable.getFullyQualifiedTableNameAtRuntime())));
+                builderPrefix, escapeStringForJava(introspectedTable.getFullyQualifiedTableNameAtRuntime())));
         method.addBodyLine(""); //$NON-NLS-1$
-        
-        for (IntrospectedColumn introspectedColumn : ListUtilities.removeGeneratedAlwaysColumns(introspectedTable.getNonPrimaryKeyColumns())) {
+
+        for (IntrospectedColumn introspectedColumn : ListUtilities
+                .removeGeneratedAlwaysColumns(introspectedTable.getNonPrimaryKeyColumns())) {
             if (!introspectedColumn.getFullyQualifiedJavaType().isPrimitive()) {
                 method.addBodyLine(String.format("if (record.%s() != null) {", //$NON-NLS-1$
                         getGetterMethodName(introspectedColumn.getJavaProperty(),
@@ -87,8 +86,7 @@ public class ProviderUpdateByPrimaryKeySelectiveMethodGenerator extends Abstract
             }
 
             method.addBodyLine(String.format("%sSET(\"%s = %s\");", //$NON-NLS-1$
-                    builderPrefix,
-                    escapeStringForJava(getEscapedColumnName(introspectedColumn)),
+                    builderPrefix, escapeStringForJava(getEscapedColumnName(introspectedColumn)),
                     getParameterClause(introspectedColumn)));
 
             if (!introspectedColumn.getFullyQualifiedJavaType().isPrimitive()) {
@@ -100,8 +98,7 @@ public class ProviderUpdateByPrimaryKeySelectiveMethodGenerator extends Abstract
 
         for (IntrospectedColumn introspectedColumn : introspectedTable.getPrimaryKeyColumns()) {
             method.addBodyLine(String.format("%sWHERE(\"%s = %s\");", //$NON-NLS-1$
-                    builderPrefix,
-                    escapeStringForJava(getEscapedColumnName(introspectedColumn)),
+                    builderPrefix, escapeStringForJava(getEscapedColumnName(introspectedColumn)),
                     getParameterClause(introspectedColumn)));
         }
 

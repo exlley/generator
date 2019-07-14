@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -23,8 +23,8 @@ import java.util.List;
 import org.mybatis.generator.internal.db.DatabaseDialects;
 
 /**
- * This class specifies that a key is auto-generated, either as an identity
- * column (post insert), or as some other query like a sequences (pre insert).
+ * This class specifies that a key is auto-generated, either as an identity column (post insert), or as some other query
+ * like a sequences (pre insert).
  * 
  * @author Jeff Butler
  */
@@ -38,15 +38,13 @@ public class GeneratedKey {
 
     private String type;
 
-    public GeneratedKey(String column, String configuredSqlStatement,
-            boolean isIdentity, String type) {
+    public GeneratedKey(String column, String configuredSqlStatement, boolean isIdentity, String type) {
         super();
         this.column = column;
         this.type = type;
         this.isIdentity = isIdentity;
 
-        DatabaseDialects dialect = DatabaseDialects
-                .getDatabaseDialect(configuredSqlStatement);
+        DatabaseDialects dialect = DatabaseDialects.getDatabaseDialect(configuredSqlStatement);
         if (dialect == null) {
             this.runtimeSqlStatement = configuredSqlStatement;
         } else {
@@ -80,8 +78,7 @@ public class GeneratedKey {
                     tableName));
         }
 
-        if (stringHasValue(type)
-                && !"pre".equals(type) //$NON-NLS-1$
+        if (stringHasValue(type) && !"pre".equals(type) //$NON-NLS-1$
                 && !"post".equals(type)) { //$NON-NLS-1$ //$NON-NLS-2$
             errors.add(getString("ValidationError.15", tableName)); //$NON-NLS-1$
         }

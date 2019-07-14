@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -113,13 +113,11 @@ public class InterfaceTest {
         field = new Field("ONE", FullyQualifiedJavaType.getStringInstance());
         field.setInitializationString("\"one\"");
         interfaze.addField(field);
-        
-        String expected = "package foo;" + System.getProperty("line.separator")
-            + System.getProperty("line.separator")
-            + "public interface Bar {" + System.getProperty("line.separator")
-            + "    String EMPTY_STRING = \"\";" + System.getProperty("line.separator") + System.getProperty("line.separator")
-            + "    String ONE = \"one\";" + System.getProperty("line.separator")
-            + "}";
+
+        String expected = "package foo;" + System.getProperty("line.separator") + System.getProperty("line.separator")
+                + "public interface Bar {" + System.getProperty("line.separator") + "    String EMPTY_STRING = \"\";"
+                + System.getProperty("line.separator") + System.getProperty("line.separator")
+                + "    String ONE = \"one\";" + System.getProperty("line.separator") + "}";
 
         TopLevelInterfaceRenderer renderer = new TopLevelInterfaceRenderer();
         assertThat(renderer.render(interfaze)).isEqualTo(expected);

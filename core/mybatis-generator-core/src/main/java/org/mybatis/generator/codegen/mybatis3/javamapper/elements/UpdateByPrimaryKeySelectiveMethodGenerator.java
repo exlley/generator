@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -29,8 +29,7 @@ import org.mybatis.generator.api.dom.java.Parameter;
  * @author Jeff Butler
  * 
  */
-public class UpdateByPrimaryKeySelectiveMethodGenerator extends
-        AbstractJavaMapperMethodGenerator {
+public class UpdateByPrimaryKeySelectiveMethodGenerator extends AbstractJavaMapperMethodGenerator {
 
     public UpdateByPrimaryKeySelectiveMethodGenerator() {
         super();
@@ -42,30 +41,25 @@ public class UpdateByPrimaryKeySelectiveMethodGenerator extends
         FullyQualifiedJavaType parameterType;
 
         if (introspectedTable.getRules().generateRecordWithBLOBsClass()) {
-            parameterType = new FullyQualifiedJavaType(introspectedTable
-                    .getRecordWithBLOBsType());
+            parameterType = new FullyQualifiedJavaType(introspectedTable.getRecordWithBLOBsType());
         } else {
-            parameterType = new FullyQualifiedJavaType(introspectedTable
-                    .getBaseRecordType());
+            parameterType = new FullyQualifiedJavaType(introspectedTable.getBaseRecordType());
         }
 
         importedTypes.add(parameterType);
 
-        Method method = new Method(introspectedTable
-                .getUpdateByPrimaryKeySelectiveStatementId());
+        Method method = new Method(introspectedTable.getUpdateByPrimaryKeySelectiveStatementId());
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setAbstract(true);
         method.setReturnType(FullyQualifiedJavaType.getIntInstance());
         method.addParameter(new Parameter(parameterType, "record")); //$NON-NLS-1$
 
-        context.getCommentGenerator().addGeneralMethodComment(method,
-                introspectedTable);
+        context.getCommentGenerator().addGeneralMethodComment(method, introspectedTable);
 
         addMapperAnnotations(method);
-        
-        if (context.getPlugins()
-                .clientUpdateByPrimaryKeySelectiveMethodGenerated(method,
-                        interfaze, introspectedTable)) {
+
+        if (context.getPlugins().clientUpdateByPrimaryKeySelectiveMethodGenerated(method, interfaze,
+                introspectedTable)) {
             addExtraImports(interfaze);
             interfaze.addImportedTypes(importedTypes);
             interfaze.addMethod(method);

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2017 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -24,8 +24,7 @@ import org.mybatis.generator.codegen.mybatis3.javamapper.elements.DeleteByExampl
  * 
  * @author Jeff Butler
  */
-public class AnnotatedDeleteByExampleMethodGenerator extends
-        DeleteByExampleMethodGenerator {
+public class AnnotatedDeleteByExampleMethodGenerator extends DeleteByExampleMethodGenerator {
 
     public AnnotatedDeleteByExampleMethodGenerator() {
         super();
@@ -46,7 +45,6 @@ public class AnnotatedDeleteByExampleMethodGenerator extends
 
     @Override
     public void addExtraImports(Interface interfaze) {
-        interfaze.addImportedType(
-                new FullyQualifiedJavaType("org.apache.ibatis.annotations.DeleteProvider")); //$NON-NLS-1$
+        interfaze.addImportedType(new FullyQualifiedJavaType("org.apache.ibatis.annotations.DeleteProvider")); //$NON-NLS-1$
     }
 }

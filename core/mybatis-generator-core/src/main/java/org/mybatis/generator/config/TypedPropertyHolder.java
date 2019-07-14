@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -28,8 +28,8 @@ public abstract class TypedPropertyHolder extends PropertyHolder {
     }
 
     /**
-     * Sets the value of the type specified in the configuration. If the special
-     * value DEFAULT is specified, then the value will be ignored.
+     * Sets the value of the type specified in the configuration. If the special value DEFAULT is specified, then the
+     * value will be ignored.
      * 
      * @param configurationType
      *            the type specified in the configuration

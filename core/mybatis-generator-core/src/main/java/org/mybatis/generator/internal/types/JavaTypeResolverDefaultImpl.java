@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ public class JavaTypeResolverDefaultImpl implements JavaTypeResolver {
     protected boolean useJSR310Types;
 
     protected Map<Integer, JdbcTypeInformation> typeMap;
-    
+
     // TODO - remove when we get to JDK 8
     private static final int TIME_WITH_TIMEZONE = 2013;
     private static final int TIMESTAMP_WITH_TIMEZONE = 2014;
@@ -90,8 +90,7 @@ public class JavaTypeResolverDefaultImpl implements JavaTypeResolver {
                 new FullyQualifiedJavaType(Object.class.getName())));
         typeMap.put(Types.LONGNVARCHAR, new JdbcTypeInformation("LONGNVARCHAR", //$NON-NLS-1$
                 new FullyQualifiedJavaType(String.class.getName())));
-        typeMap.put(Types.LONGVARBINARY, new JdbcTypeInformation(
-                "LONGVARBINARY", //$NON-NLS-1$
+        typeMap.put(Types.LONGVARBINARY, new JdbcTypeInformation("LONGVARBINARY", //$NON-NLS-1$
                 new FullyQualifiedJavaType("byte[]"))); //$NON-NLS-1$
         typeMap.put(Types.LONGVARCHAR, new JdbcTypeInformation("LONGVARCHAR", //$NON-NLS-1$
                 new FullyQualifiedJavaType(String.class.getName())));
@@ -136,19 +135,14 @@ public class JavaTypeResolverDefaultImpl implements JavaTypeResolver {
     public void addConfigurationProperties(Properties properties) {
         this.properties.putAll(properties);
         forceBigDecimals = StringUtility
-                .isTrue(properties
-                        .getProperty(PropertyRegistry.TYPE_RESOLVER_FORCE_BIG_DECIMALS));
-        useJSR310Types = StringUtility
-                .isTrue(properties
-                        .getProperty(PropertyRegistry.TYPE_RESOLVER_USE_JSR310_TYPES));
+                .isTrue(properties.getProperty(PropertyRegistry.TYPE_RESOLVER_FORCE_BIG_DECIMALS));
+        useJSR310Types = StringUtility.isTrue(properties.getProperty(PropertyRegistry.TYPE_RESOLVER_USE_JSR310_TYPES));
     }
 
     @Override
-    public FullyQualifiedJavaType calculateJavaType(
-            IntrospectedColumn introspectedColumn) {
+    public FullyQualifiedJavaType calculateJavaType(IntrospectedColumn introspectedColumn) {
         FullyQualifiedJavaType answer = null;
-        JdbcTypeInformation jdbcTypeInformation = typeMap
-                .get(introspectedColumn.getJdbcType());
+        JdbcTypeInformation jdbcTypeInformation = typeMap.get(introspectedColumn.getJdbcType());
 
         if (jdbcTypeInformation != null) {
             answer = jdbcTypeInformation.getFullyQualifiedJavaType();
@@ -157,71 +151,74 @@ public class JavaTypeResolverDefaultImpl implements JavaTypeResolver {
 
         return answer;
     }
-    
-    protected FullyQualifiedJavaType overrideDefaultType(IntrospectedColumn column, FullyQualifiedJavaType defaultType) {
+
+    protected FullyQualifiedJavaType overrideDefaultType(IntrospectedColumn column,
+            FullyQualifiedJavaType defaultType) {
         FullyQualifiedJavaType answer = defaultType;
 
         switch (column.getJdbcType()) {
-        case Types.BIT:
-            answer = calculateBitReplacement(column, defaultType);
-            break;
-        case Types.DATE:
-            answer = calculateDateType(column, defaultType);
-            break;
-        case Types.DECIMAL:
-        case Types.NUMERIC:
-            answer = calculateBigDecimalReplacement(column, defaultType);
-            break;
-        case Types.TIME:
-            answer = calculateTimeType(column, defaultType);
-            break;
-        case Types.TIMESTAMP:
-            answer = calculateTimestampType(column, defaultType);
-            break;
-        default:
-            break;
+            case Types.BIT:
+                answer = calculateBitReplacement(column, defaultType);
+                break;
+            case Types.DATE:
+                answer = calculateDateType(column, defaultType);
+                break;
+            case Types.DECIMAL:
+            case Types.NUMERIC:
+                answer = calculateBigDecimalReplacement(column, defaultType);
+                break;
+            case Types.TIME:
+                answer = calculateTimeType(column, defaultType);
+                break;
+            case Types.TIMESTAMP:
+                answer = calculateTimestampType(column, defaultType);
+                break;
+            default:
+                break;
         }
 
         return answer;
     }
-    
+
     protected FullyQualifiedJavaType calculateDateType(IntrospectedColumn column, FullyQualifiedJavaType defaultType) {
         FullyQualifiedJavaType answer;
-        
+
         if (useJSR310Types) {
             answer = new FullyQualifiedJavaType("java.time.LocalDate"); //$NON-NLS-1$
         } else {
             answer = defaultType;
         }
-        
+
         return answer;
     }
 
     protected FullyQualifiedJavaType calculateTimeType(IntrospectedColumn column, FullyQualifiedJavaType defaultType) {
         FullyQualifiedJavaType answer;
-        
+
         if (useJSR310Types) {
             answer = new FullyQualifiedJavaType("java.time.LocalTime"); //$NON-NLS-1$
         } else {
             answer = defaultType;
         }
-        
+
         return answer;
     }
 
-    protected FullyQualifiedJavaType calculateTimestampType(IntrospectedColumn column, FullyQualifiedJavaType defaultType) {
+    protected FullyQualifiedJavaType calculateTimestampType(IntrospectedColumn column,
+            FullyQualifiedJavaType defaultType) {
         FullyQualifiedJavaType answer;
-        
+
         if (useJSR310Types) {
             answer = new FullyQualifiedJavaType("java.time.LocalDateTime"); //$NON-NLS-1$
         } else {
             answer = defaultType;
         }
-        
+
         return answer;
     }
 
-    protected FullyQualifiedJavaType calculateBitReplacement(IntrospectedColumn column, FullyQualifiedJavaType defaultType) {
+    protected FullyQualifiedJavaType calculateBitReplacement(IntrospectedColumn column,
+            FullyQualifiedJavaType defaultType) {
         FullyQualifiedJavaType answer;
 
         if (column.getLength() > 1) {
@@ -232,8 +229,9 @@ public class JavaTypeResolverDefaultImpl implements JavaTypeResolver {
 
         return answer;
     }
-    
-    protected FullyQualifiedJavaType calculateBigDecimalReplacement(IntrospectedColumn column, FullyQualifiedJavaType defaultType) {
+
+    protected FullyQualifiedJavaType calculateBigDecimalReplacement(IntrospectedColumn column,
+            FullyQualifiedJavaType defaultType) {
         FullyQualifiedJavaType answer;
 
         if (column.getScale() > 0 || column.getLength() > 18 || forceBigDecimals) {
@@ -252,8 +250,7 @@ public class JavaTypeResolverDefaultImpl implements JavaTypeResolver {
     @Override
     public String calculateJdbcTypeName(IntrospectedColumn introspectedColumn) {
         String answer = null;
-        JdbcTypeInformation jdbcTypeInformation = typeMap
-                .get(introspectedColumn.getJdbcType());
+        JdbcTypeInformation jdbcTypeInformation = typeMap.get(introspectedColumn.getJdbcType());
 
         if (jdbcTypeInformation != null) {
             answer = jdbcTypeInformation.getJdbcTypeName();
@@ -277,8 +274,7 @@ public class JavaTypeResolverDefaultImpl implements JavaTypeResolver {
 
         private FullyQualifiedJavaType fullyQualifiedJavaType;
 
-        public JdbcTypeInformation(String jdbcTypeName,
-                FullyQualifiedJavaType fullyQualifiedJavaType) {
+        public JdbcTypeInformation(String jdbcTypeName, FullyQualifiedJavaType fullyQualifiedJavaType) {
             this.jdbcTypeName = jdbcTypeName;
             this.fullyQualifiedJavaType = fullyQualifiedJavaType;
         }

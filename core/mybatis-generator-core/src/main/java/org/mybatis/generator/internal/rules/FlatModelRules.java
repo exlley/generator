@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2017 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -18,8 +18,7 @@ package org.mybatis.generator.internal.rules;
 import org.mybatis.generator.api.IntrospectedTable;
 
 /**
- * This class encapsulates all the code generation rules for a table using the
- * flat model.
+ * This class encapsulates all the code generation rules for a table using the flat model.
  * 
  * @author Jeff Butler
  * 

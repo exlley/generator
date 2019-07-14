@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@ package mbg.test.mb3.dsql.miscellaneous;
 
 import static mbg.test.common.util.TestUtilities.datesAreEqual;
 import static mbg.test.mb3.generated.dsql.miscellaneous.mapper.MyObjectDynamicSqlSupport.myObject;
-import static mbg.test.mb3.generated.dsql.miscellaneous.mapper.RegexrenameDynamicSqlSupport.regexrename;
+import static mbg.test.mb3.generated.dsql.miscellaneous.mapper.RegexRenameDynamicSqlSupport.regexRename;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mybatis.dynamic.sql.SqlBuilder.*;
 
@@ -32,12 +32,12 @@ import org.junit.jupiter.api.Test;
 import mbg.test.common.FirstName;
 import mbg.test.common.MyTime;
 import mbg.test.mb3.common.TestEnum;
-import mbg.test.mb3.generated.dsql.miscellaneous.mapper.EnumtestMapper;
+import mbg.test.mb3.generated.dsql.miscellaneous.mapper.EnumTestMapper;
 import mbg.test.mb3.generated.dsql.miscellaneous.mapper.MyObjectMapper;
-import mbg.test.mb3.generated.dsql.miscellaneous.mapper.RegexrenameMapper;
-import mbg.test.mb3.generated.dsql.miscellaneous.model.Enumtest;
+import mbg.test.mb3.generated.dsql.miscellaneous.mapper.RegexRenameMapper;
+import mbg.test.mb3.generated.dsql.miscellaneous.model.EnumTest;
 import mbg.test.mb3.generated.dsql.miscellaneous.model.MyObject;
-import mbg.test.mb3.generated.dsql.miscellaneous.model.Regexrename;
+import mbg.test.mb3.generated.dsql.miscellaneous.model.RegexRename;
 
 /**
  * @author Jeff Butler
@@ -887,15 +887,15 @@ public class MiscellaneousTest extends AbstractAnnotatedMiscellaneousTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         
         try {
-            RegexrenameMapper mapper = sqlSession.getMapper(RegexrenameMapper.class);
-            Regexrename record = new Regexrename();
+            RegexRenameMapper mapper = sqlSession.getMapper(RegexRenameMapper.class);
+            RegexRename record = new RegexRename();
             record.setAddress("123 Main Street");
             record.setName("Fred");
             record.setZipCode("99999");
             
             mapper.insert(record);
             
-            Regexrename returnedRecord = mapper.selectByPrimaryKey(1);
+            RegexRename returnedRecord = mapper.selectByPrimaryKey(1);
             
             assertEquals(record.getAddress(), returnedRecord.getAddress());
             assertEquals(1, returnedRecord.getId().intValue());
@@ -911,29 +911,29 @@ public class MiscellaneousTest extends AbstractAnnotatedMiscellaneousTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         
         try {
-            RegexrenameMapper mapper = sqlSession.getMapper(RegexrenameMapper.class);
-            Regexrename record = new Regexrename();
+            RegexRenameMapper mapper = sqlSession.getMapper(RegexRenameMapper.class);
+            RegexRename record = new RegexRename();
             record.setId(1);
             record.setAddress("123 Main Street");
             record.setName("Fred");
             record.setZipCode("99999");
             mapper.insert(record);
             
-            record = new Regexrename();
+            record = new RegexRename();
             record.setId(2);
             record.setAddress("234 Elm Street");
             record.setName("Barney");
             record.setZipCode("99999");
             mapper.insert(record);
             
-            record = new Regexrename();
+            record = new RegexRename();
             record.setId(3);
             record.setAddress("345 Maple Street");
             record.setName("Wilma");
             record.setZipCode("99999");
             mapper.insert(record);
             
-            record = new Regexrename();
+            record = new RegexRename();
             record.setId(4);
             record.setAddress("456 Oak Street");
             record.setName("Betty");
@@ -941,8 +941,8 @@ public class MiscellaneousTest extends AbstractAnnotatedMiscellaneousTest {
             mapper.insert(record);
             
             RowBounds rowBounds = new RowBounds(0, 2);
-            List<Regexrename> records = mapper.selectByExample(rowBounds)
-                    .orderBy(regexrename.id)
+            List<RegexRename> records = mapper.selectByExample(rowBounds)
+                    .orderBy(regexRename.id)
                     .build()
                     .execute();
             
@@ -952,7 +952,7 @@ public class MiscellaneousTest extends AbstractAnnotatedMiscellaneousTest {
 
             rowBounds = new RowBounds(2, 4);
             records = mapper.selectByExample(rowBounds)
-                    .orderBy(regexrename.id)
+                    .orderBy(regexRename.id)
                     .build()
                     .execute();
             
@@ -969,15 +969,15 @@ public class MiscellaneousTest extends AbstractAnnotatedMiscellaneousTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         
         try {
-            RegexrenameMapper mapper = sqlSession.getMapper(RegexrenameMapper.class);
-            Regexrename record = new Regexrename();
+            RegexRenameMapper mapper = sqlSession.getMapper(RegexRenameMapper.class);
+            RegexRename record = new RegexRename();
             record.setZipCode("99999");
             
             mapper.insertSelective(record);
             Integer key = 1;
             assertEquals(key, record.getId());
             
-            Regexrename returnedRecord = mapper.selectByPrimaryKey(key);
+            RegexRename returnedRecord = mapper.selectByPrimaryKey(key);
             
             assertNull(returnedRecord.getAddress());
             assertEquals(record.getId(), returnedRecord.getId());
@@ -1080,20 +1080,20 @@ public class MiscellaneousTest extends AbstractAnnotatedMiscellaneousTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            EnumtestMapper mapper = sqlSession.getMapper(EnumtestMapper.class);
+            EnumTestMapper mapper = sqlSession.getMapper(EnumTestMapper.class);
             
-            Enumtest enumTest = new Enumtest();
+            EnumTest enumTest = new EnumTest();
             enumTest.setId(1);
             enumTest.setName(TestEnum.FRED);
             int rows = mapper.insert(enumTest);
             assertEquals(1, rows);
             
-            List<Enumtest> returnedRecords = mapper.selectByExample()
+            List<EnumTest> returnedRecords = mapper.selectByExample()
                     .build()
                     .execute();
             assertEquals(1, returnedRecords.size());
             
-            Enumtest returnedRecord = returnedRecords.get(0);
+            EnumTest returnedRecord = returnedRecords.get(0);
             assertEquals(1, returnedRecord.getId().intValue());
             assertEquals(TestEnum.FRED, returnedRecord.getName());
         } finally {

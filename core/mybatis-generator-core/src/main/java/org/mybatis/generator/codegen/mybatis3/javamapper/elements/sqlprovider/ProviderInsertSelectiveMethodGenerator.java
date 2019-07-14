@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -56,18 +56,15 @@ public class ProviderInsertSelectiveMethodGenerator extends AbstractJavaProvider
             importedTypes.add(NEW_BUILDER_IMPORT);
         }
 
-        FullyQualifiedJavaType fqjt = introspectedTable.getRules()
-                .calculateAllFieldsClass();
+        FullyQualifiedJavaType fqjt = introspectedTable.getRules().calculateAllFieldsClass();
         importedTypes.add(fqjt);
 
-        Method method = new Method(
-                introspectedTable.getInsertSelectiveStatementId());
+        Method method = new Method(introspectedTable.getInsertSelectiveStatementId());
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setReturnType(FullyQualifiedJavaType.getStringInstance());
         method.addParameter(new Parameter(fqjt, "record")); //$NON-NLS-1$
-        
-        context.getCommentGenerator().addGeneralMethodComment(method,
-                introspectedTable);
+
+        context.getCommentGenerator().addGeneralMethodComment(method, introspectedTable);
 
         if (useLegacyBuilder) {
             method.addBodyLine("BEGIN();"); //$NON-NLS-1$
@@ -76,11 +73,11 @@ public class ProviderInsertSelectiveMethodGenerator extends AbstractJavaProvider
         }
 
         method.addBodyLine(String.format("%sINSERT_INTO(\"%s\");", //$NON-NLS-1$
-                builderPrefix,
-                escapeStringForJava(introspectedTable.getFullyQualifiedTableNameAtRuntime())));
+                builderPrefix, escapeStringForJava(introspectedTable.getFullyQualifiedTableNameAtRuntime())));
 
-        for (IntrospectedColumn introspectedColumn : ListUtilities.removeIdentityAndGeneratedAlwaysColumns(introspectedTable.getAllColumns())) {
-            
+        for (IntrospectedColumn introspectedColumn : ListUtilities
+                .removeIdentityAndGeneratedAlwaysColumns(introspectedTable.getAllColumns())) {
+
             method.addBodyLine(""); //$NON-NLS-1$
             if (!introspectedColumn.getFullyQualifiedJavaType().isPrimitive()
                     && !introspectedColumn.isSequenceColumn()) {
@@ -89,8 +86,7 @@ public class ProviderInsertSelectiveMethodGenerator extends AbstractJavaProvider
                                 introspectedColumn.getFullyQualifiedJavaType())));
             }
             method.addBodyLine(String.format("%sVALUES(\"%s\", \"%s\");", //$NON-NLS-1$
-                    builderPrefix,
-                    escapeStringForJava(getEscapedColumnName(introspectedColumn)),
+                    builderPrefix, escapeStringForJava(getEscapedColumnName(introspectedColumn)),
                     getParameterClause(introspectedColumn)));
 
             if (!introspectedColumn.getFullyQualifiedJavaType().isPrimitive()
@@ -105,9 +101,8 @@ public class ProviderInsertSelectiveMethodGenerator extends AbstractJavaProvider
         } else {
             method.addBodyLine("return sql.toString();"); //$NON-NLS-1$
         }
-        
-        if (context.getPlugins().providerInsertSelectiveMethodGenerated(method, topLevelClass,
-                introspectedTable)) {
+
+        if (context.getPlugins().providerInsertSelectiveMethodGenerated(method, topLevelClass, introspectedTable)) {
             topLevelClass.addStaticImports(staticImports);
             topLevelClass.addImportedTypes(importedTypes);
             topLevelClass.addMethod(method);

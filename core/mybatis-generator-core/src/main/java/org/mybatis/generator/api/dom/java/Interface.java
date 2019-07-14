@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class Interface extends InnerInterface implements CompilationUnit {
-    
+
     private Set<FullyQualifiedJavaType> importedTypes = new TreeSet<>();
 
     private Set<String> staticImports = new TreeSet<>();
@@ -43,8 +43,7 @@ public class Interface extends InnerInterface implements CompilationUnit {
 
     @Override
     public void addImportedType(FullyQualifiedJavaType importedType) {
-        if (importedType.isExplicitlyImported()
-                && !importedType.getPackageName().equals(getType().getPackageName())) {
+        if (importedType.isExplicitlyImported() && !importedType.getPackageName().equals(getType().getPackageName())) {
             importedTypes.add(importedType);
         }
     }

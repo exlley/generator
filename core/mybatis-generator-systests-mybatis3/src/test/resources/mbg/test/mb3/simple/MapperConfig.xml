@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!--
 
-       Copyright 2006-2016 the original author or authors.
+       Copyright 2006-2019 the original author or authors.
 
        Licensed under the Apache License, Version 2.0 (the "License");
        you may not use this file except in compliance with the License.
@@ -45,12 +45,12 @@
 
   <mappers>
     <mapper resource="mbg/test/mb3/generated/simple/xml/AwfulTableMapper.xml" />
-    <mapper resource="mbg/test/mb3/generated/simple/xml/FieldsblobsMapper.xml" />
-    <mapper resource="mbg/test/mb3/generated/simple/xml/FieldsonlyMapper.xml" />
-    <mapper resource="mbg/test/mb3/generated/simple/xml/PkblobsMapper.xml" />
-    <mapper resource="mbg/test/mb3/generated/simple/xml/PkfieldsMapper.xml" />
-    <mapper resource="mbg/test/mb3/generated/simple/xml/PkfieldsblobsMapper.xml" />
-    <mapper resource="mbg/test/mb3/generated/simple/xml/PkonlyMapper.xml" />
+    <mapper resource="mbg/test/mb3/generated/simple/xml/FieldsBlobsMapper.xml" />
+    <mapper resource="mbg/test/mb3/generated/simple/xml/FieldsOnlyMapper.xml" />
+    <mapper resource="mbg/test/mb3/generated/simple/xml/PKBlobsMapper.xml" />
+    <mapper resource="mbg/test/mb3/generated/simple/xml/PKFieldsMapper.xml" />
+    <mapper resource="mbg/test/mb3/generated/simple/xml/PKFieldsBlobsMapper.xml" />
+    <mapper resource="mbg/test/mb3/generated/simple/xml/PKOnlyMapper.xml" />
   </mappers>
 
 </configuration>

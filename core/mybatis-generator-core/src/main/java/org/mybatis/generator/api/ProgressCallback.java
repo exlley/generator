@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2017 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -18,10 +18,10 @@ package org.mybatis.generator.api;
 /**
  * This interface can be implemented to return progress information from the file generation process.
  * 
- * <p>During the execution of code generation, there are three main operations:
- * database introspection, code generation based on the results of
- * introspection, and then merging/saving generated files. Methods
- * in this interface accordingly and in this order:
+ * <p>
+ * During the execution of code generation, there are three main operations: database introspection, code generation
+ * based on the results of introspection, and then merging/saving generated files. Methods in this interface accordingly
+ * and in this order:
  * <ol>
  * <li>introspectionStarted(int)</li>
  * <li>(Repeatedly) startTask(String)</li>
@@ -32,44 +32,40 @@ package org.mybatis.generator.api;
  * <li>done()</li>
  * </ol>
  * 
- * <p>Periodically, the <code>checkCancel()</code> method will be called to see if the
- * method should be canceled.
+ * <p>
+ * Periodically, the <code>checkCancel()</code> method will be called to see if the method should be canceled.
  * 
- * <p>For planning purposes, the most common use case will have a ratio of 20%
- * introspection tasks, 40% generation tasks, and 40% save tasks.
+ * <p>
+ * For planning purposes, the most common use case will have a ratio of 20% introspection tasks, 40% generation tasks,
+ * and 40% save tasks.
  * 
  * @author Jeff Butler
  */
 public interface ProgressCallback {
     /**
-     * Called to note the start of the introspection phase, and to note the
-     * maximum number of startTask messages that will be sent for the
-     * introspection phase.
+     * Called to note the start of the introspection phase, and to note the maximum number of startTask messages that
+     * will be sent for the introspection phase.
      * 
      * @param totalTasks
-     *            the maximum number of times startTask will be called for the
-     *            introspection phase.
+     *            the maximum number of times startTask will be called for the introspection phase.
      */
     void introspectionStarted(int totalTasks);
 
     /**
-     * Called to note the start of the generation phase, and to note the maximum
-     * number of startTask messages that will be sent for the generation phase.
+     * Called to note the start of the generation phase, and to note the maximum number of startTask messages that will
+     * be sent for the generation phase.
      * 
      * @param totalTasks
-     *            the maximum number of times startTask will be called for the
-     *            generation phase.
+     *            the maximum number of times startTask will be called for the generation phase.
      */
     void generationStarted(int totalTasks);
 
     /**
-     * Called to note the start of the file saving phase, and to note the
-     * maximum number of startTask messages that will be sent for the file
-     * saving phase phase.
+     * Called to note the start of the file saving phase, and to note the maximum number of startTask messages that will
+     * be sent for the file saving phase phase.
      * 
      * @param totalTasks
-     *            the maximum number of times startTask will be called for the
-     *            file saving phase.
+     *            the maximum number of times startTask will be called for the file saving phase.
      */
     void saveStarted(int totalTasks);
 
@@ -87,9 +83,8 @@ public interface ProgressCallback {
     void done();
 
     /**
-     * The method is called periodically during a long running method.
-     * If the the implementation throws <code>InterruptedException</code> then
-     * the method will be canceled. Any files that have already been saved will
+     * The method is called periodically during a long running method. If the the implementation throws
+     * <code>InterruptedException</code> then the method will be canceled. Any files that have already been saved will
      * remain on the file system.
      * 
      * @throws InterruptedException

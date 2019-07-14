@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -23,8 +23,8 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.jupiter.api.Test;
 
-import mbg.test.mb3.generated.dsql.miscellaneous.mapper.GeneratedalwaystestnoupdatesMapper;
-import mbg.test.mb3.generated.dsql.miscellaneous.model.Generatedalwaystestnoupdates;
+import mbg.test.mb3.generated.dsql.miscellaneous.mapper.GeneratedAlwaysTestNoUpdatesMapper;
+import mbg.test.mb3.generated.dsql.miscellaneous.model.GeneratedAlwaysTestNoUpdates;
 
 public class GeneratedAlwaysNoUpdatesTest extends AbstractAnnotatedMiscellaneousTest {
 
@@ -33,21 +33,21 @@ public class GeneratedAlwaysNoUpdatesTest extends AbstractAnnotatedMiscellaneous
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            GeneratedalwaystestnoupdatesMapper mapper = sqlSession.getMapper(GeneratedalwaystestnoupdatesMapper.class);
+            GeneratedAlwaysTestNoUpdatesMapper mapper = sqlSession.getMapper(GeneratedAlwaysTestNoUpdatesMapper.class);
             
-            Generatedalwaystestnoupdates gaTest = new Generatedalwaystestnoupdates();
+            GeneratedAlwaysTestNoUpdates gaTest = new GeneratedAlwaysTestNoUpdates();
             gaTest.setId(1);
             gaTest.setIdPlus1(55);
             gaTest.setIdPlus2(66);
             int rows = mapper.insert(gaTest);
             assertEquals(1, rows);
             
-            List<Generatedalwaystestnoupdates> returnedRecords = mapper.selectByExample()
+            List<GeneratedAlwaysTestNoUpdates> returnedRecords = mapper.selectByExample()
                     .build()
                     .execute();
             assertEquals(1, returnedRecords.size());
             
-            Generatedalwaystestnoupdates returnedRecord = returnedRecords.get(0);
+            GeneratedAlwaysTestNoUpdates returnedRecord = returnedRecords.get(0);
             assertEquals(1, returnedRecord.getId().intValue());
             assertEquals(2, returnedRecord.getIdPlus1().intValue());
             assertEquals(3, returnedRecord.getIdPlus2().intValue());
@@ -61,19 +61,19 @@ public class GeneratedAlwaysNoUpdatesTest extends AbstractAnnotatedMiscellaneous
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            GeneratedalwaystestnoupdatesMapper mapper = sqlSession.getMapper(GeneratedalwaystestnoupdatesMapper.class);
+            GeneratedAlwaysTestNoUpdatesMapper mapper = sqlSession.getMapper(GeneratedAlwaysTestNoUpdatesMapper.class);
             
-            Generatedalwaystestnoupdates gaTest = new Generatedalwaystestnoupdates();
+            GeneratedAlwaysTestNoUpdates gaTest = new GeneratedAlwaysTestNoUpdates();
             gaTest.setId(1);
             int rows = mapper.insertSelective(gaTest);
             assertEquals(1, rows);
             
-            List<Generatedalwaystestnoupdates> returnedRecords = mapper.selectByExample()
+            List<GeneratedAlwaysTestNoUpdates> returnedRecords = mapper.selectByExample()
                     .build()
                     .execute();
             assertEquals(1, returnedRecords.size());
             
-            Generatedalwaystestnoupdates returnedRecord = returnedRecords.get(0);
+            GeneratedAlwaysTestNoUpdates returnedRecord = returnedRecords.get(0);
             assertEquals(1, returnedRecord.getId().intValue());
             assertEquals(2, returnedRecord.getIdPlus1().intValue());
             assertEquals(3, returnedRecord.getIdPlus2().intValue());
@@ -84,7 +84,7 @@ public class GeneratedAlwaysNoUpdatesTest extends AbstractAnnotatedMiscellaneous
 
     @Test
     public void testThatUpdatesByPrimaryKeyDidNotGetGenerated() {
-        Method[] methods = GeneratedalwaystestnoupdatesMapper.class.getMethods();
+        Method[] methods = GeneratedAlwaysTestNoUpdatesMapper.class.getMethods();
         for (Method method : methods) {
             if (method.getName().startsWith("updateByPrimaryKey")) {
                 fail("Method " + method.getName() + " should not be generated");

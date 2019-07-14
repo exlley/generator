@@ -25,9 +25,7 @@ public class GeneratedJavaFile extends GeneratedFile {
 
     private JavaFormatter javaFormatter;
 
-    public GeneratedJavaFile(CompilationUnit compilationUnit,
-            String targetProject,
-            String fileEncoding,
+    public GeneratedJavaFile(CompilationUnit compilationUnit, String targetProject, String fileEncoding,
             JavaFormatter javaFormatter) {
         super(targetProject);
         this.compilationUnit = compilationUnit;
@@ -35,9 +33,7 @@ public class GeneratedJavaFile extends GeneratedFile {
         this.javaFormatter = javaFormatter;
     }
 
-    public GeneratedJavaFile(CompilationUnit compilationUnit,
-            String targetProject,
-            JavaFormatter javaFormatter) {
+    public GeneratedJavaFile(CompilationUnit compilationUnit, String targetProject, JavaFormatter javaFormatter) {
         this(compilationUnit, targetProject, null, javaFormatter);
     }
 
@@ -46,7 +42,7 @@ public class GeneratedJavaFile extends GeneratedFile {
         return javaFormatter.getFormattedContent(compilationUnit);
     }
 
-    //$NON-NLS-1$
+    // $NON-NLS-1$
     @Override
     public String getFileName() {
         return compilationUnit.getType().getShortNameWithoutTypeArguments() + ".java";
@@ -58,12 +54,10 @@ public class GeneratedJavaFile extends GeneratedFile {
     }
 
     /**
-     * This method is required by the Eclipse Java merger. If you are not
-     * running in Eclipse, or some other system that implements the Java merge
-     * function, you may return null from this method.
+     * This method is required by the Eclipse Java merger. If you are not running in Eclipse, or some other system that
+     * implements the Java merge function, you may return null from this method.
      * 
-     * @return the CompilationUnit associated with this file, or null if the
-     *         file is not mergeable.
+     * @return the CompilationUnit associated with this file, or null if the file is not mergeable.
      */
     public CompilationUnit getCompilationUnit() {
         return compilationUnit;

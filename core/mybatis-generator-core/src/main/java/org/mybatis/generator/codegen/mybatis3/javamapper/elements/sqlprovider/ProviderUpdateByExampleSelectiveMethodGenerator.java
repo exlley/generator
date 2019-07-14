@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -61,23 +61,21 @@ public class ProviderUpdateByExampleSelectiveMethodGenerator extends AbstractJav
         Method method = new Method(introspectedTable.getUpdateByExampleSelectiveStatementId());
         method.setReturnType(FullyQualifiedJavaType.getStringInstance());
         method.setVisibility(JavaVisibility.PUBLIC);
-        method.addParameter(new Parameter(new FullyQualifiedJavaType("java.util.Map<java.lang.String, java.lang.Object>"), //$NON-NLS-1$
-                "parameter")); //$NON-NLS-1$
-        
-        FullyQualifiedJavaType record =
-                introspectedTable.getRules().calculateAllFieldsClass();
+        method.addParameter(
+                new Parameter(new FullyQualifiedJavaType("java.util.Map<java.lang.String, java.lang.Object>"), //$NON-NLS-1$
+                        "parameter")); //$NON-NLS-1$
+
+        FullyQualifiedJavaType record = introspectedTable.getRules().calculateAllFieldsClass();
         importedTypes.add(record);
         method.addBodyLine(String.format("%s record = (%s) parameter.get(\"record\");", //$NON-NLS-1$
                 record.getShortName(), record.getShortName()));
 
-        FullyQualifiedJavaType example =
-                new FullyQualifiedJavaType(introspectedTable.getExampleType());
+        FullyQualifiedJavaType example = new FullyQualifiedJavaType(introspectedTable.getExampleType());
         importedTypes.add(example);
         method.addBodyLine(String.format("%s example = (%s) parameter.get(\"example\");", //$NON-NLS-1$
                 example.getShortName(), example.getShortName()));
 
-        context.getCommentGenerator().addGeneralMethodComment(method,
-                introspectedTable);
+        context.getCommentGenerator().addGeneralMethodComment(method, introspectedTable);
 
         method.addBodyLine(""); //$NON-NLS-1$
 
@@ -88,11 +86,11 @@ public class ProviderUpdateByExampleSelectiveMethodGenerator extends AbstractJav
         }
 
         method.addBodyLine(String.format("%sUPDATE(\"%s\");", //$NON-NLS-1$
-                builderPrefix,
-                escapeStringForJava(introspectedTable.getAliasedFullyQualifiedTableNameAtRuntime())));
+                builderPrefix, escapeStringForJava(introspectedTable.getAliasedFullyQualifiedTableNameAtRuntime())));
         method.addBodyLine(""); //$NON-NLS-1$
-        
-        for (IntrospectedColumn introspectedColumn : ListUtilities.removeGeneratedAlwaysColumns(introspectedTable.getAllColumns())) {
+
+        for (IntrospectedColumn introspectedColumn : ListUtilities
+                .removeGeneratedAlwaysColumns(introspectedTable.getAllColumns())) {
             if (!introspectedColumn.getFullyQualifiedJavaType().isPrimitive()) {
                 method.addBodyLine(String.format("if (record.%s() != null) {", //$NON-NLS-1$
                         getGetterMethodName(introspectedColumn.getJavaProperty(),
@@ -104,8 +102,7 @@ public class ProviderUpdateByExampleSelectiveMethodGenerator extends AbstractJav
             sb.insert(2, "record."); //$NON-NLS-1$
 
             method.addBodyLine(String.format("%sSET(\"%s = %s\");", //$NON-NLS-1$
-                    builderPrefix,
-                    escapeStringForJava(getAliasedEscapedColumnName(introspectedColumn)),
+                    builderPrefix, escapeStringForJava(getAliasedEscapedColumnName(introspectedColumn)),
                     sb.toString()));
 
             if (!introspectedColumn.getFullyQualifiedJavaType().isPrimitive()) {

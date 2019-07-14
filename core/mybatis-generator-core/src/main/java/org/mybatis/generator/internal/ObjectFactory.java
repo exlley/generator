@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -66,10 +66,9 @@ public class ObjectFactory {
     }
 
     /**
-     * Clears the class loaders.  This method should be called at the beginning of
-     * a generation run so that and change to the classloading configuration
-     * will be reflected.  For example, if the eclipse launcher changes configuration
-     * it might not be updated if eclipse hasn't been restarted.
+     * Clears the class loaders. This method should be called at the beginning of a generation run so that and change to
+     * the classloading configuration will be reflected. For example, if the eclipse launcher changes configuration it
+     * might not be updated if eclipse hasn't been restarted.
      * 
      */
     public static void reset() {
@@ -84,15 +83,14 @@ public class ObjectFactory {
      * @param classLoader
      *            the class loader
      */
-    public static synchronized void addExternalClassLoader(
-            ClassLoader classLoader) {
+    public static synchronized void addExternalClassLoader(ClassLoader classLoader) {
         ObjectFactory.externalClassLoaders.add(classLoader);
     }
 
     /**
-     * Returns a class loaded from the context classloader, or the classloader supplied by a client. This is
-     * appropriate for JDBC drivers, model root classes, etc. It is not appropriate for any class that extends one of
-     * the supplied classes or interfaces.
+     * Returns a class loaded from the context classloader, or the classloader supplied by a client. This is appropriate
+     * for JDBC drivers, model root classes, etc. It is not appropriate for any class that extends one of the supplied
+     * classes or interfaces.
      *
      * @param type
      *            the type
@@ -100,8 +98,7 @@ public class ObjectFactory {
      * @throws ClassNotFoundException
      *             the class not found exception
      */
-    public static Class<?> externalClassForName(String type)
-            throws ClassNotFoundException {
+    public static Class<?> externalClassForName(String type) throws ClassNotFoundException {
 
         Class<?> clazz;
 
@@ -124,15 +121,13 @@ public class ObjectFactory {
             Class<?> clazz = externalClassForName(type);
             answer = clazz.newInstance();
         } catch (Exception e) {
-            throw new RuntimeException(getString(
-                    "RuntimeError.6", type), e); //$NON-NLS-1$
+            throw new RuntimeException(getString("RuntimeError.6", type), e); //$NON-NLS-1$
         }
 
         return answer;
     }
 
-    public static Class<?> internalClassForName(String type)
-            throws ClassNotFoundException {
+    public static Class<?> internalClassForName(String type) throws ClassNotFoundException {
         Class<?> clazz = null;
 
         try {
@@ -177,18 +172,15 @@ public class ObjectFactory {
 
             answer = clazz.newInstance();
         } catch (Exception e) {
-            throw new RuntimeException(getString(
-                    "RuntimeError.6", type), e); //$NON-NLS-1$
+            throw new RuntimeException(getString("RuntimeError.6", type), e); //$NON-NLS-1$
 
         }
 
         return answer;
     }
 
-    public static JavaTypeResolver createJavaTypeResolver(Context context,
-            List<String> warnings) {
-        JavaTypeResolverConfiguration config = context
-                .getJavaTypeResolverConfiguration();
+    public static JavaTypeResolver createJavaTypeResolver(Context context, List<String> warnings) {
+        JavaTypeResolverConfiguration config = context.getJavaTypeResolverConfiguration();
         String type;
 
         if (config != null && config.getConfigurationType() != null) {
@@ -212,10 +204,8 @@ public class ObjectFactory {
         return answer;
     }
 
-    public static Plugin createPlugin(Context context,
-            PluginConfiguration pluginConfiguration) {
-        Plugin plugin = (Plugin) createInternalObject(pluginConfiguration
-                .getConfigurationType());
+    public static Plugin createPlugin(Context context, PluginConfiguration pluginConfiguration) {
+        Plugin plugin = (Plugin) createInternalObject(pluginConfiguration.getConfigurationType());
         plugin.setContext(context);
         plugin.setProperties(pluginConfiguration.getProperties());
         return plugin;
@@ -223,8 +213,7 @@ public class ObjectFactory {
 
     public static CommentGenerator createCommentGenerator(Context context) {
 
-        CommentGeneratorConfiguration config = context
-                .getCommentGeneratorConfiguration();
+        CommentGeneratorConfiguration config = context.getCommentGeneratorConfiguration();
         CommentGenerator answer;
 
         String type;
@@ -245,8 +234,7 @@ public class ObjectFactory {
 
     public static ConnectionFactory createConnectionFactory(Context context) {
 
-        ConnectionFactoryConfiguration config = context
-                .getConnectionFactoryConfiguration();
+        ConnectionFactoryConfiguration config = context.getConnectionFactoryConfiguration();
         ConnectionFactory answer;
 
         String type;
@@ -291,9 +279,8 @@ public class ObjectFactory {
         return answer;
     }
 
-    public static IntrospectedTable createIntrospectedTable(
-            TableConfiguration tableConfiguration, FullyQualifiedTable table,
-            Context context) {
+    public static IntrospectedTable createIntrospectedTable(TableConfiguration tableConfiguration,
+            FullyQualifiedTable table, Context context) {
 
         IntrospectedTable answer = createIntrospectedTableForValidation(context);
         answer.setFullyQualifiedTable(table);

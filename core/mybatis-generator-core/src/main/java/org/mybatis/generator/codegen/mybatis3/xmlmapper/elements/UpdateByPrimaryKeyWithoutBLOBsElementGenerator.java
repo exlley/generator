@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2017 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -30,8 +30,7 @@ import org.mybatis.generator.codegen.mybatis3.MyBatis3FormattingUtilities;
  * @author Jeff Butler
  * 
  */
-public class UpdateByPrimaryKeyWithoutBLOBsElementGenerator extends
-        AbstractXmlElementGenerator {
+public class UpdateByPrimaryKeyWithoutBLOBsElementGenerator extends AbstractXmlElementGenerator {
 
     private boolean isSimple;
 
@@ -44,8 +43,7 @@ public class UpdateByPrimaryKeyWithoutBLOBsElementGenerator extends
     public void addElements(XmlElement parentElement) {
         XmlElement answer = new XmlElement("update"); //$NON-NLS-1$
 
-        answer.addAttribute(new Attribute(
-                "id", introspectedTable.getUpdateByPrimaryKeyStatementId())); //$NON-NLS-1$
+        answer.addAttribute(new Attribute("id", introspectedTable.getUpdateByPrimaryKeyStatementId())); //$NON-NLS-1$
         answer.addAttribute(new Attribute("parameterType", //$NON-NLS-1$
                 introspectedTable.getBaseRecordType()));
 
@@ -69,11 +67,9 @@ public class UpdateByPrimaryKeyWithoutBLOBsElementGenerator extends
         while (iter.hasNext()) {
             IntrospectedColumn introspectedColumn = iter.next();
 
-            sb.append(MyBatis3FormattingUtilities
-                    .getEscapedColumnName(introspectedColumn));
+            sb.append(MyBatis3FormattingUtilities.getEscapedColumnName(introspectedColumn));
             sb.append(" = "); //$NON-NLS-1$
-            sb.append(MyBatis3FormattingUtilities
-                    .getParameterClause(introspectedColumn));
+            sb.append(MyBatis3FormattingUtilities.getParameterClause(introspectedColumn));
 
             if (iter.hasNext()) {
                 sb.append(',');
@@ -89,8 +85,7 @@ public class UpdateByPrimaryKeyWithoutBLOBsElementGenerator extends
         }
 
         boolean and = false;
-        for (IntrospectedColumn introspectedColumn : introspectedTable
-                .getPrimaryKeyColumns()) {
+        for (IntrospectedColumn introspectedColumn : introspectedTable.getPrimaryKeyColumns()) {
             sb.setLength(0);
             if (and) {
                 sb.append("  and "); //$NON-NLS-1$
@@ -99,17 +94,13 @@ public class UpdateByPrimaryKeyWithoutBLOBsElementGenerator extends
                 and = true;
             }
 
-            sb.append(MyBatis3FormattingUtilities
-                    .getEscapedColumnName(introspectedColumn));
+            sb.append(MyBatis3FormattingUtilities.getEscapedColumnName(introspectedColumn));
             sb.append(" = "); //$NON-NLS-1$
-            sb.append(MyBatis3FormattingUtilities
-                    .getParameterClause(introspectedColumn));
+            sb.append(MyBatis3FormattingUtilities.getParameterClause(introspectedColumn));
             answer.addElement(new TextElement(sb.toString()));
         }
 
-        if (context.getPlugins()
-                .sqlMapUpdateByPrimaryKeyWithoutBLOBsElementGenerated(answer,
-                        introspectedTable)) {
+        if (context.getPlugins().sqlMapUpdateByPrimaryKeyWithoutBLOBsElementGenerated(answer, introspectedTable)) {
             parentElement.addElement(answer);
         }
     }

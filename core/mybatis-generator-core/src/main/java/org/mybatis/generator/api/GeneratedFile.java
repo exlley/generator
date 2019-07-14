@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -37,27 +37,23 @@ public abstract class GeneratedFile {
     }
 
     /**
-     * Returns the entire contents of the generated file. Clients
-     * can simply save the value returned from this method as the file contents.
-     * Subclasses such as @see org.mybatis.generator.api.GeneratedJavaFile offer
-     * more fine grained access to file parts, but still implement this method
-     * in the event that the entire contents are desired.
+     * Returns the entire contents of the generated file. Clients can simply save the value returned from this method as
+     * the file contents. Subclasses such as @see org.mybatis.generator.api.GeneratedJavaFile offer more fine grained
+     * access to file parts, but still implement this method in the event that the entire contents are desired.
      * 
      * @return Returns the content.
      */
     public abstract String getFormattedContent();
 
     /**
-     * Get the file name (without any path). Clients should use this method to
-     * determine how to save the results.
+     * Get the file name (without any path). Clients should use this method to determine how to save the results.
      * 
      * @return Returns the file name.
      */
     public abstract String getFileName();
 
     /**
-     * Gets the target project. Clients can call this method to determine how to
-     * save the results.
+     * Gets the target project. Clients can call this method to determine how to save the results.
      * 
      * @return the target project
      */
@@ -66,14 +62,14 @@ public abstract class GeneratedFile {
     }
 
     /**
-     * Get the target package for the file. Clients should use this method to
-     * determine how to save the results.
+     * Get the target package for the file. Clients should use this method to determine how to save the results.
      * 
      * @return Returns the target project.
      */
     public abstract String getTargetPackage();
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see java.lang.Object#toString()
      */
     @Override

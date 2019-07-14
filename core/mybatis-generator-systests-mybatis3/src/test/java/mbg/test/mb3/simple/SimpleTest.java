@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -28,19 +28,19 @@ import org.junit.jupiter.api.Test;
 
 import mbg.test.common.util.TestUtilities;
 import mbg.test.mb3.generated.simple.mapper.AwfulTableMapper;
-import mbg.test.mb3.generated.simple.mapper.FieldsblobsMapper;
-import mbg.test.mb3.generated.simple.mapper.FieldsonlyMapper;
-import mbg.test.mb3.generated.simple.mapper.PkblobsMapper;
-import mbg.test.mb3.generated.simple.mapper.PkfieldsMapper;
-import mbg.test.mb3.generated.simple.mapper.PkfieldsblobsMapper;
-import mbg.test.mb3.generated.simple.mapper.PkonlyMapper;
+import mbg.test.mb3.generated.simple.mapper.FieldsBlobsMapper;
+import mbg.test.mb3.generated.simple.mapper.FieldsOnlyMapper;
+import mbg.test.mb3.generated.simple.mapper.PKBlobsMapper;
+import mbg.test.mb3.generated.simple.mapper.PKFieldsMapper;
+import mbg.test.mb3.generated.simple.mapper.PKFieldsBlobsMapper;
+import mbg.test.mb3.generated.simple.mapper.PKOnlyMapper;
 import mbg.test.mb3.generated.simple.model.AwfulTable;
-import mbg.test.mb3.generated.simple.model.Fieldsblobs;
-import mbg.test.mb3.generated.simple.model.Fieldsonly;
-import mbg.test.mb3.generated.simple.model.Pkblobs;
-import mbg.test.mb3.generated.simple.model.Pkfields;
-import mbg.test.mb3.generated.simple.model.Pkfieldsblobs;
-import mbg.test.mb3.generated.simple.model.Pkonly;
+import mbg.test.mb3.generated.simple.model.FieldsBlobs;
+import mbg.test.mb3.generated.simple.model.FieldsOnly;
+import mbg.test.mb3.generated.simple.model.PKBlobs;
+import mbg.test.mb3.generated.simple.model.PKFields;
+import mbg.test.mb3.generated.simple.model.PKFieldsBlobs;
+import mbg.test.mb3.generated.simple.model.PKOnly;
 
 public class SimpleTest extends AbstractSimpleTest {
 
@@ -95,8 +95,8 @@ public class SimpleTest extends AbstractSimpleTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsMapper mapper = sqlSession.getMapper(PkfieldsMapper.class);
-            Pkfields record = new Pkfields();
+            PKFieldsMapper mapper = sqlSession.getMapper(PKFieldsMapper.class);
+            PKFields record = new PKFields();
             record.setDatefield(new Date());
             record.setDecimal100field(10L);
             record.setDecimal155field(new BigDecimal("15.12345"));
@@ -111,7 +111,7 @@ public class SimpleTest extends AbstractSimpleTest {
 
             mapper.insert(record);
 
-            Pkfields returnedRecord = mapper.selectByPrimaryKey(2, 1);
+            PKFields returnedRecord = mapper.selectByPrimaryKey(2, 1);
             assertNotNull(returnedRecord);
 
             assertTrue(datesAreEqual(record.getDatefield(), returnedRecord
@@ -142,8 +142,8 @@ public class SimpleTest extends AbstractSimpleTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsMapper mapper = sqlSession.getMapper(PkfieldsMapper.class);
-            Pkfields record = new Pkfields();
+            PKFieldsMapper mapper = sqlSession.getMapper(PKFieldsMapper.class);
+            PKFields record = new PKFields();
             record.setFirstname("Jeff");
             record.setLastname("Smith");
             record.setId1(1);
@@ -157,7 +157,7 @@ public class SimpleTest extends AbstractSimpleTest {
             int rows = mapper.updateByPrimaryKey(record);
             assertEquals(1, rows);
 
-            Pkfields record2 = mapper.selectByPrimaryKey(2, 1);
+            PKFields record2 = mapper.selectByPrimaryKey(2, 1);
             assertNotNull(record2);
 
             assertEquals(record.getFirstname(), record2.getFirstname());
@@ -174,8 +174,8 @@ public class SimpleTest extends AbstractSimpleTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsMapper mapper = sqlSession.getMapper(PkfieldsMapper.class);
-            Pkfields record = new Pkfields();
+            PKFieldsMapper mapper = sqlSession.getMapper(PKFieldsMapper.class);
+            PKFields record = new PKFields();
             record.setFirstname("Jeff");
             record.setLastname("Smith");
             record.setId1(1);
@@ -186,7 +186,7 @@ public class SimpleTest extends AbstractSimpleTest {
             int rows = mapper.deleteByPrimaryKey(2, 1);
             assertEquals(1, rows);
 
-            List<Pkfields> answer = mapper.selectAll();
+            List<PKFields> answer = mapper.selectAll();
             assertEquals(0, answer.size());
         } finally {
             sqlSession.close();
@@ -198,22 +198,22 @@ public class SimpleTest extends AbstractSimpleTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsMapper mapper = sqlSession.getMapper(PkfieldsMapper.class);
-            Pkfields record = new Pkfields();
+            PKFieldsMapper mapper = sqlSession.getMapper(PKFieldsMapper.class);
+            PKFields record = new PKFields();
             record.setFirstname("Jeff");
             record.setLastname("Smith");
             record.setId1(1);
             record.setId2(2);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Bob");
             record.setLastname("Jones");
             record.setId1(3);
             record.setId2(4);
             mapper.insert(record);
 
-            Pkfields newRecord = mapper.selectByPrimaryKey(4, 3);
+            PKFields newRecord = mapper.selectByPrimaryKey(4, 3);
 
             assertNotNull(newRecord);
             assertEquals(record.getFirstname(), newRecord.getFirstname());
@@ -230,50 +230,50 @@ public class SimpleTest extends AbstractSimpleTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsMapper mapper = sqlSession.getMapper(PkfieldsMapper.class);
-            Pkfields record = new Pkfields();
+            PKFieldsMapper mapper = sqlSession.getMapper(PKFieldsMapper.class);
+            PKFields record = new PKFields();
             record.setFirstname("Fred");
             record.setLastname("Flintstone");
             record.setId1(1);
             record.setId2(1);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Wilma");
             record.setLastname("Flintstone");
             record.setId1(1);
             record.setId2(2);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Pebbles");
             record.setLastname("Flintstone");
             record.setId1(1);
             record.setId2(3);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Barney");
             record.setLastname("Rubble");
             record.setId1(2);
             record.setId2(1);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Betty");
             record.setLastname("Rubble");
             record.setId1(2);
             record.setId2(2);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Bamm Bamm");
             record.setLastname("Rubble");
             record.setId1(2);
             record.setId2(3);
             mapper.insert(record);
 
-            List<Pkfields> answer = mapper.selectAll();
+            List<PKFields> answer = mapper.selectAll();
             assertEquals(6, answer.size());
         } finally {
             sqlSession.close();
@@ -285,21 +285,21 @@ public class SimpleTest extends AbstractSimpleTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            FieldsonlyMapper mapper = sqlSession.getMapper(FieldsonlyMapper.class);
+            FieldsOnlyMapper mapper = sqlSession.getMapper(FieldsOnlyMapper.class);
             
-            Fieldsonly record = new Fieldsonly();
+            FieldsOnly record = new FieldsOnly();
             record.setDoublefield(1.23);
             record.setFloatfield(4.35);
             record.setIntegerfield(9);
             mapper.insert(record);
             
-            record = new Fieldsonly();
+            record = new FieldsOnly();
             record.setDoublefield(11.2233);
             record.setFloatfield(44.3355);
             record.setIntegerfield(99);
             mapper.insert(record);
             
-            List<Fieldsonly> records = mapper.selectAll();
+            List<FieldsOnly> records = mapper.selectAll();
             
             assertEquals(2, records.size());
             
@@ -309,23 +309,23 @@ public class SimpleTest extends AbstractSimpleTest {
     }
     
     @Test
-    public void testFieldsblobs() {
+    public void testFieldsBlobs() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            FieldsblobsMapper mapper = sqlSession.getMapper(FieldsblobsMapper.class);
+            FieldsBlobsMapper mapper = sqlSession.getMapper(FieldsBlobsMapper.class);
             
-            Fieldsblobs record = new Fieldsblobs();
+            FieldsBlobs record = new FieldsBlobs();
             record.setFirstname("Fred");
             record.setBlob1(TestUtilities.generateRandomBlob());
             mapper.insert(record);
             
-            record = new Fieldsblobs();
+            record = new FieldsBlobs();
             record.setFirstname("Barney");
             record.setBlob1(TestUtilities.generateRandomBlob());
             mapper.insert(record);
             
-            List<Fieldsblobs> records = mapper.selectAll();
+            List<FieldsBlobs> records = mapper.selectAll();
             
             assertEquals(2, records.size());
             
@@ -335,28 +335,28 @@ public class SimpleTest extends AbstractSimpleTest {
     }
 
     @Test
-    public void testPkblobs() {
+    public void testPKBlobs() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkblobsMapper mapper = sqlSession.getMapper(PkblobsMapper.class);
+            PKBlobsMapper mapper = sqlSession.getMapper(PKBlobsMapper.class);
             
-            Pkblobs record = new Pkblobs();
+            PKBlobs record = new PKBlobs();
             record.setId(1);
             record.setBlob1(TestUtilities.generateRandomBlob());
             int rows = mapper.insert(record);
             assertEquals(1, rows);
             
-            record = new Pkblobs();
+            record = new PKBlobs();
             record.setId(2);
             record.setBlob1(TestUtilities.generateRandomBlob());
             rows = mapper.insert(record);
             assertEquals(1, rows);
             
-            List<Pkblobs> records = mapper.selectAll();
+            List<PKBlobs> records = mapper.selectAll();
             assertEquals(2, records.size());
             
-            Pkblobs returnedRecord = mapper.selectByPrimaryKey(record.getId());
+            PKBlobs returnedRecord = mapper.selectByPrimaryKey(record.getId());
             assertNotNull(returnedRecord);
             assertTrue(TestUtilities.blobsAreEqual(record.getBlob1(), returnedRecord.getBlob1()));
             
@@ -380,30 +380,30 @@ public class SimpleTest extends AbstractSimpleTest {
     }
     
     @Test
-    public void testPkfieldsblobs() {
+    public void testPKFieldsBlobs() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsblobsMapper mapper = sqlSession.getMapper(PkfieldsblobsMapper.class);
+            PKFieldsBlobsMapper mapper = sqlSession.getMapper(PKFieldsBlobsMapper.class);
             
-            Pkfieldsblobs record = new Pkfieldsblobs();
+            PKFieldsBlobs record = new PKFieldsBlobs();
             record.setId1(1);
             record.setId2(1);
             record.setBlob1(TestUtilities.generateRandomBlob());
             int rows = mapper.insert(record);
             assertEquals(1, rows);
             
-            record = new Pkfieldsblobs();
+            record = new PKFieldsBlobs();
             record.setId1(2);
             record.setId2(2);
             record.setBlob1(TestUtilities.generateRandomBlob());
             rows = mapper.insert(record);
             assertEquals(1, rows);
             
-            List<Pkfieldsblobs> records = mapper.selectAll();
+            List<PKFieldsBlobs> records = mapper.selectAll();
             assertEquals(2, records.size());
             
-            Pkfieldsblobs returnedRecord = mapper.selectByPrimaryKey(record.getId1(), record.getId2());
+            PKFieldsBlobs returnedRecord = mapper.selectByPrimaryKey(record.getId1(), record.getId2());
             assertNotNull(returnedRecord);
             assertTrue(TestUtilities.blobsAreEqual(record.getBlob1(), returnedRecord.getBlob1()));
             
@@ -427,33 +427,33 @@ public class SimpleTest extends AbstractSimpleTest {
     }
     
     @Test
-    public void testPkonly() {
+    public void testPKOnly() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkonlyMapper mapper = sqlSession.getMapper(PkonlyMapper.class);
+            PKOnlyMapper mapper = sqlSession.getMapper(PKOnlyMapper.class);
 
-            Pkonly record = new Pkonly();
+            PKOnly record = new PKOnly();
             record.setId(1);
             record.setSeqNum(1);
             mapper.insert(record);
             
-            record = new Pkonly();
+            record = new PKOnly();
             record.setId(1);
             record.setSeqNum(2);
             mapper.insert(record);
             
-            record = new Pkonly();
+            record = new PKOnly();
             record.setId(2);
             record.setSeqNum(1);
             mapper.insert(record);
             
-            record = new Pkonly();
+            record = new PKOnly();
             record.setId(2);
             record.setSeqNum(2);
             mapper.insert(record);
             
-            List<Pkonly> records = mapper.selectAll();
+            List<PKOnly> records = mapper.selectAll();
             assertEquals(4, records.size());
             
             mapper.deleteByPrimaryKey(record.getId(), record.getSeqNum());

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -65,24 +65,22 @@ public class ConfigurationParser {
     }
 
     /**
-     * This constructor accepts a properties object which may be used to specify
-     * an additional property set.  Typically this property set will be Ant or Maven properties
-     * specified in the build.xml file or the POM.
+     * This constructor accepts a properties object which may be used to specify an additional property set. Typically
+     * this property set will be Ant or Maven properties specified in the build.xml file or the POM.
      * 
-     * <p>If there are name collisions between the different property sets, they will be 
-     * resolved in this order:
+     * <p>
+     * If there are name collisions between the different property sets, they will be resolved in this order:
      * 
      * <ol>
-     *   <li>System properties take highest precedence</li>
-     *   <li>Properties specified in the &lt;properties&gt; configuration
-     *       element are next</li>
-     *   <li>Properties specified in this "extra" property set are
-     *       lowest precedence.</li>
+     * <li>System properties take highest precedence</li>
+     * <li>Properties specified in the &lt;properties&gt; configuration element are next</li>
+     * <li>Properties specified in this "extra" property set are lowest precedence.</li>
      * </ol>
      * 
-     * @param extraProperties an (optional) set of properties used to resolve property
-     *     references in the configuration file
-     * @param warnings any warnings are added to this array
+     * @param extraProperties
+     *            an (optional) set of properties used to resolve property references in the configuration file
+     * @param warnings
+     *            any warnings are added to this array
      */
     public ConfigurationParser(Properties extraProperties, List<String> warnings) {
         super();
@@ -97,32 +95,28 @@ public class ConfigurationParser {
         parseErrors = new ArrayList<>();
     }
 
-    public Configuration parseConfiguration(File inputFile) throws IOException,
-            XMLParserException {
+    public Configuration parseConfiguration(File inputFile) throws IOException, XMLParserException {
 
         FileReader fr = new FileReader(inputFile);
 
         return parseConfiguration(fr);
     }
 
-    public Configuration parseConfiguration(Reader reader) throws IOException,
-            XMLParserException {
+    public Configuration parseConfiguration(Reader reader) throws IOException, XMLParserException {
 
         InputSource is = new InputSource(reader);
 
         return parseConfiguration(is);
     }
 
-    public Configuration parseConfiguration(InputStream inputStream)
-            throws IOException, XMLParserException {
+    public Configuration parseConfiguration(InputStream inputStream) throws IOException, XMLParserException {
 
         InputSource is = new InputSource(inputStream);
 
         return parseConfiguration(is);
     }
 
-    private Configuration parseConfiguration(InputSource inputSource)
-            throws IOException, XMLParserException {
+    private Configuration parseConfiguration(InputSource inputSource) throws IOException, XMLParserException {
         parseErrors.clear();
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         factory.setValidating(true);
@@ -131,8 +125,7 @@ public class ConfigurationParser {
             DocumentBuilder builder = factory.newDocumentBuilder();
             builder.setEntityResolver(new ParserEntityResolver());
 
-            ParserErrorHandler handler = new ParserErrorHandler(warnings,
-                    parseErrors);
+            ParserErrorHandler handler = new ParserErrorHandler(warnings, parseErrors);
             builder.setErrorHandler(handler);
 
             Document document = null;
@@ -156,8 +149,7 @@ public class ConfigurationParser {
             Element rootNode = document.getDocumentElement();
             DocumentType docType = document.getDoctype();
             if (rootNode.getNodeType() == Node.ELEMENT_NODE
-                    && docType.getPublicId().equals(
-                            XmlConstants.MYBATIS_GENERATOR_CONFIG_PUBLIC_ID)) {
+                    && docType.getPublicId().equals(XmlConstants.MYBATIS_GENERATOR_CONFIG_PUBLIC_ID)) {
                 config = parseMyBatisGeneratorConfiguration(rootNode);
             } else {
                 throw new XMLParserException(getString("RuntimeError.5")); //$NON-NLS-1$
@@ -174,10 +166,8 @@ public class ConfigurationParser {
         }
     }
 
-    private Configuration parseMyBatisGeneratorConfiguration(Element rootNode)
-            throws XMLParserException {
-        MyBatisGeneratorConfigurationParser parser = new MyBatisGeneratorConfigurationParser(
-                extraProperties);
+    private Configuration parseMyBatisGeneratorConfiguration(Element rootNode) throws XMLParserException {
+        MyBatisGeneratorConfigurationParser parser = new MyBatisGeneratorConfigurationParser(extraProperties);
         return parser.parseConfiguration(rootNode);
     }
 }

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -44,23 +44,19 @@ public class SelectAllMethodGenerator extends AbstractJavaMapperMethodGenerator 
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setAbstract(true);
 
-        FullyQualifiedJavaType returnType = FullyQualifiedJavaType
-                .getNewListInstance();
+        FullyQualifiedJavaType returnType = FullyQualifiedJavaType.getNewListInstance();
         FullyQualifiedJavaType listType;
-        listType = new FullyQualifiedJavaType(
-                introspectedTable.getBaseRecordType());
+        listType = new FullyQualifiedJavaType(introspectedTable.getBaseRecordType());
 
         importedTypes.add(listType);
         returnType.addTypeArgument(listType);
         method.setReturnType(returnType);
 
-        context.getCommentGenerator().addGeneralMethodComment(method,
-                introspectedTable);
+        context.getCommentGenerator().addGeneralMethodComment(method, introspectedTable);
 
         addMapperAnnotations(interfaze, method);
 
-        if (context.getPlugins().clientSelectAllMethodGenerated(method,
-                interfaze, introspectedTable)) {
+        if (context.getPlugins().clientSelectAllMethodGenerated(method, interfaze, introspectedTable)) {
             addExtraImports(interfaze);
             interfaze.addImportedTypes(importedTypes);
             interfaze.addMethod(method);

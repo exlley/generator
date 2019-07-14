@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -47,24 +47,21 @@ public class ClassloaderUtility {
             for (String classPathEntry : entries) {
                 file = new File(classPathEntry);
                 if (!file.exists()) {
-                    throw new RuntimeException(getString(
-                            "RuntimeError.9", classPathEntry)); //$NON-NLS-1$
+                    throw new RuntimeException(getString("RuntimeError.9", classPathEntry)); //$NON-NLS-1$
                 }
 
                 try {
                     urls.add(file.toURI().toURL());
                 } catch (MalformedURLException e) {
                     // this shouldn't happen, but just in case...
-                    throw new RuntimeException(getString(
-                            "RuntimeError.9", classPathEntry)); //$NON-NLS-1$
+                    throw new RuntimeException(getString("RuntimeError.9", classPathEntry)); //$NON-NLS-1$
                 }
             }
         }
 
         ClassLoader parent = Thread.currentThread().getContextClassLoader();
 
-        URLClassLoader ucl = new URLClassLoader(urls.toArray(new URL[urls
-                .size()]), parent);
+        URLClassLoader ucl = new URLClassLoader(urls.toArray(new URL[urls.size()]), parent);
 
         return ucl;
     }

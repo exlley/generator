@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -26,12 +26,12 @@ import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import org.junit.jupiter.api.BeforeEach;
 
 import mbg.test.mb3.generated.dsql.mapper.AwfulTableMapper;
-import mbg.test.mb3.generated.dsql.mapper.FieldsblobsMapper;
-import mbg.test.mb3.generated.dsql.mapper.FieldsonlyMapper;
-import mbg.test.mb3.generated.dsql.mapper.PkblobsMapper;
-import mbg.test.mb3.generated.dsql.mapper.PkfieldsMapper;
-import mbg.test.mb3.generated.dsql.mapper.PkfieldsblobsMapper;
-import mbg.test.mb3.generated.dsql.mapper.PkonlyMapper;
+import mbg.test.mb3.generated.dsql.mapper.FieldsBlobsMapper;
+import mbg.test.mb3.generated.dsql.mapper.FieldsOnlyMapper;
+import mbg.test.mb3.generated.dsql.mapper.PKBlobsMapper;
+import mbg.test.mb3.generated.dsql.mapper.PKFieldsMapper;
+import mbg.test.mb3.generated.dsql.mapper.PKFieldsBlobsMapper;
+import mbg.test.mb3.generated.dsql.mapper.PKOnlyMapper;
 import mbg.test.mb3.generated.dsql.mapper.mbgtest.IdMapper;
 import mbg.test.mb3.generated.dsql.mapper.mbgtest.TranslationMapper;
 
@@ -54,12 +54,12 @@ public abstract class AbstractTest {
         Environment environment = new Environment("test", new JdbcTransactionFactory(), ds);
         Configuration config = new Configuration(environment);
         config.addMapper(AwfulTableMapper.class);
-        config.addMapper(FieldsblobsMapper.class);
-        config.addMapper(FieldsonlyMapper.class);
-        config.addMapper(PkblobsMapper.class);
-        config.addMapper(PkfieldsblobsMapper.class);
-        config.addMapper(PkfieldsMapper.class);
-        config.addMapper(PkonlyMapper.class);
+        config.addMapper(FieldsBlobsMapper.class);
+        config.addMapper(FieldsOnlyMapper.class);
+        config.addMapper(PKBlobsMapper.class);
+        config.addMapper(PKFieldsBlobsMapper.class);
+        config.addMapper(PKFieldsMapper.class);
+        config.addMapper(PKOnlyMapper.class);
         config.addMapper(TranslationMapper.class);
         config.addMapper(IdMapper.class);
         sqlSessionFactory = new SqlSessionFactoryBuilder().build(config);

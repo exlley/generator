@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -16,10 +16,8 @@
 package org.mybatis.generator.codegen;
 
 /**
- * This class exists to that Java client generators can specify whether
- * an XML generator is required to match the methods in the
- * Java client.  For example, a Java client built entirely with
- * annotations does not need matching XML.
+ * This class exists to that Java client generators can specify whether an XML generator is required to match the
+ * methods in the Java client. For example, a Java client built entirely with annotations does not need matching XML.
  * 
  * @author Jeff Butler
  *
@@ -43,11 +41,9 @@ public abstract class AbstractJavaClientGenerator extends AbstractJavaGenerator 
     }
 
     /**
-     * Returns an instance of the XML generator associated
-     * with this client generator.
+     * Returns an instance of the XML generator associated with this client generator.
      * 
-     * @return the matched XML generator.  May return null if no
-     *     XML is required by this generator
+     * @return the matched XML generator. May return null if no XML is required by this generator
      */
     public abstract AbstractXmlGenerator getMatchedXMLGenerator();
 }

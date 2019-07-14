@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2016 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -44,11 +44,9 @@ public class BaseColumnListElementGenerator extends AbstractXmlElementGenerator 
         context.getCommentGenerator().addComment(answer);
 
         StringBuilder sb = new StringBuilder();
-        Iterator<IntrospectedColumn> iter = introspectedTable
-                .getNonBLOBColumns().iterator();
+        Iterator<IntrospectedColumn> iter = introspectedTable.getNonBLOBColumns().iterator();
         while (iter.hasNext()) {
-            sb.append(MyBatis3FormattingUtilities.getSelectListPhrase(iter
-                    .next()));
+            sb.append(MyBatis3FormattingUtilities.getSelectListPhrase(iter.next()));
 
             if (iter.hasNext()) {
                 sb.append(", "); //$NON-NLS-1$
@@ -64,8 +62,7 @@ public class BaseColumnListElementGenerator extends AbstractXmlElementGenerator 
             answer.addElement(new TextElement(sb.toString()));
         }
 
-        if (context.getPlugins().sqlMapBaseColumnListElementGenerated(
-                answer, introspectedTable)) {
+        if (context.getPlugins().sqlMapBaseColumnListElementGenerated(answer, introspectedTable)) {
             parentElement.addElement(answer);
         }
     }

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -29,8 +29,7 @@ import org.mybatis.generator.api.dom.java.Parameter;
  * @author Jeff Butler
  * 
  */
-public class UpdateByExampleWithoutBLOBsMethodGenerator extends
-        AbstractJavaMapperMethodGenerator {
+public class UpdateByExampleWithoutBLOBsMethodGenerator extends AbstractJavaMapperMethodGenerator {
 
     public UpdateByExampleWithoutBLOBsMethodGenerator() {
         super();
@@ -45,35 +44,27 @@ public class UpdateByExampleWithoutBLOBsMethodGenerator extends
 
         FullyQualifiedJavaType parameterType;
         if (introspectedTable.getRules().generateBaseRecordClass()) {
-            parameterType = new FullyQualifiedJavaType(introspectedTable
-                    .getBaseRecordType());
+            parameterType = new FullyQualifiedJavaType(introspectedTable.getBaseRecordType());
         } else {
-            parameterType = new FullyQualifiedJavaType(introspectedTable
-                    .getPrimaryKeyType());
+            parameterType = new FullyQualifiedJavaType(introspectedTable.getPrimaryKeyType());
         }
-        method.addParameter(new Parameter(parameterType,
-                "record", "@Param(\"record\")")); //$NON-NLS-1$ //$NON-NLS-2$
+        method.addParameter(new Parameter(parameterType, "record", "@Param(\"record\")")); //$NON-NLS-1$ //$NON-NLS-2$
 
         Set<FullyQualifiedJavaType> importedTypes = new TreeSet<>();
         importedTypes.add(parameterType);
 
-        FullyQualifiedJavaType exampleType = new FullyQualifiedJavaType(
-                introspectedTable.getExampleType());
-        method.addParameter(new Parameter(exampleType,
-                "example", "@Param(\"example\")")); //$NON-NLS-1$ //$NON-NLS-2$
+        FullyQualifiedJavaType exampleType = new FullyQualifiedJavaType(introspectedTable.getExampleType());
+        method.addParameter(new Parameter(exampleType, "example", "@Param(\"example\")")); //$NON-NLS-1$ //$NON-NLS-2$
         importedTypes.add(exampleType);
 
-        importedTypes.add(new FullyQualifiedJavaType(
-                "org.apache.ibatis.annotations.Param")); //$NON-NLS-1$
+        importedTypes.add(new FullyQualifiedJavaType("org.apache.ibatis.annotations.Param")); //$NON-NLS-1$
 
-        context.getCommentGenerator().addGeneralMethodComment(method,
-                introspectedTable);
+        context.getCommentGenerator().addGeneralMethodComment(method, introspectedTable);
 
         addMapperAnnotations(method);
-        
-        if (context.getPlugins()
-                .clientUpdateByExampleWithoutBLOBsMethodGenerated(method,
-                        interfaze, introspectedTable)) {
+
+        if (context.getPlugins().clientUpdateByExampleWithoutBLOBsMethodGenerated(method, interfaze,
+                introspectedTable)) {
             addExtraImports(interfaze);
             interfaze.addImportedTypes(importedTypes);
             interfaze.addMethod(method);

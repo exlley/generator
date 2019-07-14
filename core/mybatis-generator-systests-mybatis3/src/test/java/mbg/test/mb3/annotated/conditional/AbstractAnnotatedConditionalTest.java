@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -19,12 +19,12 @@ import org.junit.jupiter.api.BeforeEach;
 
 import mbg.test.mb3.AbstractTest;
 import mbg.test.mb3.generated.annotated.conditional.mapper.AwfulTableMapper;
-import mbg.test.mb3.generated.annotated.conditional.mapper.FieldsblobsMapper;
-import mbg.test.mb3.generated.annotated.conditional.mapper.FieldsonlyMapper;
-import mbg.test.mb3.generated.annotated.conditional.mapper.PkblobsMapper;
-import mbg.test.mb3.generated.annotated.conditional.mapper.PkfieldsMapper;
-import mbg.test.mb3.generated.annotated.conditional.mapper.PkfieldsblobsMapper;
-import mbg.test.mb3.generated.annotated.conditional.mapper.PkonlyMapper;
+import mbg.test.mb3.generated.annotated.conditional.mapper.FieldsBlobsMapper;
+import mbg.test.mb3.generated.annotated.conditional.mapper.FieldsOnlyMapper;
+import mbg.test.mb3.generated.annotated.conditional.mapper.PKBlobsMapper;
+import mbg.test.mb3.generated.annotated.conditional.mapper.PKFieldsMapper;
+import mbg.test.mb3.generated.annotated.conditional.mapper.PKFieldsBlobsMapper;
+import mbg.test.mb3.generated.annotated.conditional.mapper.PKOnlyMapper;
 
 public abstract class AbstractAnnotatedConditionalTest extends AbstractTest {
 
@@ -33,12 +33,12 @@ public abstract class AbstractAnnotatedConditionalTest extends AbstractTest {
     public void setUp() throws Exception {
         super.setUp();
         sqlSessionFactory.getConfiguration().addMapper(AwfulTableMapper.class);
-        sqlSessionFactory.getConfiguration().addMapper(FieldsblobsMapper.class);
-        sqlSessionFactory.getConfiguration().addMapper(FieldsonlyMapper.class);
-        sqlSessionFactory.getConfiguration().addMapper(PkblobsMapper.class);
-        sqlSessionFactory.getConfiguration().addMapper(PkfieldsblobsMapper.class);
-        sqlSessionFactory.getConfiguration().addMapper(PkfieldsMapper.class);
-        sqlSessionFactory.getConfiguration().addMapper(PkonlyMapper.class);
+        sqlSessionFactory.getConfiguration().addMapper(FieldsBlobsMapper.class);
+        sqlSessionFactory.getConfiguration().addMapper(FieldsOnlyMapper.class);
+        sqlSessionFactory.getConfiguration().addMapper(PKBlobsMapper.class);
+        sqlSessionFactory.getConfiguration().addMapper(PKFieldsBlobsMapper.class);
+        sqlSessionFactory.getConfiguration().addMapper(PKFieldsMapper.class);
+        sqlSessionFactory.getConfiguration().addMapper(PKOnlyMapper.class);
     }
 
     @Override

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2017 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -22,20 +22,20 @@ import java.util.Properties;
 public interface ConnectionFactory {
 
     /**
-     * Should return a connection to the database in use for this context.
-     * The generator will call this method only one time for each context.
-     * The generator will close the connection.
+     * Should return a connection to the database in use for this context. The generator will call this method only one
+     * time for each context. The generator will close the connection.
      * 
      * @return the connection
-     * @throws SQLException if there is some error obtaining the connection
+     * @throws SQLException
+     *             if there is some error obtaining the connection
      */
     Connection getConnection() throws SQLException;
 
     /**
-     * Adds properties for this instance from any properties configured in the
-     * ConnectionFactory.
+     * Adds properties for this instance from any properties configured in the ConnectionFactory.
      * 
-     * <p>This method will be called before any of the get methods.
+     * <p>
+     * This method will be called before any of the get methods.
      * 
      * @param properties
      *            All properties from the configuration

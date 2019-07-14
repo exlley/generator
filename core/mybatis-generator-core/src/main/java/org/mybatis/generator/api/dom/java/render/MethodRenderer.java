@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -29,14 +29,14 @@ public class MethodRenderer {
     private TypeParameterRenderer typeParameterRenderer = new TypeParameterRenderer();
     private ParameterRenderer parameterRenderer = new ParameterRenderer();
     private BodyLineRenderer bodyLineRenderer = new BodyLineRenderer();
-    
+
     public List<String> render(Method method, boolean inInterface, CompilationUnit compilationUnit) {
         List<String> lines = new ArrayList<>();
 
         lines.addAll(method.getJavaDocLines());
         lines.addAll(method.getAnnotations());
         lines.add(getFirstLine(method, inInterface, compilationUnit));
-        
+
         if (!method.isAbstract() && !method.isNative()) {
             lines.addAll(bodyLineRenderer.render(method.getBodyLines()));
             lines.add("}"); //$NON-NLS-1$
@@ -75,21 +75,20 @@ public class MethodRenderer {
         }
 
         sb.append(renderTypeParameters(method, compilationUnit));
-        
+
         if (!method.isConstructor()) {
-            sb.append(method.getReturnType()
-                    .map(t -> JavaDomUtils.calculateTypeName(compilationUnit, t))
-                    .orElse("void")); //$NON-NLS-1$
-            
+            sb.append(
+                    method.getReturnType().map(t -> JavaDomUtils.calculateTypeName(compilationUnit, t)).orElse("void")); //$NON-NLS-1$
+
             sb.append(' ');
         }
 
         sb.append(method.getName());
-        
+
         sb.append(renderParameters(method, compilationUnit));
-        
+
         sb.append(renderExceptions(method, compilationUnit));
-        
+
         if (method.isAbstract() || method.isNative()) {
             sb.append(';');
         } else {
@@ -103,27 +102,24 @@ public class MethodRenderer {
         if (inInterface && method.getVisibility() == JavaVisibility.PUBLIC) {
             return ""; //$NON-NLS-1$
         }
-        
+
         return method.getVisibility().getValue();
     }
-    
+
     // should return an empty string if no type parameters
     private String renderTypeParameters(Method method, CompilationUnit compilationUnit) {
-        return method.getTypeParameters().stream()
-                .map(tp -> typeParameterRenderer.render(tp, compilationUnit))
+        return method.getTypeParameters().stream().map(tp -> typeParameterRenderer.render(tp, compilationUnit))
                 .collect(CustomCollectors.joining(", ", "<", "> ")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     }
 
     private String renderParameters(Method method, CompilationUnit compilationUnit) {
-        return method.getParameters().stream()
-                .map(p -> parameterRenderer.render(p, compilationUnit))
+        return method.getParameters().stream().map(p -> parameterRenderer.render(p, compilationUnit))
                 .collect(Collectors.joining(", ", "(", ")")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     }
 
     // should return an empty string if no exceptions
     private String renderExceptions(Method method, CompilationUnit compilationUnit) {
-        return method.getExceptions().stream()
-                .map(jt -> JavaDomUtils.calculateTypeName(compilationUnit, jt))
+        return method.getExceptions().stream().map(jt -> JavaDomUtils.calculateTypeName(compilationUnit, jt))
                 .collect(CustomCollectors.joining(", ", " throws ", "")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     }
 }

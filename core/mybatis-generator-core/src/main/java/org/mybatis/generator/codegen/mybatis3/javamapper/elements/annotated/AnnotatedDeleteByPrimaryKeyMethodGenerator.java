@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2017 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -32,8 +32,7 @@ import org.mybatis.generator.codegen.mybatis3.javamapper.elements.DeleteByPrimar
  * 
  * @author Jeff Butler
  */
-public class AnnotatedDeleteByPrimaryKeyMethodGenerator extends
-        DeleteByPrimaryKeyMethodGenerator {
+public class AnnotatedDeleteByPrimaryKeyMethodGenerator extends DeleteByPrimaryKeyMethodGenerator {
 
     public AnnotatedDeleteByPrimaryKeyMethodGenerator(boolean isSimple) {
         super(isSimple);
@@ -47,8 +46,7 @@ public class AnnotatedDeleteByPrimaryKeyMethodGenerator extends
         StringBuilder sb = new StringBuilder();
         javaIndent(sb, 1);
         sb.append("\"delete from "); //$NON-NLS-1$
-        sb.append(escapeStringForJava(
-                introspectedTable.getFullyQualifiedTableNameAtRuntime()));
+        sb.append(escapeStringForJava(introspectedTable.getFullyQualifiedTableNameAtRuntime()));
         sb.append("\","); //$NON-NLS-1$
         method.addAnnotation(sb.toString());
 
@@ -65,8 +63,7 @@ public class AnnotatedDeleteByPrimaryKeyMethodGenerator extends
             }
 
             IntrospectedColumn introspectedColumn = iter.next();
-            sb.append(escapeStringForJava(
-                    getEscapedColumnName(introspectedColumn)));
+            sb.append(escapeStringForJava(getEscapedColumnName(introspectedColumn)));
             sb.append(" = "); //$NON-NLS-1$
             sb.append(getParameterClause(introspectedColumn));
             sb.append('\"');

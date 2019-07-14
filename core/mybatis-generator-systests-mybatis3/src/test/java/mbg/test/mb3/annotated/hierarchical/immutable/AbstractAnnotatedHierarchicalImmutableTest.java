@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -18,12 +18,12 @@ package mbg.test.mb3.annotated.hierarchical.immutable;
 import org.junit.jupiter.api.BeforeEach;
 
 import mbg.test.mb3.AbstractTest;
-import mbg.test.mb3.generated.annotated.hierarchical.Immutable.Mapper.FieldsblobsMapper;
-import mbg.test.mb3.generated.annotated.hierarchical.Immutable.Mapper.FieldsonlyMapper;
-import mbg.test.mb3.generated.annotated.hierarchical.Immutable.Mapper.PkblobsMapper;
-import mbg.test.mb3.generated.annotated.hierarchical.Immutable.Mapper.PkfieldsMapper;
-import mbg.test.mb3.generated.annotated.hierarchical.Immutable.Mapper.PkfieldsblobsMapper;
-import mbg.test.mb3.generated.annotated.hierarchical.Immutable.Mapper.PkonlyMapper;
+import mbg.test.mb3.generated.annotated.hierarchical.Immutable.Mapper.FieldsBlobsMapper;
+import mbg.test.mb3.generated.annotated.hierarchical.Immutable.Mapper.FieldsOnlyMapper;
+import mbg.test.mb3.generated.annotated.hierarchical.Immutable.Mapper.PKBlobsMapper;
+import mbg.test.mb3.generated.annotated.hierarchical.Immutable.Mapper.PKFieldsMapper;
+import mbg.test.mb3.generated.annotated.hierarchical.Immutable.Mapper.PKFieldsBlobsMapper;
+import mbg.test.mb3.generated.annotated.hierarchical.Immutable.Mapper.PKOnlyMapper;
 
 public abstract class AbstractAnnotatedHierarchicalImmutableTest extends AbstractTest {
 
@@ -31,12 +31,12 @@ public abstract class AbstractAnnotatedHierarchicalImmutableTest extends Abstrac
     @Override
     public void setUp() throws Exception {
         super.setUp();
-        sqlSessionFactory.getConfiguration().addMapper(FieldsblobsMapper.class);
-        sqlSessionFactory.getConfiguration().addMapper(FieldsonlyMapper.class);
-        sqlSessionFactory.getConfiguration().addMapper(PkblobsMapper.class);
-        sqlSessionFactory.getConfiguration().addMapper(PkfieldsblobsMapper.class);
-        sqlSessionFactory.getConfiguration().addMapper(PkfieldsMapper.class);
-        sqlSessionFactory.getConfiguration().addMapper(PkonlyMapper.class);
+        sqlSessionFactory.getConfiguration().addMapper(FieldsBlobsMapper.class);
+        sqlSessionFactory.getConfiguration().addMapper(FieldsOnlyMapper.class);
+        sqlSessionFactory.getConfiguration().addMapper(PKBlobsMapper.class);
+        sqlSessionFactory.getConfiguration().addMapper(PKFieldsBlobsMapper.class);
+        sqlSessionFactory.getConfiguration().addMapper(PKFieldsMapper.class);
+        sqlSessionFactory.getConfiguration().addMapper(PKOnlyMapper.class);
     }
     
     @Override

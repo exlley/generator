@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import org.mybatis.generator.api.dom.java.Interface;
 import org.mybatis.generator.api.dom.java.Method;
 
 public class DeleteByExampleMethodGenerator extends AbstractMethodGenerator {
-    
+
     private DeleteByExampleMethodGenerator(Builder builder) {
         super(builder);
     }
@@ -33,23 +33,22 @@ public class DeleteByExampleMethodGenerator extends AbstractMethodGenerator {
         if (!introspectedTable.getRules().generateDeleteByExample()) {
             return null;
         }
-        
+
         Set<FullyQualifiedJavaType> imports = new HashSet<>();
 
         imports.add(new FullyQualifiedJavaType("org.mybatis.dynamic.sql.delete.DeleteDSL")); //$NON-NLS-1$
         imports.add(new FullyQualifiedJavaType("org.mybatis.dynamic.sql.delete.MyBatis3DeleteModelAdapter")); //$NON-NLS-1$
-        
+
         Method method = new Method("deleteByExample"); //$NON-NLS-1$
         method.setDefault(true);
         context.getCommentGenerator().addGeneralMethodAnnotation(method, introspectedTable, imports);
-        
-        FullyQualifiedJavaType returnType = new FullyQualifiedJavaType("DeleteDSL<MyBatis3DeleteModelAdapter<Integer>>"); //$NON-NLS-1$
+
+        FullyQualifiedJavaType returnType = new FullyQualifiedJavaType(
+                "DeleteDSL<MyBatis3DeleteModelAdapter<Integer>>"); //$NON-NLS-1$
         method.setReturnType(returnType);
         method.addBodyLine("return DeleteDSL.deleteFromWithMapper(this::delete, " + tableFieldName + ");"); //$NON-NLS-1$ //$NON-NLS-2$
-        
-        return MethodAndImports.withMethod(method)
-                .withImports(imports)
-                .build();
+
+        return MethodAndImports.withMethod(method).withImports(imports).build();
     }
 
     @Override

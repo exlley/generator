@@ -13,23 +13,25 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
+//  =============================================================================
+//  Copyright (c) 2016~2019 Xi'an Linggu Software Co.Ltd. All rights reserved.
+//  mybatis-generator -- 2019-07-13 22:14
+//  =============================================================================
 package org.mybatis.generator.codegen.mybatis3.javamapper.elements.sqlprovider;
-
-import java.util.List;
 
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.TopLevelClass;
 
-/**
- * 
- * @author Jeff Butler
- * 
- */
-public class ProviderSelectByExampleWithBLOBsMethodGenerator
-        extends ProviderSelectByExampleWithoutBLOBsMethodGenerator {
+import java.util.List;
 
-    public ProviderSelectByExampleWithBLOBsMethodGenerator(boolean useLegacyBuilder) {
+/**
+ * @author resky
+ * @version 1.0
+ * @date 2019-07-13
+ */
+public class ProviderSelectPaginationByExampleWithBLOBsMethodGenerator extends ProviderSelectPaginationByExampleWithoutBLOBsMethodGenerator {
+    public ProviderSelectPaginationByExampleWithBLOBsMethodGenerator(boolean useLegacyBuilder) {
         super(useLegacyBuilder);
     }
 
@@ -40,12 +42,12 @@ public class ProviderSelectByExampleWithBLOBsMethodGenerator
 
     @Override
     public String getMethodName() {
-        return introspectedTable.getSelectByExampleWithBLOBsStatementId();
+        return introspectedTable.getSelectPaginationByExampleWithBLOBsStatementId();
     }
 
     @Override
     public boolean callPlugins(Method method, TopLevelClass topLevelClass) {
-        return context.getPlugins().providerSelectByExampleWithBLOBsMethodGenerated(method, topLevelClass,
+        return context.getPlugins().providerSelectPaginationByExampleWithBLOBsMethodGenerated(method, topLevelClass,
                 introspectedTable);
     }
 }

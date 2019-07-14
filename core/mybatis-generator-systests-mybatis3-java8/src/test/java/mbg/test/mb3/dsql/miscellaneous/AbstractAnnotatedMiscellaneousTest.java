@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -25,11 +25,11 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import org.junit.jupiter.api.BeforeEach;
 
-import mbg.test.mb3.generated.dsql.miscellaneous.mapper.EnumtestMapper;
-import mbg.test.mb3.generated.dsql.miscellaneous.mapper.GeneratedalwaystestMapper;
-import mbg.test.mb3.generated.dsql.miscellaneous.mapper.GeneratedalwaystestnoupdatesMapper;
+import mbg.test.mb3.generated.dsql.miscellaneous.mapper.EnumTestMapper;
+import mbg.test.mb3.generated.dsql.miscellaneous.mapper.GeneratedAlwaysTestMapper;
+import mbg.test.mb3.generated.dsql.miscellaneous.mapper.GeneratedAlwaysTestNoUpdatesMapper;
 import mbg.test.mb3.generated.dsql.miscellaneous.mapper.MyObjectMapper;
-import mbg.test.mb3.generated.dsql.miscellaneous.mapper.RegexrenameMapper;
+import mbg.test.mb3.generated.dsql.miscellaneous.mapper.RegexRenameMapper;
 
 public abstract class AbstractAnnotatedMiscellaneousTest {
 
@@ -45,11 +45,11 @@ public abstract class AbstractAnnotatedMiscellaneousTest {
         UnpooledDataSource ds = new UnpooledDataSource(JDBC_DRIVER, JDBC_URL, "sa", "");
         Environment environment = new Environment("test", new JdbcTransactionFactory(), ds);
         Configuration config = new Configuration(environment);
-        config.addMapper(EnumtestMapper.class);
-        config.addMapper(GeneratedalwaystestMapper.class);
-        config.addMapper(GeneratedalwaystestnoupdatesMapper.class);
+        config.addMapper(EnumTestMapper.class);
+        config.addMapper(GeneratedAlwaysTestMapper.class);
+        config.addMapper(GeneratedAlwaysTestNoUpdatesMapper.class);
         config.addMapper(MyObjectMapper.class);
-        config.addMapper(RegexrenameMapper.class);
+        config.addMapper(RegexRenameMapper.class);
         sqlSessionFactory = new SqlSessionFactoryBuilder().build(config);
     }
 }

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -27,12 +27,11 @@ import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.config.Context;
 
 /**
- * This class includes no-operation methods for almost every method in the
- * Plugin interface. Clients may extend this class to implement some or all of
- * the methods in a plugin.
+ * This class includes no-operation methods for almost every method in the Plugin interface. Clients may extend this
+ * class to implement some or all of the methods in a plugin.
  * 
- * <p>This adapter does not implement the <code>validate</code> method - all plugins
- * must perform validation.
+ * <p>
+ * This adapter does not implement the <code>validate</code> method - all plugins must perform validation.
  * 
  * @author Jeff Butler
  * 
@@ -69,8 +68,7 @@ public abstract class PluginAdapter implements Plugin {
     }
 
     @Override
-    public List<GeneratedJavaFile> contextGenerateAdditionalJavaFiles(
-            IntrospectedTable introspectedTable) {
+    public List<GeneratedJavaFile> contextGenerateAdditionalJavaFiles(IntrospectedTable introspectedTable) {
         return null;
     }
 
@@ -80,8 +78,7 @@ public abstract class PluginAdapter implements Plugin {
     }
 
     @Override
-    public List<GeneratedXmlFile> contextGenerateAdditionalXmlFiles(
-            IntrospectedTable introspectedTable) {
+    public List<GeneratedXmlFile> contextGenerateAdditionalXmlFiles(IntrospectedTable introspectedTable) {
         return null;
     }
 
@@ -122,20 +119,20 @@ public abstract class PluginAdapter implements Plugin {
     }
 
     @Override
-    public boolean clientCountByExampleMethodGenerated(Method method,
-            Interface interfaze, IntrospectedTable introspectedTable) {
+    public boolean clientCountByExampleMethodGenerated(Method method, Interface interfaze,
+            IntrospectedTable introspectedTable) {
         return true;
     }
 
     @Override
-    public boolean clientDeleteByExampleMethodGenerated(Method method,
-            Interface interfaze, IntrospectedTable introspectedTable) {
+    public boolean clientDeleteByExampleMethodGenerated(Method method, Interface interfaze,
+            IntrospectedTable introspectedTable) {
         return true;
     }
 
     @Override
-    public boolean clientDeleteByPrimaryKeyMethodGenerated(Method method,
-            Interface interfaze, IntrospectedTable introspectedTable) {
+    public boolean clientDeleteByPrimaryKeyMethodGenerated(Method method, Interface interfaze,
+            IntrospectedTable introspectedTable) {
         return true;
     }
 
@@ -146,231 +143,212 @@ public abstract class PluginAdapter implements Plugin {
     }
 
     @Override
-    public boolean clientGenerated(Interface interfaze,
+    public boolean clientGenerated(Interface interfaze, IntrospectedTable introspectedTable) {
+        return true;
+    }
+
+    @Override
+    public boolean clientSelectByExampleWithBLOBsMethodGenerated(Method method, Interface interfaze,
             IntrospectedTable introspectedTable) {
         return true;
     }
 
     @Override
-    public boolean clientSelectByExampleWithBLOBsMethodGenerated(Method method,
-            Interface interfaze, IntrospectedTable introspectedTable) {
-        return true;
-    }
-
-    @Override
-    public boolean clientSelectByExampleWithoutBLOBsMethodGenerated(Method method,
-            Interface interfaze, IntrospectedTable introspectedTable) {
-        return true;
-    }
-
-    @Override
-    public boolean clientSelectByPrimaryKeyMethodGenerated(Method method,
-            Interface interfaze, IntrospectedTable introspectedTable) {
-        return true;
-    }
-
-    @Override
-    public boolean clientUpdateByExampleSelectiveMethodGenerated(Method method,
-            Interface interfaze, IntrospectedTable introspectedTable) {
-        return true;
-    }
-
-    @Override
-    public boolean clientUpdateByExampleWithBLOBsMethodGenerated(Method method,
-            Interface interfaze, IntrospectedTable introspectedTable) {
-        return true;
-    }
-
-    @Override
-    public boolean clientUpdateByExampleWithoutBLOBsMethodGenerated(Method method,
-            Interface interfaze, IntrospectedTable introspectedTable) {
-        return true;
-    }
-
-    @Override
-    public boolean clientUpdateByPrimaryKeySelectiveMethodGenerated(Method method,
-            Interface interfaze, IntrospectedTable introspectedTable) {
-        return true;
-    }
-
-    @Override
-    public boolean clientUpdateByPrimaryKeyWithBLOBsMethodGenerated(Method method,
-            Interface interfaze, IntrospectedTable introspectedTable) {
-        return true;
-    }
-
-    @Override
-    public boolean clientUpdateByPrimaryKeyWithoutBLOBsMethodGenerated(
-            Method method, Interface interfaze,
+    public boolean clientSelectByExampleWithoutBLOBsMethodGenerated(Method method, Interface interfaze,
             IntrospectedTable introspectedTable) {
         return true;
     }
 
     @Override
-    public boolean modelBaseRecordClassGenerated(TopLevelClass topLevelClass,
+    public boolean clientSelectByPrimaryKeyMethodGenerated(Method method, Interface interfaze,
             IntrospectedTable introspectedTable) {
         return true;
     }
 
     @Override
-    public boolean modelExampleClassGenerated(TopLevelClass topLevelClass,
+    public boolean clientUpdateByExampleSelectiveMethodGenerated(Method method, Interface interfaze,
             IntrospectedTable introspectedTable) {
         return true;
     }
 
     @Override
-    public boolean modelFieldGenerated(Field field,
-            TopLevelClass topLevelClass, IntrospectedColumn introspectedColumn,
-            IntrospectedTable introspectedTable,
+    public boolean clientUpdateByExampleWithBLOBsMethodGenerated(Method method, Interface interfaze,
+            IntrospectedTable introspectedTable) {
+        return true;
+    }
+
+    @Override
+    public boolean clientUpdateByExampleWithoutBLOBsMethodGenerated(Method method, Interface interfaze,
+            IntrospectedTable introspectedTable) {
+        return true;
+    }
+
+    @Override
+    public boolean clientUpdateByPrimaryKeySelectiveMethodGenerated(Method method, Interface interfaze,
+            IntrospectedTable introspectedTable) {
+        return true;
+    }
+
+    @Override
+    public boolean clientUpdateByPrimaryKeyWithBLOBsMethodGenerated(Method method, Interface interfaze,
+            IntrospectedTable introspectedTable) {
+        return true;
+    }
+
+    @Override
+    public boolean clientUpdateByPrimaryKeyWithoutBLOBsMethodGenerated(Method method, Interface interfaze,
+            IntrospectedTable introspectedTable) {
+        return true;
+    }
+
+    @Override
+    public boolean modelBaseRecordClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+        return true;
+    }
+
+    @Override
+    public boolean modelExampleClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+        return true;
+    }
+
+    @Override
+    public boolean modelFieldGenerated(Field field, TopLevelClass topLevelClass, IntrospectedColumn introspectedColumn,
+            IntrospectedTable introspectedTable, Plugin.ModelClassType modelClassType) {
+        return true;
+    }
+
+    @Override
+    public boolean modelGetterMethodGenerated(Method method, TopLevelClass topLevelClass,
+            IntrospectedColumn introspectedColumn, IntrospectedTable introspectedTable,
             Plugin.ModelClassType modelClassType) {
         return true;
     }
 
     @Override
-    public boolean modelGetterMethodGenerated(Method method,
-            TopLevelClass topLevelClass, IntrospectedColumn introspectedColumn,
-            IntrospectedTable introspectedTable,
+    public boolean modelPrimaryKeyClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+        return true;
+    }
+
+    @Override
+    public boolean modelRecordWithBLOBsClassGenerated(TopLevelClass topLevelClass,
+            IntrospectedTable introspectedTable) {
+        return true;
+    }
+
+    @Override
+    public boolean modelSetterMethodGenerated(Method method, TopLevelClass topLevelClass,
+            IntrospectedColumn introspectedColumn, IntrospectedTable introspectedTable,
             Plugin.ModelClassType modelClassType) {
         return true;
     }
 
     @Override
-    public boolean modelPrimaryKeyClassGenerated(TopLevelClass topLevelClass,
+    public boolean sqlMapResultMapWithoutBLOBsElementGenerated(XmlElement element,
             IntrospectedTable introspectedTable) {
         return true;
     }
 
     @Override
-    public boolean modelRecordWithBLOBsClassGenerated(
-            TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+    public boolean sqlMapCountByExampleElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
         return true;
     }
 
     @Override
-    public boolean modelSetterMethodGenerated(Method method,
-            TopLevelClass topLevelClass, IntrospectedColumn introspectedColumn,
-            IntrospectedTable introspectedTable,
-            Plugin.ModelClassType modelClassType) {
+    public boolean sqlMapDeleteByExampleElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
         return true;
     }
 
     @Override
-    public boolean sqlMapResultMapWithoutBLOBsElementGenerated(
-            XmlElement element, IntrospectedTable introspectedTable) {
+    public boolean sqlMapDeleteByPrimaryKeyElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
         return true;
     }
 
     @Override
-    public boolean sqlMapCountByExampleElementGenerated(XmlElement element,
+    public boolean sqlMapDocumentGenerated(Document document, IntrospectedTable introspectedTable) {
+        return true;
+    }
+
+    @Override
+    public boolean sqlMapExampleWhereClauseElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
+        return true;
+    }
+
+    @Override
+    public boolean sqlMapGenerated(GeneratedXmlFile sqlMap, IntrospectedTable introspectedTable) {
+        return true;
+    }
+
+    @Override
+    public boolean sqlMapInsertElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
+        return true;
+    }
+
+    @Override
+    public boolean sqlMapResultMapWithBLOBsElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
+        return true;
+    }
+
+    @Override
+    public boolean sqlMapSelectByExampleWithoutBLOBsElementGenerated(XmlElement element,
             IntrospectedTable introspectedTable) {
         return true;
     }
 
     @Override
-    public boolean sqlMapDeleteByExampleElementGenerated(XmlElement element,
+    public boolean sqlMapSelectByExampleWithBLOBsElementGenerated(XmlElement element,
             IntrospectedTable introspectedTable) {
         return true;
     }
 
     @Override
-    public boolean sqlMapDeleteByPrimaryKeyElementGenerated(XmlElement element,
+    public boolean sqlMapSelectByPrimaryKeyElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
+        return true;
+    }
+
+    @Override
+    public boolean sqlMapUpdateByExampleSelectiveElementGenerated(XmlElement element,
             IntrospectedTable introspectedTable) {
         return true;
     }
 
     @Override
-    public boolean sqlMapDocumentGenerated(Document document,
+    public boolean sqlMapUpdateByExampleWithBLOBsElementGenerated(XmlElement element,
             IntrospectedTable introspectedTable) {
         return true;
     }
 
     @Override
-    public boolean sqlMapExampleWhereClauseElementGenerated(XmlElement element,
+    public boolean sqlMapUpdateByExampleWithoutBLOBsElementGenerated(XmlElement element,
             IntrospectedTable introspectedTable) {
         return true;
     }
 
     @Override
-    public boolean sqlMapGenerated(GeneratedXmlFile sqlMap,
+    public boolean sqlMapUpdateByPrimaryKeySelectiveElementGenerated(XmlElement element,
             IntrospectedTable introspectedTable) {
         return true;
     }
 
     @Override
-    public boolean sqlMapInsertElementGenerated(XmlElement element,
+    public boolean sqlMapUpdateByPrimaryKeyWithBLOBsElementGenerated(XmlElement element,
             IntrospectedTable introspectedTable) {
         return true;
     }
 
     @Override
-    public boolean sqlMapResultMapWithBLOBsElementGenerated(XmlElement element,
+    public boolean sqlMapUpdateByPrimaryKeyWithoutBLOBsElementGenerated(XmlElement element,
             IntrospectedTable introspectedTable) {
         return true;
     }
 
     @Override
-    public boolean sqlMapSelectByExampleWithoutBLOBsElementGenerated(
-            XmlElement element, IntrospectedTable introspectedTable) {
+    public boolean sqlMapInsertSelectiveElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
         return true;
     }
 
     @Override
-    public boolean sqlMapSelectByExampleWithBLOBsElementGenerated(
-            XmlElement element, IntrospectedTable introspectedTable) {
-        return true;
-    }
-
-    @Override
-    public boolean sqlMapSelectByPrimaryKeyElementGenerated(XmlElement element,
+    public boolean clientInsertSelectiveMethodGenerated(Method method, Interface interfaze,
             IntrospectedTable introspectedTable) {
-        return true;
-    }
-
-    @Override
-    public boolean sqlMapUpdateByExampleSelectiveElementGenerated(
-            XmlElement element, IntrospectedTable introspectedTable) {
-        return true;
-    }
-
-    @Override
-    public boolean sqlMapUpdateByExampleWithBLOBsElementGenerated(
-            XmlElement element, IntrospectedTable introspectedTable) {
-        return true;
-    }
-
-    @Override
-    public boolean sqlMapUpdateByExampleWithoutBLOBsElementGenerated(
-            XmlElement element, IntrospectedTable introspectedTable) {
-        return true;
-    }
-
-    @Override
-    public boolean sqlMapUpdateByPrimaryKeySelectiveElementGenerated(
-            XmlElement element, IntrospectedTable introspectedTable) {
-        return true;
-    }
-
-    @Override
-    public boolean sqlMapUpdateByPrimaryKeyWithBLOBsElementGenerated(
-            XmlElement element, IntrospectedTable introspectedTable) {
-        return true;
-    }
-
-    @Override
-    public boolean sqlMapUpdateByPrimaryKeyWithoutBLOBsElementGenerated(
-            XmlElement element, IntrospectedTable introspectedTable) {
-        return true;
-    }
-
-    @Override
-    public boolean sqlMapInsertSelectiveElementGenerated(XmlElement element,
-            IntrospectedTable introspectedTable) {
-        return true;
-    }
-
-    @Override
-    public boolean clientInsertSelectiveMethodGenerated(Method method,
-            Interface interfaze, IntrospectedTable introspectedTable) {
         return true;
     }
 
@@ -379,98 +357,98 @@ public abstract class PluginAdapter implements Plugin {
     }
 
     @Override
-    public boolean sqlMapBaseColumnListElementGenerated(XmlElement element,
+    public boolean sqlMapBaseColumnListElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
+        return true;
+    }
+
+    @Override
+    public boolean sqlMapBlobColumnListElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
+        return true;
+    }
+
+    @Override
+    public boolean providerGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+        return true;
+    }
+
+    @Override
+    public boolean providerApplyWhereMethodGenerated(Method method, TopLevelClass topLevelClass,
             IntrospectedTable introspectedTable) {
         return true;
     }
 
     @Override
-    public boolean sqlMapBlobColumnListElementGenerated(XmlElement element,
+    public boolean providerCountByExampleMethodGenerated(Method method, TopLevelClass topLevelClass,
             IntrospectedTable introspectedTable) {
         return true;
     }
 
     @Override
-    public boolean providerGenerated(TopLevelClass topLevelClass,
+    public boolean providerDeleteByExampleMethodGenerated(Method method, TopLevelClass topLevelClass,
             IntrospectedTable introspectedTable) {
         return true;
     }
 
     @Override
-    public boolean providerApplyWhereMethodGenerated(Method method,
-            TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
-        return true;
-    }
-
-    @Override
-    public boolean providerCountByExampleMethodGenerated(Method method,
-            TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
-        return true;
-    }
-
-    @Override
-    public boolean providerDeleteByExampleMethodGenerated(Method method,
-            TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
-        return true;
-    }
-
-    @Override
-    public boolean providerInsertSelectiveMethodGenerated(Method method,
-            TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
-        return true;
-    }
-
-    @Override
-    public boolean providerSelectByExampleWithBLOBsMethodGenerated(
-            Method method, TopLevelClass topLevelClass,
+    public boolean providerInsertSelectiveMethodGenerated(Method method, TopLevelClass topLevelClass,
             IntrospectedTable introspectedTable) {
         return true;
     }
 
     @Override
-    public boolean providerSelectByExampleWithoutBLOBsMethodGenerated(
-            Method method, TopLevelClass topLevelClass,
+    public boolean providerSelectByExampleWithBLOBsMethodGenerated(Method method, TopLevelClass topLevelClass,
             IntrospectedTable introspectedTable) {
         return true;
     }
 
     @Override
-    public boolean providerUpdateByExampleSelectiveMethodGenerated(
-            Method method, TopLevelClass topLevelClass,
+    public boolean providerSelectByExampleWithoutBLOBsMethodGenerated(Method method, TopLevelClass topLevelClass,
             IntrospectedTable introspectedTable) {
         return true;
     }
 
     @Override
-    public boolean providerUpdateByExampleWithBLOBsMethodGenerated(
-            Method method, TopLevelClass topLevelClass,
+    public boolean providerSelectPaginationByExampleWithBLOBsMethodGenerated(Method method, TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+        return true;
+    }
+
+    @Override
+    public boolean providerSelectPaginationByExampleWithoutBLOBsMethodGenerated(Method method, TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+        return true;
+    }
+
+    @Override
+    public boolean providerUpdateByExampleSelectiveMethodGenerated(Method method, TopLevelClass topLevelClass,
             IntrospectedTable introspectedTable) {
         return true;
     }
 
     @Override
-    public boolean providerUpdateByExampleWithoutBLOBsMethodGenerated(
-            Method method, TopLevelClass topLevelClass,
+    public boolean providerUpdateByExampleWithBLOBsMethodGenerated(Method method, TopLevelClass topLevelClass,
             IntrospectedTable introspectedTable) {
         return true;
     }
 
     @Override
-    public boolean providerUpdateByPrimaryKeySelectiveMethodGenerated(
-            Method method, TopLevelClass topLevelClass,
+    public boolean providerUpdateByExampleWithoutBLOBsMethodGenerated(Method method, TopLevelClass topLevelClass,
             IntrospectedTable introspectedTable) {
         return true;
     }
 
     @Override
-    public boolean clientSelectAllMethodGenerated(Method method,
-            Interface interfaze, IntrospectedTable introspectedTable) {
+    public boolean providerUpdateByPrimaryKeySelectiveMethodGenerated(Method method, TopLevelClass topLevelClass,
+            IntrospectedTable introspectedTable) {
         return true;
     }
 
     @Override
-    public boolean sqlMapSelectAllElementGenerated(XmlElement element,
+    public boolean clientSelectAllMethodGenerated(Method method, Interface interfaze,
             IntrospectedTable introspectedTable) {
+        return true;
+    }
+
+    @Override
+    public boolean sqlMapSelectAllElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
         return true;
     }
 }

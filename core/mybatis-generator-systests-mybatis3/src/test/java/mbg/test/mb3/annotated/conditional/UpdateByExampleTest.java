@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -25,26 +25,26 @@ import org.apache.ibatis.session.SqlSession;
 import org.junit.jupiter.api.Test;
 
 import mbg.test.mb3.generated.annotated.conditional.mapper.AwfulTableMapper;
-import mbg.test.mb3.generated.annotated.conditional.mapper.FieldsblobsMapper;
-import mbg.test.mb3.generated.annotated.conditional.mapper.FieldsonlyMapper;
-import mbg.test.mb3.generated.annotated.conditional.mapper.PkblobsMapper;
-import mbg.test.mb3.generated.annotated.conditional.mapper.PkfieldsMapper;
-import mbg.test.mb3.generated.annotated.conditional.mapper.PkfieldsblobsMapper;
-import mbg.test.mb3.generated.annotated.conditional.mapper.PkonlyMapper;
+import mbg.test.mb3.generated.annotated.conditional.mapper.FieldsBlobsMapper;
+import mbg.test.mb3.generated.annotated.conditional.mapper.FieldsOnlyMapper;
+import mbg.test.mb3.generated.annotated.conditional.mapper.PKBlobsMapper;
+import mbg.test.mb3.generated.annotated.conditional.mapper.PKFieldsMapper;
+import mbg.test.mb3.generated.annotated.conditional.mapper.PKFieldsBlobsMapper;
+import mbg.test.mb3.generated.annotated.conditional.mapper.PKOnlyMapper;
 import mbg.test.mb3.generated.annotated.conditional.model.AwfulTable;
 import mbg.test.mb3.generated.annotated.conditional.model.AwfulTableExample;
-import mbg.test.mb3.generated.annotated.conditional.model.FieldsblobsExample;
-import mbg.test.mb3.generated.annotated.conditional.model.FieldsblobsWithBLOBs;
-import mbg.test.mb3.generated.annotated.conditional.model.Fieldsonly;
-import mbg.test.mb3.generated.annotated.conditional.model.FieldsonlyExample;
-import mbg.test.mb3.generated.annotated.conditional.model.Pkblobs;
-import mbg.test.mb3.generated.annotated.conditional.model.PkblobsExample;
-import mbg.test.mb3.generated.annotated.conditional.model.Pkfields;
-import mbg.test.mb3.generated.annotated.conditional.model.PkfieldsExample;
-import mbg.test.mb3.generated.annotated.conditional.model.Pkfieldsblobs;
-import mbg.test.mb3.generated.annotated.conditional.model.PkfieldsblobsExample;
-import mbg.test.mb3.generated.annotated.conditional.model.PkonlyExample;
-import mbg.test.mb3.generated.annotated.conditional.model.PkonlyKey;
+import mbg.test.mb3.generated.annotated.conditional.model.FieldsBlobsExample;
+import mbg.test.mb3.generated.annotated.conditional.model.FieldsBlobsWithBLOBs;
+import mbg.test.mb3.generated.annotated.conditional.model.FieldsOnly;
+import mbg.test.mb3.generated.annotated.conditional.model.FieldsOnlyExample;
+import mbg.test.mb3.generated.annotated.conditional.model.PKBlobs;
+import mbg.test.mb3.generated.annotated.conditional.model.PKBlobsExample;
+import mbg.test.mb3.generated.annotated.conditional.model.PKFields;
+import mbg.test.mb3.generated.annotated.conditional.model.PKFieldsExample;
+import mbg.test.mb3.generated.annotated.conditional.model.PKFieldsBlobs;
+import mbg.test.mb3.generated.annotated.conditional.model.PKFieldsBlobsExample;
+import mbg.test.mb3.generated.annotated.conditional.model.PKOnlyExample;
+import mbg.test.mb3.generated.annotated.conditional.model.PKOnlyKey;
 
 /**
  * 
@@ -58,28 +58,28 @@ public class UpdateByExampleTest extends AbstractAnnotatedConditionalTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            FieldsonlyMapper mapper = sqlSession.getMapper(FieldsonlyMapper.class);
-            Fieldsonly record = new Fieldsonly();
+            FieldsOnlyMapper mapper = sqlSession.getMapper(FieldsOnlyMapper.class);
+            FieldsOnly record = new FieldsOnly();
             record.setDoublefield(11.22);
             record.setFloatfield(33.44);
             record.setIntegerfield(5);
             mapper.insert(record);
 
-            record = new Fieldsonly();
+            record = new FieldsOnly();
             record.setDoublefield(44.55);
             record.setFloatfield(66.77);
             record.setIntegerfield(8);
             mapper.insert(record);
 
-            record = new Fieldsonly();
+            record = new FieldsOnly();
             record.setDoublefield(88.99);
             record.setFloatfield(100.111);
             record.setIntegerfield(9);
             mapper.insert(record);
 
-            record = new Fieldsonly();
+            record = new FieldsOnly();
             record.setDoublefield(99d);
-            FieldsonlyExample example = new FieldsonlyExample();
+            FieldsOnlyExample example = new FieldsOnlyExample();
             example.createCriteria().andIntegerfieldGreaterThan(5);
             
             int rows = mapper.updateByExampleSelective(record, example);
@@ -87,7 +87,7 @@ public class UpdateByExampleTest extends AbstractAnnotatedConditionalTest {
 
             example.clear();
             example.createCriteria().andIntegerfieldEqualTo(5);
-            List<Fieldsonly> answer = mapper.selectByExample(example);
+            List<FieldsOnly> answer = mapper.selectByExample(example);
             assertEquals(1, answer.size());
             record = answer.get(0);
             assertEquals(record.getDoublefield(), 11.22, 0.001);
@@ -121,28 +121,28 @@ public class UpdateByExampleTest extends AbstractAnnotatedConditionalTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            FieldsonlyMapper mapper = sqlSession.getMapper(FieldsonlyMapper.class);
-            Fieldsonly record = new Fieldsonly();
+            FieldsOnlyMapper mapper = sqlSession.getMapper(FieldsOnlyMapper.class);
+            FieldsOnly record = new FieldsOnly();
             record.setDoublefield(11.22);
             record.setFloatfield(33.44);
             record.setIntegerfield(5);
             mapper.insert(record);
 
-            record = new Fieldsonly();
+            record = new FieldsOnly();
             record.setDoublefield(44.55);
             record.setFloatfield(66.77);
             record.setIntegerfield(8);
             mapper.insert(record);
 
-            record = new Fieldsonly();
+            record = new FieldsOnly();
             record.setDoublefield(88.99);
             record.setFloatfield(100.111);
             record.setIntegerfield(9);
             mapper.insert(record);
 
-            record = new Fieldsonly();
+            record = new FieldsOnly();
             record.setIntegerfield(22);
-            FieldsonlyExample example = new FieldsonlyExample();
+            FieldsOnlyExample example = new FieldsOnlyExample();
             example.createCriteria().andIntegerfieldEqualTo(5);
             
             int rows = mapper.updateByExample(record, example);
@@ -150,7 +150,7 @@ public class UpdateByExampleTest extends AbstractAnnotatedConditionalTest {
 
             example.clear();
             example.createCriteria().andIntegerfieldEqualTo(22);
-            List<Fieldsonly> answer = mapper.selectByExample(example);
+            List<FieldsOnly> answer = mapper.selectByExample(example);
             assertEquals(1, answer.size());
             record = answer.get(0);
             assertNull(record.getDoublefield());
@@ -166,25 +166,25 @@ public class UpdateByExampleTest extends AbstractAnnotatedConditionalTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkonlyMapper mapper = sqlSession.getMapper(PkonlyMapper.class);
-            PkonlyKey key = new PkonlyKey();
+            PKOnlyMapper mapper = sqlSession.getMapper(PKOnlyMapper.class);
+            PKOnlyKey key = new PKOnlyKey();
             key.setId(1);
             key.setSeqNum(3);
             mapper.insert(key);
 
-            key = new PkonlyKey();
+            key = new PKOnlyKey();
             key.setId(5);
             key.setSeqNum(6);
             mapper.insert(key);
 
-            key = new PkonlyKey();
+            key = new PKOnlyKey();
             key.setId(7);
             key.setSeqNum(8);
             mapper.insert(key);
 
-            key = new PkonlyKey();
+            key = new PKOnlyKey();
             key.setSeqNum(3);
-            PkonlyExample example = new PkonlyExample();
+            PKOnlyExample example = new PKOnlyExample();
             example.createCriteria().andIdGreaterThan(4);
             int rows = mapper.updateByExampleSelective(key, example);
             assertEquals(2, rows);
@@ -214,26 +214,26 @@ public class UpdateByExampleTest extends AbstractAnnotatedConditionalTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkonlyMapper mapper = sqlSession.getMapper(PkonlyMapper.class);
-            PkonlyKey key = new PkonlyKey();
+            PKOnlyMapper mapper = sqlSession.getMapper(PKOnlyMapper.class);
+            PKOnlyKey key = new PKOnlyKey();
             key.setId(1);
             key.setSeqNum(3);
             mapper.insert(key);
 
-            key = new PkonlyKey();
+            key = new PKOnlyKey();
             key.setId(5);
             key.setSeqNum(6);
             mapper.insert(key);
 
-            key = new PkonlyKey();
+            key = new PKOnlyKey();
             key.setId(7);
             key.setSeqNum(8);
             mapper.insert(key);
 
-            key = new PkonlyKey();
+            key = new PKOnlyKey();
             key.setSeqNum(3);
             key.setId(22);
-            PkonlyExample example = new PkonlyExample();
+            PKOnlyExample example = new PKOnlyExample();
             example.createCriteria()
                 .andIdEqualTo(7);
             int rows = mapper.updateByExample(key, example);
@@ -256,15 +256,15 @@ public class UpdateByExampleTest extends AbstractAnnotatedConditionalTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
     
         try {
-            PkfieldsMapper mapper = sqlSession.getMapper(PkfieldsMapper.class);
-            Pkfields record = new Pkfields();
+            PKFieldsMapper mapper = sqlSession.getMapper(PKFieldsMapper.class);
+            PKFields record = new PKFields();
             record.setFirstname("Jeff");
             record.setLastname("Smith");
             record.setId1(1);
             record.setId2(2);
             mapper.insert(record);
     
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Bob");
             record.setLastname("Jones");
             record.setId1(3);
@@ -272,9 +272,9 @@ public class UpdateByExampleTest extends AbstractAnnotatedConditionalTest {
     
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Fred");
-            PkfieldsExample example = new PkfieldsExample();
+            PKFieldsExample example = new PKFieldsExample();
             example.createCriteria().andLastnameLike("J%");
             int rows = mapper.updateByExampleSelective(record, example);
             assertEquals(1, rows);
@@ -298,15 +298,15 @@ public class UpdateByExampleTest extends AbstractAnnotatedConditionalTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
     
         try {
-            PkfieldsMapper mapper = sqlSession.getMapper(PkfieldsMapper.class);
-            Pkfields record = new Pkfields();
+            PKFieldsMapper mapper = sqlSession.getMapper(PKFieldsMapper.class);
+            PKFields record = new PKFields();
             record.setFirstname("Jeff");
             record.setLastname("Smith");
             record.setId1(1);
             record.setId2(2);
             mapper.insert(record);
     
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Bob");
             record.setLastname("Jones");
             record.setId1(3);
@@ -314,11 +314,11 @@ public class UpdateByExampleTest extends AbstractAnnotatedConditionalTest {
     
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Fred");
             record.setId1(3);
             record.setId2(4);
-            PkfieldsExample example = new PkfieldsExample();
+            PKFieldsExample example = new PKFieldsExample();
             example.createCriteria()
                 .andId1EqualTo(3)
                 .andId2EqualTo(4);
@@ -345,31 +345,31 @@ public class UpdateByExampleTest extends AbstractAnnotatedConditionalTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
     
         try {
-            PkblobsMapper mapper = sqlSession.getMapper(PkblobsMapper.class);
-            Pkblobs record = new Pkblobs();
+            PKBlobsMapper mapper = sqlSession.getMapper(PKBlobsMapper.class);
+            PKBlobs record = new PKBlobs();
             record.setId(3);
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
     
-            record = new Pkblobs();
+            record = new PKBlobs();
             record.setId(6);
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
     
-            Pkblobs newRecord = new Pkblobs();
+            PKBlobs newRecord = new PKBlobs();
             newRecord.setBlob1(generateRandomBlob());
             
-            PkblobsExample example = new PkblobsExample();
+            PKBlobsExample example = new PKBlobsExample();
             example.createCriteria().andIdGreaterThan(4);
             int rows = mapper.updateByExampleSelective(newRecord, example);
             assertEquals(1, rows);
             
-            List<Pkblobs> answer = mapper.selectByExampleWithBLOBs(example);
+            List<PKBlobs> answer = mapper.selectByExampleWithBLOBs(example);
             assertEquals(1, answer.size());
             
-            Pkblobs returnedRecord = answer.get(0);
+            PKBlobs returnedRecord = answer.get(0);
             
             assertEquals(6, returnedRecord.getId().intValue());
             assertTrue(blobsAreEqual(newRecord.getBlob1(), returnedRecord.getBlob1()));
@@ -384,31 +384,31 @@ public class UpdateByExampleTest extends AbstractAnnotatedConditionalTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
     
         try {
-            PkblobsMapper mapper = sqlSession.getMapper(PkblobsMapper.class);
-            Pkblobs record = new Pkblobs();
+            PKBlobsMapper mapper = sqlSession.getMapper(PKBlobsMapper.class);
+            PKBlobs record = new PKBlobs();
             record.setId(3);
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
     
-            record = new Pkblobs();
+            record = new PKBlobs();
             record.setId(6);
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
     
-            Pkblobs newRecord = new Pkblobs();
+            PKBlobs newRecord = new PKBlobs();
             newRecord.setId(8);
             
-            PkblobsExample example = new PkblobsExample();
+            PKBlobsExample example = new PKBlobsExample();
             example.createCriteria().andIdGreaterThan(4);
             int rows = mapper.updateByExample(newRecord, example);
             assertEquals(1, rows);
             
-            List<Pkblobs> answer = mapper.selectByExampleWithBLOBs(example);
+            List<PKBlobs> answer = mapper.selectByExampleWithBLOBs(example);
             assertEquals(1, answer.size());
             
-            Pkblobs returnedRecord = answer.get(0);
+            PKBlobs returnedRecord = answer.get(0);
             
             assertEquals(8, returnedRecord.getId().intValue());
             assertTrue(blobsAreEqual(record.getBlob1(), returnedRecord.getBlob1()));
@@ -423,31 +423,31 @@ public class UpdateByExampleTest extends AbstractAnnotatedConditionalTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
     
         try {
-            PkblobsMapper mapper = sqlSession.getMapper(PkblobsMapper.class);
-            Pkblobs record = new Pkblobs();
+            PKBlobsMapper mapper = sqlSession.getMapper(PKBlobsMapper.class);
+            PKBlobs record = new PKBlobs();
             record.setId(3);
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
     
-            record = new Pkblobs();
+            record = new PKBlobs();
             record.setId(6);
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
     
-            Pkblobs newRecord = new Pkblobs();
+            PKBlobs newRecord = new PKBlobs();
             newRecord.setId(8);
             
-            PkblobsExample example = new PkblobsExample();
+            PKBlobsExample example = new PKBlobsExample();
             example.createCriteria().andIdGreaterThan(4);
             int rows = mapper.updateByExampleWithBLOBs(newRecord, example);
             assertEquals(1, rows);
             
-            List<Pkblobs> answer = mapper.selectByExampleWithBLOBs(example);
+            List<PKBlobs> answer = mapper.selectByExampleWithBLOBs(example);
             assertEquals(1, answer.size());
             
-            Pkblobs returnedRecord = answer.get(0);
+            PKBlobs returnedRecord = answer.get(0);
             
             assertEquals(8, returnedRecord.getId().intValue());
             assertNull(returnedRecord.getBlob1());
@@ -462,8 +462,8 @@ public class UpdateByExampleTest extends AbstractAnnotatedConditionalTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
     
         try {
-            PkfieldsblobsMapper mapper = sqlSession.getMapper(PkfieldsblobsMapper.class);
-            Pkfieldsblobs record = new Pkfieldsblobs();
+            PKFieldsBlobsMapper mapper = sqlSession.getMapper(PKFieldsBlobsMapper.class);
+            PKFieldsBlobs record = new PKFieldsBlobs();
             record.setId1(3);
             record.setId2(4);
             record.setFirstname("Jeff");
@@ -471,7 +471,7 @@ public class UpdateByExampleTest extends AbstractAnnotatedConditionalTest {
             record.setBlob1(generateRandomBlob());
             mapper.insert(record);
     
-            record = new Pkfieldsblobs();
+            record = new PKFieldsBlobs();
             record.setId1(5);
             record.setId2(6);
             record.setFirstname("Scott");
@@ -479,17 +479,17 @@ public class UpdateByExampleTest extends AbstractAnnotatedConditionalTest {
             record.setBlob1(generateRandomBlob());
             mapper.insert(record);
 
-            Pkfieldsblobs newRecord = new Pkfieldsblobs();
+            PKFieldsBlobs newRecord = new PKFieldsBlobs();
             newRecord.setFirstname("Fred");
-            PkfieldsblobsExample example = new PkfieldsblobsExample();
+            PKFieldsBlobsExample example = new PKFieldsBlobsExample();
             example.createCriteria().andId1NotEqualTo(3);
             int rows = mapper.updateByExampleSelective(newRecord, example);
             assertEquals(1, rows);
     
-            List<Pkfieldsblobs> answer = mapper.selectByExampleWithBLOBs(example);
+            List<PKFieldsBlobs> answer = mapper.selectByExampleWithBLOBs(example);
             assertEquals(1, answer.size());
             
-            Pkfieldsblobs returnedRecord = answer.get(0);
+            PKFieldsBlobs returnedRecord = answer.get(0);
             
             assertEquals(record.getId1(), returnedRecord.getId1());
             assertEquals(record.getId2(), returnedRecord.getId2());
@@ -507,8 +507,8 @@ public class UpdateByExampleTest extends AbstractAnnotatedConditionalTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
     
         try {
-            PkfieldsblobsMapper mapper = sqlSession.getMapper(PkfieldsblobsMapper.class);
-            Pkfieldsblobs record = new Pkfieldsblobs();
+            PKFieldsBlobsMapper mapper = sqlSession.getMapper(PKFieldsBlobsMapper.class);
+            PKFieldsBlobs record = new PKFieldsBlobs();
             record.setId1(3);
             record.setId2(4);
             record.setFirstname("Jeff");
@@ -516,7 +516,7 @@ public class UpdateByExampleTest extends AbstractAnnotatedConditionalTest {
             record.setBlob1(generateRandomBlob());
             mapper.insert(record);
     
-            record = new Pkfieldsblobs();
+            record = new PKFieldsBlobs();
             record.setId1(5);
             record.setId2(6);
             record.setFirstname("Scott");
@@ -524,19 +524,19 @@ public class UpdateByExampleTest extends AbstractAnnotatedConditionalTest {
             record.setBlob1(generateRandomBlob());
             mapper.insert(record);
 
-            Pkfieldsblobs newRecord = new Pkfieldsblobs();
+            PKFieldsBlobs newRecord = new PKFieldsBlobs();
             newRecord.setId1(5);
             newRecord.setId2(8);
             newRecord.setFirstname("Fred");
-            PkfieldsblobsExample example = new PkfieldsblobsExample();
+            PKFieldsBlobsExample example = new PKFieldsBlobsExample();
             example.createCriteria().andId1EqualTo(5);
             int rows = mapper.updateByExample(newRecord, example);
             assertEquals(1, rows);
     
-            List<Pkfieldsblobs> answer = mapper.selectByExampleWithBLOBs(example);
+            List<PKFieldsBlobs> answer = mapper.selectByExampleWithBLOBs(example);
             assertEquals(1, answer.size());
             
-            Pkfieldsblobs returnedRecord = answer.get(0);
+            PKFieldsBlobs returnedRecord = answer.get(0);
             
             assertEquals(newRecord.getId1(), returnedRecord.getId1());
             assertEquals(newRecord.getId2(), returnedRecord.getId2());
@@ -554,8 +554,8 @@ public class UpdateByExampleTest extends AbstractAnnotatedConditionalTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
     
         try {
-            PkfieldsblobsMapper mapper = sqlSession.getMapper(PkfieldsblobsMapper.class);
-            Pkfieldsblobs record = new Pkfieldsblobs();
+            PKFieldsBlobsMapper mapper = sqlSession.getMapper(PKFieldsBlobsMapper.class);
+            PKFieldsBlobs record = new PKFieldsBlobs();
             record.setId1(3);
             record.setId2(4);
             record.setFirstname("Jeff");
@@ -563,7 +563,7 @@ public class UpdateByExampleTest extends AbstractAnnotatedConditionalTest {
             record.setBlob1(generateRandomBlob());
             mapper.insert(record);
     
-            record = new Pkfieldsblobs();
+            record = new PKFieldsBlobs();
             record.setId1(5);
             record.setId2(6);
             record.setFirstname("Scott");
@@ -571,19 +571,19 @@ public class UpdateByExampleTest extends AbstractAnnotatedConditionalTest {
             record.setBlob1(generateRandomBlob());
             mapper.insert(record);
 
-            Pkfieldsblobs newRecord = new Pkfieldsblobs();
+            PKFieldsBlobs newRecord = new PKFieldsBlobs();
             newRecord.setId1(3);
             newRecord.setId2(8);
             newRecord.setFirstname("Fred");
-            PkfieldsblobsExample example = new PkfieldsblobsExample();
+            PKFieldsBlobsExample example = new PKFieldsBlobsExample();
             example.createCriteria().andId1EqualTo(3);
             int rows = mapper.updateByExampleWithBLOBs(newRecord, example);
             assertEquals(1, rows);
     
-            List<Pkfieldsblobs> answer = mapper.selectByExampleWithBLOBs(example);
+            List<PKFieldsBlobs> answer = mapper.selectByExampleWithBLOBs(example);
             assertEquals(1, answer.size());
             
-            Pkfieldsblobs returnedRecord = answer.get(0);
+            PKFieldsBlobs returnedRecord = answer.get(0);
             
             assertEquals(newRecord.getId1(), returnedRecord.getId1());
             assertEquals(newRecord.getId2(), returnedRecord.getId2());
@@ -601,32 +601,32 @@ public class UpdateByExampleTest extends AbstractAnnotatedConditionalTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
     
         try {
-            FieldsblobsMapper mapper = sqlSession.getMapper(FieldsblobsMapper.class);
-            FieldsblobsWithBLOBs record = new FieldsblobsWithBLOBs();
+            FieldsBlobsMapper mapper = sqlSession.getMapper(FieldsBlobsMapper.class);
+            FieldsBlobsWithBLOBs record = new FieldsBlobsWithBLOBs();
             record.setFirstname("Jeff");
             record.setLastname("Smith");
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
     
-            record = new FieldsblobsWithBLOBs();
+            record = new FieldsBlobsWithBLOBs();
             record.setFirstname("Scott");
             record.setLastname("Jones");
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
 
-            FieldsblobsWithBLOBs newRecord = new FieldsblobsWithBLOBs();
+            FieldsBlobsWithBLOBs newRecord = new FieldsBlobsWithBLOBs();
             newRecord.setLastname("Doe");
-            FieldsblobsExample example = new FieldsblobsExample();
+            FieldsBlobsExample example = new FieldsBlobsExample();
             example.createCriteria().andFirstnameLike("S%");
             int rows = mapper.updateByExampleSelective(newRecord, example);
             assertEquals(1, rows);
             
-            List<FieldsblobsWithBLOBs> answer = mapper.selectByExampleWithBLOBs(example);
+            List<FieldsBlobsWithBLOBs> answer = mapper.selectByExampleWithBLOBs(example);
             assertEquals(1, answer.size());
             
-            FieldsblobsWithBLOBs returnedRecord = answer.get(0);
+            FieldsBlobsWithBLOBs returnedRecord = answer.get(0);
             
             assertEquals(record.getFirstname(), returnedRecord.getFirstname());
             assertEquals(newRecord.getLastname(), returnedRecord.getLastname());
@@ -642,33 +642,33 @@ public class UpdateByExampleTest extends AbstractAnnotatedConditionalTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
     
         try {
-            FieldsblobsMapper mapper = sqlSession.getMapper(FieldsblobsMapper.class);
-            FieldsblobsWithBLOBs record = new FieldsblobsWithBLOBs();
+            FieldsBlobsMapper mapper = sqlSession.getMapper(FieldsBlobsMapper.class);
+            FieldsBlobsWithBLOBs record = new FieldsBlobsWithBLOBs();
             record.setFirstname("Jeff");
             record.setLastname("Smith");
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
     
-            record = new FieldsblobsWithBLOBs();
+            record = new FieldsBlobsWithBLOBs();
             record.setFirstname("Scott");
             record.setLastname("Jones");
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
 
-            FieldsblobsWithBLOBs newRecord = new FieldsblobsWithBLOBs();
+            FieldsBlobsWithBLOBs newRecord = new FieldsBlobsWithBLOBs();
             newRecord.setFirstname("Scott");
             newRecord.setLastname("Doe");
-            FieldsblobsExample example = new FieldsblobsExample();
+            FieldsBlobsExample example = new FieldsBlobsExample();
             example.createCriteria().andFirstnameLike("S%");
             int rows = mapper.updateByExample(newRecord, example);
             assertEquals(1, rows);
             
-            List<FieldsblobsWithBLOBs> answer = mapper.selectByExampleWithBLOBs(example);
+            List<FieldsBlobsWithBLOBs> answer = mapper.selectByExampleWithBLOBs(example);
             assertEquals(1, answer.size());
             
-            FieldsblobsWithBLOBs returnedRecord = answer.get(0);
+            FieldsBlobsWithBLOBs returnedRecord = answer.get(0);
             
             assertEquals(newRecord.getFirstname(), returnedRecord.getFirstname());
             assertEquals(newRecord.getLastname(), returnedRecord.getLastname());
@@ -684,33 +684,33 @@ public class UpdateByExampleTest extends AbstractAnnotatedConditionalTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
     
         try {
-            FieldsblobsMapper mapper = sqlSession.getMapper(FieldsblobsMapper.class);
-            FieldsblobsWithBLOBs record = new FieldsblobsWithBLOBs();
+            FieldsBlobsMapper mapper = sqlSession.getMapper(FieldsBlobsMapper.class);
+            FieldsBlobsWithBLOBs record = new FieldsBlobsWithBLOBs();
             record.setFirstname("Jeff");
             record.setLastname("Smith");
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
     
-            record = new FieldsblobsWithBLOBs();
+            record = new FieldsBlobsWithBLOBs();
             record.setFirstname("Scott");
             record.setLastname("Jones");
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
 
-            FieldsblobsWithBLOBs newRecord = new FieldsblobsWithBLOBs();
+            FieldsBlobsWithBLOBs newRecord = new FieldsBlobsWithBLOBs();
             newRecord.setFirstname("Scott");
             newRecord.setLastname("Doe");
-            FieldsblobsExample example = new FieldsblobsExample();
+            FieldsBlobsExample example = new FieldsBlobsExample();
             example.createCriteria().andFirstnameLike("S%");
             int rows = mapper.updateByExampleWithBLOBs(newRecord, example);
             assertEquals(1, rows);
             
-            List<FieldsblobsWithBLOBs> answer = mapper.selectByExampleWithBLOBs(example);
+            List<FieldsBlobsWithBLOBs> answer = mapper.selectByExampleWithBLOBs(example);
             assertEquals(1, answer.size());
             
-            FieldsblobsWithBLOBs returnedRecord = answer.get(0);
+            FieldsBlobsWithBLOBs returnedRecord = answer.get(0);
             
             assertEquals(newRecord.getFirstname(), returnedRecord.getFirstname());
             assertEquals(newRecord.getLastname(), returnedRecord.getLastname());

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -229,9 +229,8 @@ public class MethodTest {
 
         method.addBodyLine("return func.apply(t);");
 
-        String excepted = "public static final synchronized <T extends List<String>, R extends List<String> & Comparator<String>> R foo(T t, Function<T, R> func) {" + LINE_SEPARATOR
-                        + "    return func.apply(t);" + LINE_SEPARATOR
-                        + "}";
+        String excepted = "public static final synchronized <T extends List<String>, R extends List<String> & Comparator<String>> R foo(T t, Function<T, R> func) {"
+                + LINE_SEPARATOR + "    return func.apply(t);" + LINE_SEPARATOR + "}";
 
         MethodRenderer renderer = new MethodRenderer();
         String rendered = renderer.render(method, false, null).stream().collect(Collectors.joining(LINE_SEPARATOR));

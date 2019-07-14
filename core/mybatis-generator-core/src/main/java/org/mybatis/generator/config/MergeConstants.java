@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -30,12 +30,10 @@ public class MergeConstants {
     private MergeConstants() {
     }
 
-    public static final String[] OLD_XML_ELEMENT_PREFIXES = {
-            "ibatorgenerated_", "abatorgenerated_" }; //$NON-NLS-1$ //$NON-NLS-2$
+    public static final String[] OLD_XML_ELEMENT_PREFIXES = { "ibatorgenerated_", "abatorgenerated_" }; //$NON-NLS-1$ //$NON-NLS-2$
 
     public static final String NEW_ELEMENT_TAG = "@mbg.generated"; //$NON-NLS-1$
-    public static final String[] OLD_ELEMENT_TAGS = {
-            "@ibatorgenerated", //$NON-NLS-1$
+    public static final String[] OLD_ELEMENT_TAGS = { "@ibatorgenerated", //$NON-NLS-1$
             "@abatorgenerated", //$NON-NLS-1$
             "@mbggenerated", //$NON-NLS-1$
             "@mbg.generated" }; //$NON-NLS-1$

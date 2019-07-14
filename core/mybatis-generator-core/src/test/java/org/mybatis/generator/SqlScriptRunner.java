@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2017 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -27,8 +27,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * This class is used to execute an SQL script before a code generation
- * run.
+ * This class is used to execute an SQL script before a code generation run.
  * 
  * @author Jeff Butler
  */
@@ -39,9 +38,9 @@ public class SqlScriptRunner {
     private String password;
     private InputStream sourceFile;
 
-    public SqlScriptRunner(InputStream sourceFile, String driver, String url,
-            String userId, String password) throws Exception {
-        
+    public SqlScriptRunner(InputStream sourceFile, String driver, String url, String userId, String password)
+            throws Exception {
+
         if (!stringHasValue(driver)) {
             throw new Exception("JDBC Driver is required");
         }

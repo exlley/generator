@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -29,8 +29,7 @@ public class FullyQualifiedJavaTypeTest {
 
     @Test
     public void testJavaType() {
-        FullyQualifiedJavaType fqjt =
-            new FullyQualifiedJavaType("java.lang.String"); //$NON-NLS-1$
+        FullyQualifiedJavaType fqjt = new FullyQualifiedJavaType("java.lang.String"); //$NON-NLS-1$
         assertFalse(fqjt.isExplicitlyImported());
         assertEquals("String", fqjt.getShortName()); //$NON-NLS-1$
         assertEquals("java.lang.String", fqjt.getFullyQualifiedName()); //$NON-NLS-1$
@@ -40,8 +39,7 @@ public class FullyQualifiedJavaTypeTest {
 
     @Test
     public void testSimpleType() {
-        FullyQualifiedJavaType fqjt =
-            new FullyQualifiedJavaType("com.foo.Bar"); //$NON-NLS-1$
+        FullyQualifiedJavaType fqjt = new FullyQualifiedJavaType("com.foo.Bar"); //$NON-NLS-1$
         assertTrue(fqjt.isExplicitlyImported());
         assertEquals("Bar", fqjt.getShortName()); //$NON-NLS-1$
         assertEquals("com.foo.Bar", fqjt.getFullyQualifiedName()); //$NON-NLS-1$
@@ -52,8 +50,7 @@ public class FullyQualifiedJavaTypeTest {
 
     @Test
     public void testSimpleType2() {
-        FullyQualifiedJavaType fqjt =
-            new FullyQualifiedJavaType("com.foo.bar"); //$NON-NLS-1$
+        FullyQualifiedJavaType fqjt = new FullyQualifiedJavaType("com.foo.bar"); //$NON-NLS-1$
         assertTrue(fqjt.isExplicitlyImported());
         assertEquals("bar", fqjt.getShortName()); //$NON-NLS-1$
         assertEquals("com.foo.bar", fqjt.getFullyQualifiedName()); //$NON-NLS-1$
@@ -64,8 +61,7 @@ public class FullyQualifiedJavaTypeTest {
 
     @Test
     public void testSimpleType3() {
-        FullyQualifiedJavaType fqjt =
-            new FullyQualifiedJavaType("int"); //$NON-NLS-1$
+        FullyQualifiedJavaType fqjt = new FullyQualifiedJavaType("int"); //$NON-NLS-1$
         assertFalse(fqjt.isExplicitlyImported());
         assertEquals("int", fqjt.getShortName()); //$NON-NLS-1$
         assertEquals("int", fqjt.getFullyQualifiedName()); //$NON-NLS-1$
@@ -75,8 +71,7 @@ public class FullyQualifiedJavaTypeTest {
 
     @Test
     public void testGenericType1() {
-        FullyQualifiedJavaType fqjt =
-            new FullyQualifiedJavaType("java.util.List<java.lang.String>"); //$NON-NLS-1$
+        FullyQualifiedJavaType fqjt = new FullyQualifiedJavaType("java.util.List<java.lang.String>"); //$NON-NLS-1$
         assertTrue(fqjt.isExplicitlyImported());
         assertEquals("List<String>", fqjt.getShortName()); //$NON-NLS-1$
         assertEquals("java.util.List<java.lang.String>", fqjt.getFullyQualifiedName()); //$NON-NLS-1$
@@ -88,8 +83,8 @@ public class FullyQualifiedJavaTypeTest {
 
     @Test
     public void testGenericType2() {
-        FullyQualifiedJavaType fqjt =
-            new FullyQualifiedJavaType("java.util.Map<java.lang.String, java.util.List<java.lang.String>>"); //$NON-NLS-1$
+        FullyQualifiedJavaType fqjt = new FullyQualifiedJavaType(
+                "java.util.Map<java.lang.String, java.util.List<java.lang.String>>"); //$NON-NLS-1$
         assertTrue(fqjt.isExplicitlyImported());
         assertEquals("Map<String, List<String>>", fqjt.getShortName()); //$NON-NLS-1$
         assertEquals("java.util.Map<java.lang.String, java.util.List<java.lang.String>>", fqjt.getFullyQualifiedName()); //$NON-NLS-1$
@@ -103,8 +98,7 @@ public class FullyQualifiedJavaTypeTest {
         FullyQualifiedJavaType listOfStrings = new FullyQualifiedJavaType("java.util.List"); //$NON-NLS-1$
         listOfStrings.addTypeArgument(new FullyQualifiedJavaType("java.lang.String")); //$NON-NLS-1$
 
-        FullyQualifiedJavaType fqjt =
-            new FullyQualifiedJavaType("java.util.Map"); //$NON-NLS-1$
+        FullyQualifiedJavaType fqjt = new FullyQualifiedJavaType("java.util.Map"); //$NON-NLS-1$
         fqjt.addTypeArgument(new FullyQualifiedJavaType("java.lang.String")); //$NON-NLS-1$
         fqjt.addTypeArgument(listOfStrings);
 
@@ -118,8 +112,8 @@ public class FullyQualifiedJavaTypeTest {
 
     @Test
     public void testGenericType4() {
-        FullyQualifiedJavaType fqjt =
-            new FullyQualifiedJavaType("java.util.List<java.util.Map<java.lang.String, java.lang.Object>>"); //$NON-NLS-1$
+        FullyQualifiedJavaType fqjt = new FullyQualifiedJavaType(
+                "java.util.List<java.util.Map<java.lang.String, java.lang.Object>>"); //$NON-NLS-1$
         assertTrue(fqjt.isExplicitlyImported());
         assertEquals("List<Map<String, Object>>", fqjt.getShortName()); //$NON-NLS-1$
         assertEquals("java.util.List<java.util.Map<java.lang.String, java.lang.Object>>", fqjt.getFullyQualifiedName()); //$NON-NLS-1$
@@ -130,8 +124,8 @@ public class FullyQualifiedJavaTypeTest {
 
     @Test
     public void testWildcardType1() {
-        FullyQualifiedJavaType fqjt =
-            new FullyQualifiedJavaType("java.util.Map<java.lang.String, ? extends com.foo.Bar>");
+        FullyQualifiedJavaType fqjt = new FullyQualifiedJavaType(
+                "java.util.Map<java.lang.String, ? extends com.foo.Bar>");
         assertTrue(fqjt.isExplicitlyImported());
         assertEquals("Map<String, ? extends Bar>", fqjt.getShortName()); //$NON-NLS-1$
         assertEquals("java.util.Map<java.lang.String, ? extends com.foo.Bar>", fqjt.getFullyQualifiedName()); //$NON-NLS-1$
@@ -142,8 +136,7 @@ public class FullyQualifiedJavaTypeTest {
 
     @Test
     public void testWildcardType2() {
-        FullyQualifiedJavaType fqjt =
-            new FullyQualifiedJavaType("java.util.Map<java.lang.String, ?>");
+        FullyQualifiedJavaType fqjt = new FullyQualifiedJavaType("java.util.Map<java.lang.String, ?>");
         assertTrue(fqjt.isExplicitlyImported());
         assertEquals("Map<String, ?>", fqjt.getShortName()); //$NON-NLS-1$
         assertEquals("java.util.Map<java.lang.String, ?>", fqjt.getFullyQualifiedName()); //$NON-NLS-1$
@@ -155,8 +148,7 @@ public class FullyQualifiedJavaTypeTest {
 
     @Test
     public void testWildcardType3() {
-        FullyQualifiedJavaType fqjt =
-            new FullyQualifiedJavaType("java.util.Map<? extends java.util.List<?>, ?>");
+        FullyQualifiedJavaType fqjt = new FullyQualifiedJavaType("java.util.Map<? extends java.util.List<?>, ?>");
         assertTrue(fqjt.isExplicitlyImported());
         assertEquals("Map<? extends List<?>, ?>", fqjt.getShortName()); //$NON-NLS-1$
         assertEquals("java.util.Map<? extends java.util.List<?>, ?>", fqjt.getFullyQualifiedName()); //$NON-NLS-1$
@@ -167,8 +159,7 @@ public class FullyQualifiedJavaTypeTest {
 
     @Test
     public void testWildcardType4() {
-        FullyQualifiedJavaType fqjt =
-            new FullyQualifiedJavaType("java.util.Map<?, ?>");
+        FullyQualifiedJavaType fqjt = new FullyQualifiedJavaType("java.util.Map<?, ?>");
         assertTrue(fqjt.isExplicitlyImported());
         assertEquals("Map<?, ?>", fqjt.getShortName()); //$NON-NLS-1$
         assertEquals("java.util.Map<?, ?>", fqjt.getFullyQualifiedName()); //$NON-NLS-1$
@@ -180,11 +171,12 @@ public class FullyQualifiedJavaTypeTest {
 
     @Test
     public void testWildcardType5() {
-        FullyQualifiedJavaType fqjt =
-            new FullyQualifiedJavaType("java.util.List<? extends java.util.Map<? super java.lang.Object, ?>>");
+        FullyQualifiedJavaType fqjt = new FullyQualifiedJavaType(
+                "java.util.List<? extends java.util.Map<? super java.lang.Object, ?>>");
         assertTrue(fqjt.isExplicitlyImported());
         assertEquals("List<? extends Map<? super Object, ?>>", fqjt.getShortName()); //$NON-NLS-1$
-        assertEquals("java.util.List<? extends java.util.Map<? super java.lang.Object, ?>>", fqjt.getFullyQualifiedName()); //$NON-NLS-1$
+        assertEquals("java.util.List<? extends java.util.Map<? super java.lang.Object, ?>>", //$NON-NLS-1$
+                fqjt.getFullyQualifiedName());
         assertEquals("java.util", fqjt.getPackageName()); //$NON-NLS-1$
         assertEquals(2, fqjt.getImportList().size());
         assertEquals("java.util.List", fqjt.getFullyQualifiedNameWithoutTypeParameters()); //$NON-NLS-1$

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -18,11 +18,11 @@ package mbg.test.mb3.annotated.miscellaneous;
 import org.junit.jupiter.api.BeforeEach;
 
 import mbg.test.mb3.AbstractTest;
-import mbg.test.mb3.generated.annotated.miscellaneous.mapper.EnumtestMapper;
-import mbg.test.mb3.generated.annotated.miscellaneous.mapper.GeneratedalwaystestMapper;
-import mbg.test.mb3.generated.annotated.miscellaneous.mapper.GeneratedalwaystestnoupdatesMapper;
+import mbg.test.mb3.generated.annotated.miscellaneous.mapper.EnumTestMapper;
+import mbg.test.mb3.generated.annotated.miscellaneous.mapper.GeneratedAlwaysTestMapper;
+import mbg.test.mb3.generated.annotated.miscellaneous.mapper.GeneratedAlwaysTestNoUpdatesMapper;
 import mbg.test.mb3.generated.annotated.miscellaneous.mapper.MyObjectMapper;
-import mbg.test.mb3.generated.annotated.miscellaneous.mapper.RegexrenameMapper;
+import mbg.test.mb3.generated.annotated.miscellaneous.mapper.RegexRenameMapper;
 
 public abstract class AbstractAnnotatedMiscellaneousTest extends AbstractTest {
 
@@ -30,11 +30,11 @@ public abstract class AbstractAnnotatedMiscellaneousTest extends AbstractTest {
     @Override
     public void setUp() throws Exception {
         super.setUp();
-        sqlSessionFactory.getConfiguration().addMapper(EnumtestMapper.class);
+        sqlSessionFactory.getConfiguration().addMapper(EnumTestMapper.class);
         sqlSessionFactory.getConfiguration().addMapper(MyObjectMapper.class);
-        sqlSessionFactory.getConfiguration().addMapper(RegexrenameMapper.class);
-        sqlSessionFactory.getConfiguration().addMapper(GeneratedalwaystestMapper.class);
-        sqlSessionFactory.getConfiguration().addMapper(GeneratedalwaystestnoupdatesMapper.class);
+        sqlSessionFactory.getConfiguration().addMapper(RegexRenameMapper.class);
+        sqlSessionFactory.getConfiguration().addMapper(GeneratedAlwaysTestMapper.class);
+        sqlSessionFactory.getConfiguration().addMapper(GeneratedAlwaysTestNoUpdatesMapper.class);
     }
 
     @Override

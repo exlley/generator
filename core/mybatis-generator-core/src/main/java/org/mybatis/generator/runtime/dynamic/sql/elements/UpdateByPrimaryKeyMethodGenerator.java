@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import org.mybatis.generator.api.dom.java.Parameter;
 public class UpdateByPrimaryKeyMethodGenerator extends AbstractMethodGenerator {
     private FullyQualifiedJavaType recordType;
     private FragmentGenerator fragmentGenerator;
-    
+
     private UpdateByPrimaryKeyMethodGenerator(Builder builder) {
         super(builder);
         recordType = builder.recordType;
@@ -44,11 +44,11 @@ public class UpdateByPrimaryKeyMethodGenerator extends AbstractMethodGenerator {
 
         imports.add(new FullyQualifiedJavaType("org.mybatis.dynamic.sql.update.UpdateDSL")); //$NON-NLS-1$
         imports.add(recordType);
-        
+
         Method method = new Method("updateByPrimaryKey"); //$NON-NLS-1$
         method.setDefault(true);
         context.getCommentGenerator().addGeneralMethodAnnotation(method, introspectedTable, imports);
-        
+
         method.setReturnType(FullyQualifiedJavaType.getIntInstance());
         method.addParameter(new Parameter(recordType, "record")); //$NON-NLS-1$
 
@@ -59,25 +59,24 @@ public class UpdateByPrimaryKeyMethodGenerator extends AbstractMethodGenerator {
         method.addBodyLine("        .build()"); //$NON-NLS-1$
         method.addBodyLine("        .execute();"); //$NON-NLS-1$
 
-        return MethodAndImports.withMethod(method)
-                .withImports(imports)
-                .build();
+        return MethodAndImports.withMethod(method).withImports(imports).build();
     }
 
     @Override
     public boolean callPlugins(Method method, Interface interfaze) {
-        return context.getPlugins().clientUpdateByPrimaryKeyWithBLOBsMethodGenerated(method, interfaze, introspectedTable);
+        return context.getPlugins().clientUpdateByPrimaryKeyWithBLOBsMethodGenerated(method, interfaze,
+                introspectedTable);
     }
 
     public static class Builder extends BaseBuilder<Builder, UpdateByPrimaryKeyMethodGenerator> {
         private FullyQualifiedJavaType recordType;
         private FragmentGenerator fragmentGenerator;
-        
+
         public Builder withRecordType(FullyQualifiedJavaType recordType) {
             this.recordType = recordType;
             return this;
         }
-        
+
         public Builder withFragmentGenerator(FragmentGenerator fragmentGenerator) {
             this.fragmentGenerator = fragmentGenerator;
             return this;

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -92,7 +92,7 @@ public class TableConfiguration extends PropertyHolder {
     public TableConfiguration(Context context) {
         super();
         TableSetConfiguration tableSetConfiguration = context.getTableSetConfiguration();
-        if(tableSetConfiguration != null) {
+        if (tableSetConfiguration != null) {
             springEnabled = tableSetConfiguration.isSpringEnabled();
             suffixAsPackage = tableSetConfiguration.isSuffixAsPackage();
         }
@@ -109,14 +109,14 @@ public class TableConfiguration extends PropertyHolder {
         deleteByExampleStatementEnabled = true;
         countByExampleStatementEnabled = true;
         updateByExampleStatementEnabled = true;
+        selectPaginationByExampleQueryId = "selectPaginationByExampleQueryId";
     }
 
     public boolean isDeleteByPrimaryKeyStatementEnabled() {
         return deleteByPrimaryKeyStatementEnabled;
     }
 
-    public void setDeleteByPrimaryKeyStatementEnabled(
-            boolean deleteByPrimaryKeyStatementEnabled) {
+    public void setDeleteByPrimaryKeyStatementEnabled(boolean deleteByPrimaryKeyStatementEnabled) {
         this.deleteByPrimaryKeyStatementEnabled = deleteByPrimaryKeyStatementEnabled;
     }
 
@@ -132,8 +132,7 @@ public class TableConfiguration extends PropertyHolder {
         return selectByPrimaryKeyStatementEnabled;
     }
 
-    public void setSelectByPrimaryKeyStatementEnabled(
-            boolean selectByPrimaryKeyStatementEnabled) {
+    public void setSelectByPrimaryKeyStatementEnabled(boolean selectByPrimaryKeyStatementEnabled) {
         this.selectByPrimaryKeyStatementEnabled = selectByPrimaryKeyStatementEnabled;
     }
 
@@ -141,14 +140,12 @@ public class TableConfiguration extends PropertyHolder {
         return updateByPrimaryKeyStatementEnabled;
     }
 
-    public void setUpdateByPrimaryKeyStatementEnabled(
-            boolean updateByPrimaryKeyStatementEnabled) {
+    public void setUpdateByPrimaryKeyStatementEnabled(boolean updateByPrimaryKeyStatementEnabled) {
         this.updateByPrimaryKeyStatementEnabled = updateByPrimaryKeyStatementEnabled;
     }
 
     public boolean isColumnIgnored(String columnName) {
-        for (Map.Entry<IgnoredColumn, Boolean> entry : ignoredColumns
-                .entrySet()) {
+        for (Map.Entry<IgnoredColumn, Boolean> entry : ignoredColumns.entrySet()) {
             if (entry.getKey().matches(columnName)) {
                 entry.setValue(Boolean.TRUE);
                 return true;
@@ -188,8 +185,7 @@ public class TableConfiguration extends PropertyHolder {
 
         TableConfiguration other = (TableConfiguration) obj;
 
-        return areEqual(this.catalog, other.catalog)
-                && areEqual(this.schema, other.schema)
+        return areEqual(this.catalog, other.catalog) && areEqual(this.schema, other.schema)
                 && areEqual(this.tableName, other.tableName);
     }
 
@@ -207,8 +203,7 @@ public class TableConfiguration extends PropertyHolder {
         return selectByExampleStatementEnabled;
     }
 
-    public void setSelectByExampleStatementEnabled(
-            boolean selectByExampleStatementEnabled) {
+    public void setSelectByExampleStatementEnabled(boolean selectByExampleStatementEnabled) {
         this.selectByExampleStatementEnabled = selectByExampleStatementEnabled;
     }
 
@@ -267,18 +262,14 @@ public class TableConfiguration extends PropertyHolder {
         return deleteByExampleStatementEnabled;
     }
 
-    public void setDeleteByExampleStatementEnabled(
-            boolean deleteByExampleStatementEnabled) {
+    public void setDeleteByExampleStatementEnabled(boolean deleteByExampleStatementEnabled) {
         this.deleteByExampleStatementEnabled = deleteByExampleStatementEnabled;
     }
 
     public boolean areAnyStatementsEnabled() {
-        return selectByExampleStatementEnabled
-                || selectByPrimaryKeyStatementEnabled || insertStatementEnabled
-                || updateByPrimaryKeyStatementEnabled
-                || deleteByExampleStatementEnabled
-                || deleteByPrimaryKeyStatementEnabled
-                || countByExampleStatementEnabled
+        return selectByExampleStatementEnabled || selectByPrimaryKeyStatementEnabled || insertStatementEnabled
+                || updateByPrimaryKeyStatementEnabled || deleteByExampleStatementEnabled
+                || deleteByPrimaryKeyStatementEnabled || countByExampleStatementEnabled
                 || updateByExampleStatementEnabled;
     }
 
@@ -331,18 +322,15 @@ public class TableConfiguration extends PropertyHolder {
     }
 
     /**
-     * Returns a List of Strings. The values are the columns
-     * that were specified to be ignored in the table, but do not exist in the
-     * table.
+     * Returns a List of Strings. The values are the columns that were specified to be ignored in the table, but do not
+     * exist in the table.
      * 
-     * @return a List of Strings - the columns that were improperly configured
-     *         as ignored columns
+     * @return a List of Strings - the columns that were improperly configured as ignored columns
      */
     public List<String> getIgnoredColumnsInError() {
         List<String> answer = new ArrayList<>();
 
-        for (Map.Entry<IgnoredColumn, Boolean> entry : ignoredColumns
-                .entrySet()) {
+        for (Map.Entry<IgnoredColumn, Boolean> entry : ignoredColumns.entrySet()) {
             if (Boolean.FALSE.equals(entry.getValue())) {
                 answer.add(entry.getKey().getColumnName());
             }
@@ -369,8 +357,7 @@ public class TableConfiguration extends PropertyHolder {
 
     @Override
     public String toString() {
-        return composeFullyQualifiedTableName(catalog, schema,
-                tableName, '.');
+        return composeFullyQualifiedTableName(catalog, schema, tableName, '.');
     }
 
     public boolean isDelimitIdentifiers() {
@@ -385,8 +372,7 @@ public class TableConfiguration extends PropertyHolder {
         return countByExampleStatementEnabled;
     }
 
-    public void setCountByExampleStatementEnabled(
-            boolean countByExampleStatementEnabled) {
+    public void setCountByExampleStatementEnabled(boolean countByExampleStatementEnabled) {
         this.countByExampleStatementEnabled = countByExampleStatementEnabled;
     }
 
@@ -394,19 +380,16 @@ public class TableConfiguration extends PropertyHolder {
         return updateByExampleStatementEnabled;
     }
 
-    public void setUpdateByExampleStatementEnabled(
-            boolean updateByExampleStatementEnabled) {
+    public void setUpdateByExampleStatementEnabled(boolean updateByExampleStatementEnabled) {
         this.updateByExampleStatementEnabled = updateByExampleStatementEnabled;
     }
 
     public void validate(List<String> errors, int listPosition) {
         if (!stringHasValue(tableName)) {
-            errors.add(getString(
-                    "ValidationError.6", Integer.toString(listPosition))); //$NON-NLS-1$
+            errors.add(getString("ValidationError.6", Integer.toString(listPosition))); //$NON-NLS-1$
         }
 
-        String fqTableName = composeFullyQualifiedTableName(
-                catalog, schema, tableName, '.');
+        String fqTableName = composeFullyQualifiedTableName(catalog, schema, tableName, '.');
 
         if (generatedKey != null) {
             generatedKey.validate(errors, fqTableName);
@@ -414,8 +397,7 @@ public class TableConfiguration extends PropertyHolder {
 
         // when using column indexes, either both or neither query ids
         // should be set
-        if (isTrue(getProperty(PropertyRegistry.TABLE_USE_COLUMN_INDEXES))
-                && selectByExampleStatementEnabled
+        if (isTrue(getProperty(PropertyRegistry.TABLE_USE_COLUMN_INDEXES)) && selectByExampleStatementEnabled
                 && selectByPrimaryKeyStatementEnabled) {
             boolean queryId1Set = stringHasValue(selectByExampleQueryId);
             boolean queryId2Set = stringHasValue(selectByPrimaryKeyQueryId);
@@ -467,8 +449,7 @@ public class TableConfiguration extends PropertyHolder {
         return isAllColumnDelimitingEnabled;
     }
 
-    public void setAllColumnDelimitingEnabled(
-            boolean isAllColumnDelimitingEnabled) {
+    public void setAllColumnDelimitingEnabled(boolean isAllColumnDelimitingEnabled) {
         this.isAllColumnDelimitingEnabled = isAllColumnDelimitingEnabled;
     }
 

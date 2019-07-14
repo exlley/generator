@@ -1,3 +1,18 @@
+/**
+ *    Copyright 2006-2019 the original author or authors.
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
 //  =============================================================================
 //  Copyright (c) 2016~2019 Xi'an Linggu Software Co.Ltd. All rights reserved.
 //  mybatis-generator -- 2019-07-13 16:30
@@ -15,8 +30,7 @@ import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
  * @version 1.0
  * @date 2019-07-13
  */
-public class SelectPaginationByExampleWithoutBLOBsElementGenerator extends
-        AbstractXmlElementGenerator  {
+public class SelectPaginationByExampleWithoutBLOBsElementGenerator extends AbstractXmlElementGenerator {
 
     public SelectPaginationByExampleWithoutBLOBsElementGenerator() {
         super();
@@ -30,8 +44,7 @@ public class SelectPaginationByExampleWithoutBLOBsElementGenerator extends
 
         answer.addAttribute(new Attribute("id", //$NON-NLS-1$
                 introspectedTable.getSelectPaginationByExampleStatementId()));
-        answer.addAttribute(new Attribute(
-                "resultMap", introspectedTable.getBaseResultMapId())); //$NON-NLS-1$
+        answer.addAttribute(new Attribute("resultMap", introspectedTable.getBaseResultMapId())); //$NON-NLS-1$
         answer.addAttribute(new Attribute("parameterType", fqjt)); //$NON-NLS-1$
 
         context.getCommentGenerator().addComment(answer);
@@ -43,8 +56,7 @@ public class SelectPaginationByExampleWithoutBLOBsElementGenerator extends
         answer.addElement(ifElement);
 
         StringBuilder sb = new StringBuilder();
-        if (stringHasValue(introspectedTable
-                .getSelectByExampleQueryId())) {
+        if (stringHasValue(introspectedTable.getSelectByExampleQueryId())) {
             sb.append('\'');
             sb.append(introspectedTable.getSelectByExampleQueryId());
             sb.append("' as QUERYID,"); //$NON-NLS-1$
@@ -54,8 +66,7 @@ public class SelectPaginationByExampleWithoutBLOBsElementGenerator extends
 
         sb.setLength(0);
         sb.append("from "); //$NON-NLS-1$
-        sb.append(introspectedTable
-                .getAliasedFullyQualifiedTableNameAtRuntime());
+        sb.append(introspectedTable.getAliasedFullyQualifiedTableNameAtRuntime());
         answer.addElement(new TextElement(sb.toString()));
         answer.addElement(getExampleIncludeElement());
 
@@ -65,9 +76,7 @@ public class SelectPaginationByExampleWithoutBLOBsElementGenerator extends
         answer.addElement(ifElement);
 
         answer.addElement(new TextElement("limit ${pageNumber*pageSize}, ${pageSize}"));
-        if (context.getPlugins()
-                .sqlMapSelectByExampleWithoutBLOBsElementGenerated(answer,
-                        introspectedTable)) {
+        if (context.getPlugins().sqlMapSelectByExampleWithoutBLOBsElementGenerated(answer, introspectedTable)) {
             parentElement.addElement(answer);
         }
     }

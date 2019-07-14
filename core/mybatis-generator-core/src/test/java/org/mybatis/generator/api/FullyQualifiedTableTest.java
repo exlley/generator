@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -24,14 +24,16 @@ public class FullyQualifiedTableTest {
 
     @Test
     public void testNormalCase() {
-        FullyQualifiedTable fqt = new FullyQualifiedTable(null, "myschema", "mytable", null, null, false, null, null, null, false, null, false, false, null);
+        FullyQualifiedTable fqt = new FullyQualifiedTable(null, "myschema", "mytable", "mytable", null, null, false,
+                null, null, null, false, null, false, null);
 
         assertThat(fqt.getDomainObjectName()).isEqualTo("Mytable");
     }
 
     @Test
     public void testNormalCaseWithPrefix() {
-        FullyQualifiedTable fqt = new FullyQualifiedTable(null, "myschema", "sys_mytable", null, null, false, null, null, null, false, null, false, false, null);
+        FullyQualifiedTable fqt = new FullyQualifiedTable(null, "myschema", "sys_mytable", "sys_mytable", null, null,
+                false, null, null, null, false, null, false, null);
 
         assertThat(fqt.getDomainObjectName()).isEqualTo("SysMytable");
     }
@@ -41,7 +43,8 @@ public class FullyQualifiedTableTest {
         DomainObjectRenamingRule renamingRule = new DomainObjectRenamingRule();
         renamingRule.setSearchString("^Sys");
         renamingRule.setReplaceString("");
-        FullyQualifiedTable fqt = new FullyQualifiedTable(null, "myschema", "sys_mytable", null, null, false, null, null, null, false, renamingRule, false, false, null);
+        FullyQualifiedTable fqt = new FullyQualifiedTable(null, "myschema", "sys_mytable", "sys_mytable", null, null,
+                false, null, null, null, false, renamingRule, false, null);
 
         assertThat(fqt.getDomainObjectName()).isEqualTo("Mytable");
     }
@@ -51,7 +54,8 @@ public class FullyQualifiedTableTest {
         DomainObjectRenamingRule renamingRule = new DomainObjectRenamingRule();
         renamingRule.setSearchString("^Sys");
         renamingRule.setReplaceString("");
-        FullyQualifiedTable fqt = new FullyQualifiedTable(null, "myschema", "sys_my_table", null, null, false, null, null, null, false, renamingRule, false, false, null);
+        FullyQualifiedTable fqt = new FullyQualifiedTable(null, "myschema", "sys_my_table", "sys_my_table", null, null,
+                false, null, null, null, false, renamingRule, false, null);
 
         assertThat(fqt.getDomainObjectName()).isEqualTo("MyTable");
     }
@@ -61,7 +65,8 @@ public class FullyQualifiedTableTest {
         DomainObjectRenamingRule renamingRule = new DomainObjectRenamingRule();
         renamingRule.setSearchString("^Sys");
         renamingRule.setReplaceString("");
-        FullyQualifiedTable fqt = new FullyQualifiedTable(null, "myschema", "sysmytable", null, null, false, null, null, null, false, renamingRule, false, false, null);
+        FullyQualifiedTable fqt = new FullyQualifiedTable(null, "myschema", "sysmytable", "sysmytable", null, null,
+                false, null, null, null, false, renamingRule, false, null);
 
         assertThat(fqt.getDomainObjectName()).isEqualTo("Mytable");
     }
@@ -71,7 +76,8 @@ public class FullyQualifiedTableTest {
         DomainObjectRenamingRule renamingRule = new DomainObjectRenamingRule();
         renamingRule.setSearchString("^Sys");
         renamingRule.setReplaceString("");
-        FullyQualifiedTable fqt = new FullyQualifiedTable(null, "myschema", "sysmy_table", null, null, false, null, null, null, false, renamingRule, false, false, null);
+        FullyQualifiedTable fqt = new FullyQualifiedTable(null, "myschema", "sysmy_table", "sysmy_table", null, null,
+                false, null, null, null, false, renamingRule, false, null);
 
         assertThat(fqt.getDomainObjectName()).isEqualTo("MyTable");
     }

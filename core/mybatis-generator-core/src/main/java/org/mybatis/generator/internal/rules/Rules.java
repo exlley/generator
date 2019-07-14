@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -19,56 +19,50 @@ import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 
 /**
- * This interface centralizes all the rules related to code generation -
- * including the methods and objects to create, and certain attributes related
- * to those objects.
+ * This interface centralizes all the rules related to code generation - including the methods and objects to create,
+ * and certain attributes related to those objects.
  * 
  * @author Jeff Butler
  */
 public interface Rules {
 
     /**
-     * Implements the rule for generating the insert SQL Map element and DAO
-     * method. If the insert statement is allowed, then generate the element and
-     * method.
+     * Implements the rule for generating the insert SQL Map element and DAO method. If the insert statement is allowed,
+     * then generate the element and method.
      * 
      * @return true if the element and method should be generated
      */
     boolean generateInsert();
 
     /**
-     * Implements the rule for generating the insert selective SQL Map element
-     * and DAO method. If the insert statement is allowed, then generate the
-     * element and method.
+     * Implements the rule for generating the insert selective SQL Map element and DAO method. If the insert statement
+     * is allowed, then generate the element and method.
      * 
      * @return true if the element and method should be generated
      */
     boolean generateInsertSelective();
 
     /**
-     * Calculates the class that contains all fields. This class is used as the
-     * insert statement parameter, as well as the returned value from the select
-     * by primary key method. The actual class depends on how the domain model
-     * is generated.
+     * Calculates the class that contains all fields. This class is used as the insert statement parameter, as well as
+     * the returned value from the select by primary key method. The actual class depends on how the domain model is
+     * generated.
      * 
      * @return the type of the class that holds all fields
      */
     FullyQualifiedJavaType calculateAllFieldsClass();
 
     /**
-     * Implements the rule for generating the update by primary key without
-     * BLOBs SQL Map element and DAO method. If the table has a primary key as
-     * well as other non-BLOB fields, and the updateByPrimaryKey statement is
-     * allowed, then generate the element and method.
+     * Implements the rule for generating the update by primary key without BLOBs SQL Map element and DAO method. If the
+     * table has a primary key as well as other non-BLOB fields, and the updateByPrimaryKey statement is allowed, then
+     * generate the element and method.
      * 
      * @return true if the element and method should be generated
      */
     boolean generateUpdateByPrimaryKeyWithoutBLOBs();
 
     /**
-     * Implements the rule for generating the update by primary key with BLOBs
-     * SQL Map element and DAO method. If the table has a primary key as well as
-     * other BLOB fields, and the updateByPrimaryKey statement is allowed, then
+     * Implements the rule for generating the update by primary key with BLOBs SQL Map element and DAO method. If the
+     * table has a primary key as well as other BLOB fields, and the updateByPrimaryKey statement is allowed, then
      * generate the element and method.
      * 
      * @return true if the element and method should be generated
@@ -76,46 +70,41 @@ public interface Rules {
     boolean generateUpdateByPrimaryKeyWithBLOBs();
 
     /**
-     * Implements the rule for generating the update by primary key selective
-     * SQL Map element and DAO method. If the table has a primary key as well as
-     * other fields, and the updateByPrimaryKey statement is allowed, then
-     * generate the element and method.
+     * Implements the rule for generating the update by primary key selective SQL Map element and DAO method. If the
+     * table has a primary key as well as other fields, and the updateByPrimaryKey statement is allowed, then generate
+     * the element and method.
      * 
      * @return true if the element and method should be generated
      */
     boolean generateUpdateByPrimaryKeySelective();
 
     /**
-     * Implements the rule for generating the delete by primary key SQL Map
-     * element and DAO method. If the table has a primary key, and the
-     * deleteByPrimaryKey statement is allowed, then generate the element and
-     * method.
+     * Implements the rule for generating the delete by primary key SQL Map element and DAO method. If the table has a
+     * primary key, and the deleteByPrimaryKey statement is allowed, then generate the element and method.
      * 
      * @return true if the element and method should be generated
      */
     boolean generateDeleteByPrimaryKey();
 
     /**
-     * Implements the rule for generating the delete by example SQL Map element
-     * and DAO method. If the deleteByExample statement is allowed, then
-     * generate the element and method.
+     * Implements the rule for generating the delete by example SQL Map element and DAO method. If the deleteByExample
+     * statement is allowed, then generate the element and method.
      * 
      * @return true if the element and method should be generated
      */
     boolean generateDeleteByExample();
 
     /**
-     * Implements the rule for generating the result map without BLOBs. If
-     * either select method is allowed, then generate the result map.
+     * Implements the rule for generating the result map without BLOBs. If either select method is allowed, then
+     * generate the result map.
      * 
      * @return true if the result map should be generated
      */
     boolean generateBaseResultMap();
 
     /**
-     * Implements the rule for generating the result map with BLOBs. If the
-     * table has BLOB columns, and either select method is allowed, then
-     * generate the result map.
+     * Implements the rule for generating the result map with BLOBs. If the table has BLOB columns, and either select
+     * method is allowed, then generate the result map.
      * 
      * @return true if the result map should be generated
      */
@@ -124,74 +113,69 @@ public interface Rules {
     /**
      * Implements the rule for generating the SQL example where clause element.
      * 
-     * <p>In MyBatis3, generate the element if the selectByExample,
-     * deleteByExample, or countByExample statements are allowed.
+     * <p>
+     * In MyBatis3, generate the element if the selectByExample, deleteByExample, or countByExample statements are
+     * allowed.
      * 
      * @return true if the SQL where clause element should be generated
      */
     boolean generateSQLExampleWhereClause();
 
     /**
-     * Implements the rule for generating the SQL example where clause element
-     * specifically for use in the update by example methods.
+     * Implements the rule for generating the SQL example where clause element specifically for use in the update by
+     * example methods.
      * 
-     * <p>In MyBatis, generate the element if the updateByExample statements are
-     * allowed.
+     * <p>
+     * In MyBatis, generate the element if the updateByExample statements are allowed.
      * 
      * @return true if the SQL where clause element should be generated
      */
     boolean generateMyBatis3UpdateByExampleWhereClause();
 
     /**
-     * Implements the rule for generating the SQL base column list element.
-     * Generate the element if any of the select methods are enabled.
+     * Implements the rule for generating the SQL base column list element. Generate the element if any of the select
+     * methods are enabled.
      * 
      * @return true if the SQL base column list element should be generated
      */
     boolean generateBaseColumnList();
 
     /**
-     * Implements the rule for generating the SQL blob column list element.
-     * Generate the element if any of the select methods are enabled, and the
-     * table contains BLOB columns.
+     * Implements the rule for generating the SQL blob column list element. Generate the element if any of the select
+     * methods are enabled, and the table contains BLOB columns.
      * 
      * @return true if the SQL blob column list element should be generated
      */
     boolean generateBlobColumnList();
 
     /**
-     * Implements the rule for generating the select by primary key SQL Map
-     * element and DAO method. If the table has a primary key as well as other
-     * fields, and the selectByPrimaryKey statement is allowed, then generate
-     * the element and method.
+     * Implements the rule for generating the select by primary key SQL Map element and DAO method. If the table has a
+     * primary key as well as other fields, and the selectByPrimaryKey statement is allowed, then generate the element
+     * and method.
      * 
      * @return true if the element and method should be generated
      */
     boolean generateSelectByPrimaryKey();
 
     /**
-     * Implements the rule for generating the select by example without BLOBs
-     * SQL Map element and DAO method. If the selectByExample statement is
-     * allowed, then generate the element and method.
+     * Implements the rule for generating the select by example without BLOBs SQL Map element and DAO method. If the
+     * selectByExample statement is allowed, then generate the element and method.
      * 
      * @return true if the element and method should be generated
      */
     boolean generateSelectByExampleWithoutBLOBs();
 
     /**
-     * Implements the rule for generating the select by example with BLOBs SQL
-     * Map element and DAO method. If the table has BLOB fields and the
-     * selectByExample statement is allowed, then generate the element and
-     * method.
+     * Implements the rule for generating the select by example with BLOBs SQL Map element and DAO method. If the table
+     * has BLOB fields and the selectByExample statement is allowed, then generate the element and method.
      * 
      * @return true if the element and method should be generated
      */
     boolean generateSelectByExampleWithBLOBs();
 
     /**
-     * Implements the rule for generating an example class. The class should be
-     * generated if the selectByExample or deleteByExample or countByExample
-     * methods are allowed.
+     * Implements the rule for generating an example class. The class should be generated if the selectByExample or
+     * deleteByExample or countByExample methods are allowed.
      * 
      * @return true if the example class should be generated
      */
@@ -206,10 +190,8 @@ public interface Rules {
     boolean generateUpdateByExampleWithBLOBs();
 
     /**
-     * Implements the rule for determining whether to generate a primary key
-     * class. If you return false from this method, and the table has primary
-     * key columns, then the primary key columns will be added to the base
-     * class.
+     * Implements the rule for determining whether to generate a primary key class. If you return false from this
+     * method, and the table has primary key columns, then the primary key columns will be added to the base class.
      * 
      * @return true if a separate primary key class should be generated
      */
@@ -223,19 +205,17 @@ public interface Rules {
     boolean generateBaseRecordClass();
 
     /**
-     * Implements the rule for generating a record with BLOBs. If you return
-     * false from this method, and the table had BLOB columns, then the BLOB
-     * columns will be added to the base class.
+     * Implements the rule for generating a record with BLOBs. If you return false from this method, and the table had
+     * BLOB columns, then the BLOB columns will be added to the base class.
      * 
      * @return true if the record with BLOBs class should be generated
      */
     boolean generateRecordWithBLOBsClass();
 
     /**
-     * Implements the rule for generating a Java client.  This rule is
-     * only active when a javaClientGenerator configuration has been
-     * specified, but the table is designated as "modelOnly".  Do not
-     * generate the client if the table is designated as modelOnly.
+     * Implements the rule for generating a Java client. This rule is only active when a javaClientGenerator
+     * configuration has been specified, but the table is designated as "modelOnly". Do not generate the client if the
+     * table is designated as modelOnly.
      * 
      * @return true if the Java client should be generated
      */

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -28,14 +28,14 @@ import org.junit.jupiter.api.Test;
 import mbg.test.common.FirstName;
 import mbg.test.common.MyTime;
 import mbg.test.mb3.common.TestEnum;
-import mbg.test.mb3.generated.annotated.miscellaneous.mapper.EnumtestMapper;
+import mbg.test.mb3.generated.annotated.miscellaneous.mapper.EnumTestMapper;
 import mbg.test.mb3.generated.annotated.miscellaneous.mapper.MyObjectMapper;
-import mbg.test.mb3.generated.annotated.miscellaneous.mapper.RegexrenameMapper;
-import mbg.test.mb3.generated.annotated.miscellaneous.model.Enumtest;
+import mbg.test.mb3.generated.annotated.miscellaneous.mapper.RegexRenameMapper;
+import mbg.test.mb3.generated.annotated.miscellaneous.model.EnumTest;
 import mbg.test.mb3.generated.annotated.miscellaneous.model.MyObject;
 import mbg.test.mb3.generated.annotated.miscellaneous.model.MyObjectCriteria;
 import mbg.test.mb3.generated.annotated.miscellaneous.model.MyObjectKey;
-import mbg.test.mb3.generated.annotated.miscellaneous.model.Regexrename;
+import mbg.test.mb3.generated.annotated.miscellaneous.model.RegexRename;
 
 /**
  * @author Jeff Butler
@@ -881,15 +881,15 @@ public class MiscellaneousTest extends AbstractAnnotatedMiscellaneousTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         
         try {
-            RegexrenameMapper mapper = sqlSession.getMapper(RegexrenameMapper.class);
-            Regexrename record = new Regexrename();
+            RegexRenameMapper mapper = sqlSession.getMapper(RegexRenameMapper.class);
+            RegexRename record = new RegexRename();
             record.setAddress("123 Main Street");
             record.setName("Fred");
             record.setZipCode("99999");
             
             mapper.insert(record);
             
-            Regexrename returnedRecord = mapper.selectByPrimaryKey(1);
+            RegexRename returnedRecord = mapper.selectByPrimaryKey(1);
             
             assertEquals(record.getAddress(), returnedRecord.getAddress());
             assertEquals(1, returnedRecord.getId().intValue());
@@ -905,15 +905,15 @@ public class MiscellaneousTest extends AbstractAnnotatedMiscellaneousTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         
         try {
-            RegexrenameMapper mapper = sqlSession.getMapper(RegexrenameMapper.class);
-            Regexrename record = new Regexrename();
+            RegexRenameMapper mapper = sqlSession.getMapper(RegexRenameMapper.class);
+            RegexRename record = new RegexRename();
             record.setZipCode("99999");
             
             mapper.insertSelective(record);
             Integer key = 1;
             assertEquals(key, record.getId());
             
-            Regexrename returnedRecord = mapper.selectByPrimaryKey(key);
+            RegexRename returnedRecord = mapper.selectByPrimaryKey(key);
             
             assertNull(returnedRecord.getAddress());
             assertEquals(record.getId(), returnedRecord.getId());
@@ -1014,18 +1014,18 @@ public class MiscellaneousTest extends AbstractAnnotatedMiscellaneousTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            EnumtestMapper mapper = sqlSession.getMapper(EnumtestMapper.class);
+            EnumTestMapper mapper = sqlSession.getMapper(EnumTestMapper.class);
             
-            Enumtest enumTest = new Enumtest();
+            EnumTest enumTest = new EnumTest();
             enumTest.setId(1);
             enumTest.setName(TestEnum.FRED);
             int rows = mapper.insert(enumTest);
             assertEquals(1, rows);
             
-            List<Enumtest> returnedRecords = mapper.selectByExample(null);
+            List<EnumTest> returnedRecords = mapper.selectByExample(null);
             assertEquals(1, returnedRecords.size());
             
-            Enumtest returnedRecord = returnedRecords.get(0);
+            EnumTest returnedRecord = returnedRecords.get(0);
             assertEquals(1, returnedRecord.getId().intValue());
             assertEquals(TestEnum.FRED, returnedRecord.getName());
         } finally {

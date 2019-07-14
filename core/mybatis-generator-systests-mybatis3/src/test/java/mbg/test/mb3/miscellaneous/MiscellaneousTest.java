@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -34,16 +34,16 @@ import org.junit.jupiter.api.Test;
 import mbg.test.common.FirstName;
 import mbg.test.common.MyTime;
 import mbg.test.mb3.common.TestEnum;
-import mbg.test.mb3.generated.miscellaneous.mapper.EnumtestMapper;
+import mbg.test.mb3.generated.miscellaneous.mapper.EnumTestMapper;
 import mbg.test.mb3.generated.miscellaneous.mapper.MyMapper;
-import mbg.test.mb3.generated.miscellaneous.mapper.RegexrenameMapper;
-import mbg.test.mb3.generated.miscellaneous.model.Enumtest;
+import mbg.test.mb3.generated.miscellaneous.mapper.RegexRenameMapper;
+import mbg.test.mb3.generated.miscellaneous.model.EnumTest;
 import mbg.test.mb3.generated.miscellaneous.model.MyObject;
 import mbg.test.mb3.generated.miscellaneous.model.MyObjectCriteria;
 import mbg.test.mb3.generated.miscellaneous.model.MyObjectKey;
-import mbg.test.mb3.generated.miscellaneous.model.Regexrename;
-import mbg.test.mb3.generated.miscellaneous.model.example.mbgtest.AnotherawfultableExample;
-import mbg.test.mb3.generated.miscellaneous.model.mbgtest.Anotherawfultable;
+import mbg.test.mb3.generated.miscellaneous.model.RegexRename;
+import mbg.test.mb3.generated.miscellaneous.model.example.mbgtest.AnotherAwfulTableExample;
+import mbg.test.mb3.generated.miscellaneous.model.mbgtest.AnotherAwfulTable;
 
 /**
  * @author Jeff Butler
@@ -903,15 +903,15 @@ public class MiscellaneousTest extends AbstractMiscellaneousTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         
         try {
-            RegexrenameMapper mapper = sqlSession.getMapper(RegexrenameMapper.class);
-            Regexrename record = new Regexrename();
+            RegexRenameMapper mapper = sqlSession.getMapper(RegexRenameMapper.class);
+            RegexRename record = new RegexRename();
             record.setAddress("123 Main Street");
             record.setName("Fred");
             record.setZipCode("99999");
             
             mapper.insert(record);
             
-            Regexrename returnedRecord = mapper.selectByPrimaryKey(1);
+            RegexRename returnedRecord = mapper.selectByPrimaryKey(1);
             
             assertEquals(record.getAddress(), returnedRecord.getAddress());
             assertEquals(1, returnedRecord.getId().intValue());
@@ -927,15 +927,15 @@ public class MiscellaneousTest extends AbstractMiscellaneousTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         
         try {
-            RegexrenameMapper mapper = sqlSession.getMapper(RegexrenameMapper.class);
-            Regexrename record = new Regexrename();
+            RegexRenameMapper mapper = sqlSession.getMapper(RegexRenameMapper.class);
+            RegexRename record = new RegexRename();
             record.setZipCode("99999");
             
             mapper.insertSelective(record);
             Integer key = 1;
             assertEquals(key, record.getId());
             
-            Regexrename returnedRecord = mapper.selectByPrimaryKey(key);
+            RegexRename returnedRecord = mapper.selectByPrimaryKey(key);
             
             assertNull(returnedRecord.getAddress());
             assertEquals(record.getId(), returnedRecord.getId());
@@ -951,18 +951,18 @@ public class MiscellaneousTest extends AbstractMiscellaneousTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         
         try {
-            Anotherawfultable record = new Anotherawfultable();
+            AnotherAwfulTable record = new AnotherAwfulTable();
             record.setId(5);
             record.setSelect("select");
             record.setInsert("insert");
             
-            sqlSession.insert("mbg.test.mb3.generated.miscellaneous.xml.AnotherawfultableMapper.insert", record);
+            sqlSession.insert("mbg.test.mb3.generated.miscellaneous.xml.AnotherAwfulTableMapper.insert", record);
             
-            Anotherawfultable key = new Anotherawfultable();
+            AnotherAwfulTable key = new AnotherAwfulTable();
             key.setId(5);
             
-            Anotherawfultable returnedRecord = (Anotherawfultable)
-                sqlSession.selectOne("mbg.test.mb3.generated.miscellaneous.xml.AnotherawfultableMapper.selectByPrimaryKey",
+            AnotherAwfulTable returnedRecord = (AnotherAwfulTable)
+                sqlSession.selectOne("mbg.test.mb3.generated.miscellaneous.xml.AnotherAwfulTableMapper.selectByPrimaryKey",
                         key);
             
             assertEquals(record.getId(), returnedRecord.getId());
@@ -980,23 +980,23 @@ public class MiscellaneousTest extends AbstractMiscellaneousTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         
         try {
-            Anotherawfultable record = new Anotherawfultable();
+            AnotherAwfulTable record = new AnotherAwfulTable();
             record.setId(5);
             record.setSelect("select");
             record.setInsert("insert");
             
-            sqlSession.insert("mbg.test.mb3.generated.miscellaneous.xml.AnotherawfultableMapper.insert", record);
+            sqlSession.insert("mbg.test.mb3.generated.miscellaneous.xml.AnotherAwfulTableMapper.insert", record);
             
-            AnotherawfultableExample example = new AnotherawfultableExample();
+            AnotherAwfulTableExample example = new AnotherAwfulTableExample();
             example.or().andIdEqualTo(5);
             
             List<?> returnedRecords = 
-                sqlSession.selectList("mbg.test.mb3.generated.miscellaneous.xml.AnotherawfultableMapper.selectByExample",
+                sqlSession.selectList("mbg.test.mb3.generated.miscellaneous.xml.AnotherAwfulTableMapper.selectByExample",
                         example);
             
             assertEquals(returnedRecords.size(), 1);
             
-            Anotherawfultable returnedRecord = (Anotherawfultable) returnedRecords.get(0);
+            AnotherAwfulTable returnedRecord = (AnotherAwfulTable) returnedRecords.get(0);
             
             assertEquals(record.getId(), returnedRecord.getId());
             assertEquals(record.getSelect(), returnedRecord.getSelect());
@@ -1098,18 +1098,18 @@ public class MiscellaneousTest extends AbstractMiscellaneousTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            EnumtestMapper mapper = sqlSession.getMapper(EnumtestMapper.class);
+            EnumTestMapper mapper = sqlSession.getMapper(EnumTestMapper.class);
             
-            Enumtest enumTest = new Enumtest();
+            EnumTest enumTest = new EnumTest();
             enumTest.setId(1);
             enumTest.setName(TestEnum.FRED);
             int rows = mapper.insert(enumTest);
             assertEquals(1, rows);
             
-            List<Enumtest> returnedRecords = mapper.selectByExample(null);
+            List<EnumTest> returnedRecords = mapper.selectByExample(null);
             assertEquals(1, returnedRecords.size());
             
-            Enumtest returnedRecord = returnedRecords.get(0);
+            EnumTest returnedRecord = returnedRecords.get(0);
             assertEquals(1, returnedRecord.getId().intValue());
             assertEquals(TestEnum.FRED, returnedRecord.getName());
         } finally {
@@ -1119,89 +1119,89 @@ public class MiscellaneousTest extends AbstractMiscellaneousTest {
     
     @Test
     public void testModelOnly1Nameview() {
-        if (classExists("mbg.test.mb3.generated.miscellaneous.modelonly1.model.NameviewExample")) {
+        if (classExists("mbg.test.mb3.generated.miscellaneous.modelonly1.model.NameViewExample")) {
             fail("NameviewExample class should not be generated in model only configuration");
         }
 
-        if (!classExists("mbg.test.mb3.generated.miscellaneous.modelonly1.model.Nameview")) {
+        if (!classExists("mbg.test.mb3.generated.miscellaneous.modelonly1.model.NameView")) {
             fail("Nameview class should be generated in model only configuration");
         }
     }
 
     @Test
-    public void testModelOnly1Anotherawfultable() {
-        if (classExists("mbg.test.mb3.generated.miscellaneous.modelonly1.model.AnotherawfultableExample")) {
+    public void testModelOnly1AnotherAwfulTable() {
+        if (classExists("mbg.test.mb3.generated.miscellaneous.modelonly1.model.AnotherAwfulTableExample")) {
             fail("NameviewExample class should not be generated in model only configuration");
         }
 
-        if (!classExists("mbg.test.mb3.generated.miscellaneous.modelonly1.model.Anotherawfultable")) {
+        if (!classExists("mbg.test.mb3.generated.miscellaneous.modelonly1.model.AnotherAwfulTable")) {
             fail("Nameview class should be generated in model only configuration");
         }
     }
     
     @Test
-    public void testModelOnly2Pkblobs() {
-        if (classExists("mbg.test.mb3.generated.miscellaneous.modelonly2.mapper.PkblobsMapper")) {
-            fail("PkblobsMapper class should not be generated in model only configuration");
+    public void testModelOnly2PKBlobs() {
+        if (classExists("mbg.test.mb3.generated.miscellaneous.modelonly2.mapper.PKBlobsMapper")) {
+            fail("PKBlobsMapper class should not be generated in model only configuration");
         }
 
-        if (classExists("mbg.test.mb3.generated.miscellaneous.modelonly2.model.PkblobsExample")) {
-            fail("PkblobsExample class should not be generated in model only configuration");
+        if (classExists("mbg.test.mb3.generated.miscellaneous.modelonly2.model.PKBlobsExample")) {
+            fail("PKBlobsExample class should not be generated in model only configuration");
         }
 
-        if (!classExists("mbg.test.mb3.generated.miscellaneous.modelonly2.model.Pkblobs")) {
-            fail("Pkblobs class should be generated in model only configuration");
+        if (!classExists("mbg.test.mb3.generated.miscellaneous.modelonly2.model.PKBlobs")) {
+            fail("PKBlobs class should be generated in model only configuration");
         }
         
-        if (!resourceExists("mbg/test/mb3/generated/miscellaneous/modelonly2/xml/PkblobsMapper.xml")) {
-            fail("PkblobsMapper.xml file should be generated in model only configuration");
+        if (!resourceExists("mbg/test/mb3/generated/miscellaneous/modelonly2/xml/PKBlobsMapper.xml")) {
+            fail("PKBlobsMapper.xml file should be generated in model only configuration");
         }
     }
     
     @Test
-    public void testModelOnly2Pkfields() {
-        if (classExists("mbg.test.mb3.generated.miscellaneous.modelonly2.mapper.PkfieldsMapper")) {
-            fail("PkfieldsMapper class should not be generated in model only configuration");
+    public void testModelOnly2PKFields() {
+        if (classExists("mbg.test.mb3.generated.miscellaneous.modelonly2.mapper.PKFieldsMapper")) {
+            fail("PKFieldsMapper class should not be generated in model only configuration");
         }
 
-        if (classExists("mbg.test.mb3.generated.miscellaneous.modelonly2.model.PkfieldsExample")) {
-            fail("PkfieldsExample class should not be generated in model only configuration");
+        if (classExists("mbg.test.mb3.generated.miscellaneous.modelonly2.model.PKFieldsExample")) {
+            fail("PKFieldsExample class should not be generated in model only configuration");
         }
 
-        if (!classExists("mbg.test.mb3.generated.miscellaneous.modelonly2.model.Pkfields")) {
-            fail("Pkfields class should be generated in model only configuration");
+        if (!classExists("mbg.test.mb3.generated.miscellaneous.modelonly2.model.PKFields")) {
+            fail("PKFields class should be generated in model only configuration");
         }
         
-        if (!classExists("mbg.test.mb3.generated.miscellaneous.modelonly2.model.PkfieldsKey")) {
-            fail("PkfieldsKey class should be generated in model only configuration");
+        if (!classExists("mbg.test.mb3.generated.miscellaneous.modelonly2.model.PKFieldsKey")) {
+            fail("PKFieldsKey class should be generated in model only configuration");
         }
         
-        if (!resourceExists("mbg/test/mb3/generated/miscellaneous/modelonly2/xml/PkfieldsMapper.xml")) {
-            fail("PkfieldsMapper.xml file should be generated in model only configuration");
+        if (!resourceExists("mbg/test/mb3/generated/miscellaneous/modelonly2/xml/PKFieldsMapper.xml")) {
+            fail("PKFieldsMapper.xml file should be generated in model only configuration");
         }
     }
     
     @Test
     public void testModelOnly2Fieldsonly() {
-        if (!classExists("mbg.test.mb3.generated.miscellaneous.modelonly2.mapper.FieldsonlyMapper")) {
+        if (!classExists("mbg.test.mb3.generated.miscellaneous.modelonly2.mapper.FieldsOnlyMapper")) {
             fail("FieldsonlyMapper class should be generated in model only configuration");
         }
 
-        if (!classExists("mbg.test.mb3.generated.miscellaneous.modelonly2.model.FieldsonlyExample")) {
+        if (!classExists("mbg.test.mb3.generated.miscellaneous.modelonly2.model.FieldsOnlyExample")) {
             fail("FieldsonlyExample class should be generated in model only configuration");
         }
 
-        if (!classExists("mbg.test.mb3.generated.miscellaneous.modelonly2.model.Fieldsonly")) {
+        if (!classExists("mbg.test.mb3.generated.miscellaneous.modelonly2.model.FieldsOnly")) {
             fail("Fieldsonly class should be generated in model only configuration");
         }
         
-        if (!resourceExists("mbg/test/mb3/generated/miscellaneous/modelonly2/xml/FieldsonlyMapper.xml")) {
+        if (!resourceExists("mbg/test/mb3/generated/miscellaneous/modelonly2/xml/FieldsOnlyMapper.xml")) {
             fail("FieldsonlyMapper.xml file should be generated in model only configuration");
         }
     }
     
     @Test
-    public void testDomainObjcetRename() {
+    public void testDomainObjectRename() {
         if (!classExists("mbg.test.mb3.generated.miscellaneous.model.Rename")) {
             fail("Rename class should be generated (renamed from suffix_rename)");
         }

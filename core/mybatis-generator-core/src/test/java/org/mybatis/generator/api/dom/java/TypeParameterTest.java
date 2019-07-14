@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -62,7 +62,8 @@ public class TypeParameterTest {
         assertEquals("T extends List & Comparator", renderer.render(typeParameter, compilationUnit));
 
         TopLevelClass compilationUnit2 = new TopLevelClass("java.lang.Test");
-        assertEquals("T extends java.util.List & java.util.Comparator", renderer.render(typeParameter, compilationUnit2));
+        assertEquals("T extends java.util.List & java.util.Comparator",
+                renderer.render(typeParameter, compilationUnit2));
     }
 
     @Test

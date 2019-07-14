@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2017 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -60,9 +60,8 @@ public class AnnotatedSelectByExampleWithoutBLOBsMethodGenerator extends SelectB
             IntrospectedColumn introspectedColumn = iterPk.next();
             sb.setLength(0);
             javaIndent(sb, 1);
-            sb.append(getResultAnnotation(interfaze, introspectedColumn, true,
-                    introspectedTable.isConstructorBased()));
-            
+            sb.append(getResultAnnotation(interfaze, introspectedColumn, true, introspectedTable.isConstructorBased()));
+
             if (iterPk.hasNext() || iterNonPk.hasNext()) {
                 sb.append(',');
             }
@@ -74,9 +73,9 @@ public class AnnotatedSelectByExampleWithoutBLOBsMethodGenerator extends SelectB
             IntrospectedColumn introspectedColumn = iterNonPk.next();
             sb.setLength(0);
             javaIndent(sb, 1);
-            sb.append(getResultAnnotation(interfaze, introspectedColumn, false,
-                    introspectedTable.isConstructorBased()));
-            
+            sb.append(
+                    getResultAnnotation(interfaze, introspectedColumn, false, introspectedTable.isConstructorBased()));
+
             if (iterNonPk.hasNext()) {
                 sb.append(',');
             }

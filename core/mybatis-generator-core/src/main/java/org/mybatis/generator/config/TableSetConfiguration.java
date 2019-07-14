@@ -116,8 +116,7 @@ public class TableSetConfiguration extends PropertyHolder {
         return deleteByPrimaryKeyStatementEnabled;
     }
 
-    public void setDeleteByPrimaryKeyStatementEnabled(
-            boolean deleteByPrimaryKeyStatementEnabled) {
+    public void setDeleteByPrimaryKeyStatementEnabled(boolean deleteByPrimaryKeyStatementEnabled) {
         this.deleteByPrimaryKeyStatementEnabled = deleteByPrimaryKeyStatementEnabled;
     }
 
@@ -133,8 +132,7 @@ public class TableSetConfiguration extends PropertyHolder {
         return selectByPrimaryKeyStatementEnabled;
     }
 
-    public void setSelectByPrimaryKeyStatementEnabled(
-            boolean selectByPrimaryKeyStatementEnabled) {
+    public void setSelectByPrimaryKeyStatementEnabled(boolean selectByPrimaryKeyStatementEnabled) {
         this.selectByPrimaryKeyStatementEnabled = selectByPrimaryKeyStatementEnabled;
     }
 
@@ -142,14 +140,12 @@ public class TableSetConfiguration extends PropertyHolder {
         return updateByPrimaryKeyStatementEnabled;
     }
 
-    public void setUpdateByPrimaryKeyStatementEnabled(
-            boolean updateByPrimaryKeyStatementEnabled) {
+    public void setUpdateByPrimaryKeyStatementEnabled(boolean updateByPrimaryKeyStatementEnabled) {
         this.updateByPrimaryKeyStatementEnabled = updateByPrimaryKeyStatementEnabled;
     }
 
     public boolean isColumnIgnored(String columnName) {
-        for (Map.Entry<IgnoredColumn, Boolean> entry : ignoredColumns
-                .entrySet()) {
+        for (Map.Entry<IgnoredColumn, Boolean> entry : ignoredColumns.entrySet()) {
             if (entry.getKey().matches(columnName)) {
                 entry.setValue(Boolean.TRUE);
                 return true;
@@ -189,8 +185,7 @@ public class TableSetConfiguration extends PropertyHolder {
 
         TableSetConfiguration other = (TableSetConfiguration) obj;
 
-        return areEqual(this.catalog, other.catalog)
-                && areEqual(this.schema, other.schema);
+        return areEqual(this.catalog, other.catalog) && areEqual(this.schema, other.schema);
     }
 
     @Override
@@ -205,8 +200,7 @@ public class TableSetConfiguration extends PropertyHolder {
         return selectByExampleStatementEnabled;
     }
 
-    public void setSelectByExampleStatementEnabled(
-            boolean selectByExampleStatementEnabled) {
+    public void setSelectByExampleStatementEnabled(boolean selectByExampleStatementEnabled) {
         this.selectByExampleStatementEnabled = selectByExampleStatementEnabled;
     }
 
@@ -257,18 +251,14 @@ public class TableSetConfiguration extends PropertyHolder {
         return deleteByExampleStatementEnabled;
     }
 
-    public void setDeleteByExampleStatementEnabled(
-            boolean deleteByExampleStatementEnabled) {
+    public void setDeleteByExampleStatementEnabled(boolean deleteByExampleStatementEnabled) {
         this.deleteByExampleStatementEnabled = deleteByExampleStatementEnabled;
     }
 
     public boolean areAnyStatementsEnabled() {
-        return selectByExampleStatementEnabled
-                || selectByPrimaryKeyStatementEnabled || insertStatementEnabled
-                || updateByPrimaryKeyStatementEnabled
-                || deleteByExampleStatementEnabled
-                || deleteByPrimaryKeyStatementEnabled
-                || countByExampleStatementEnabled
+        return selectByExampleStatementEnabled || selectByPrimaryKeyStatementEnabled || insertStatementEnabled
+                || updateByPrimaryKeyStatementEnabled || deleteByExampleStatementEnabled
+                || deleteByPrimaryKeyStatementEnabled || countByExampleStatementEnabled
                 || updateByExampleStatementEnabled;
     }
 
@@ -313,18 +303,15 @@ public class TableSetConfiguration extends PropertyHolder {
     }
 
     /**
-     * Returns a List of Strings. The values are the columns
-     * that were specified to be ignored in the table, but do not exist in the
-     * table.
+     * Returns a List of Strings. The values are the columns that were specified to be ignored in the table, but do not
+     * exist in the table.
      *
-     * @return a List of Strings - the columns that were improperly configured
-     *         as ignored columns
+     * @return a List of Strings - the columns that were improperly configured as ignored columns
      */
     public List<String> getIgnoredColumnsInError() {
         List<String> answer = new ArrayList<>();
 
-        for (Map.Entry<IgnoredColumn, Boolean> entry : ignoredColumns
-                .entrySet()) {
+        for (Map.Entry<IgnoredColumn, Boolean> entry : ignoredColumns.entrySet()) {
             if (Boolean.FALSE.equals(entry.getValue())) {
                 answer.add(entry.getKey().getColumnName());
             }
@@ -349,39 +336,25 @@ public class TableSetConfiguration extends PropertyHolder {
         this.wildcardEscapingEnabled = wildcardEscapingEnabled;
     }
 
-
     @Override
     public String toString() {
-        return "TableSetConfiguration{" +
-                "suffixAsPackage=" + suffixAsPackage +
-                ", springEnabled=" + springEnabled +
-                ", insertStatementEnabled=" + insertStatementEnabled +
-                ", selectByPrimaryKeyStatementEnabled=" + selectByPrimaryKeyStatementEnabled +
-                ", selectByExampleStatementEnabled=" + selectByExampleStatementEnabled +
-                ", updateByPrimaryKeyStatementEnabled=" + updateByPrimaryKeyStatementEnabled +
-                ", deleteByPrimaryKeyStatementEnabled=" + deleteByPrimaryKeyStatementEnabled +
-                ", deleteByExampleStatementEnabled=" + deleteByExampleStatementEnabled +
-                ", countByExampleStatementEnabled=" + countByExampleStatementEnabled +
-                ", updateByExampleStatementEnabled=" + updateByExampleStatementEnabled +
-                ", columnOverrides=" + columnOverrides +
-                ", ignoredColumns=" + ignoredColumns +
-                ", generatedKey=" + generatedKey +
-                ", selectByPrimaryKeyQueryId='" + selectByPrimaryKeyQueryId + '\'' +
-                ", selectByExampleQueryId='" + selectByExampleQueryId + '\'' +
-                ", catalog='" + catalog + '\'' +
-                ", schema='" + schema + '\'' +
-                ", domainObjectName='" + domainObjectName + '\'' +
-                ", alias='" + alias + '\'' +
-                ", modelType=" + modelType +
-                ", wildcardEscapingEnabled=" + wildcardEscapingEnabled +
-                ", delimitIdentifiers=" + delimitIdentifiers +
-                ", domainObjectRenamingRule=" + domainObjectRenamingRule +
-                ", columnRenamingRule=" + columnRenamingRule +
-                ", isAllColumnDelimitingEnabled=" + isAllColumnDelimitingEnabled +
-                ", mapperName='" + mapperName + '\'' +
-                ", sqlProviderName='" + sqlProviderName + '\'' +
-                ", ignoredColumnPatterns=" + ignoredColumnPatterns +
-                '}';
+        return "TableSetConfiguration{" + "suffixAsPackage=" + suffixAsPackage + ", springEnabled=" + springEnabled
+                + ", insertStatementEnabled=" + insertStatementEnabled + ", selectByPrimaryKeyStatementEnabled="
+                + selectByPrimaryKeyStatementEnabled + ", selectByExampleStatementEnabled="
+                + selectByExampleStatementEnabled + ", updateByPrimaryKeyStatementEnabled="
+                + updateByPrimaryKeyStatementEnabled + ", deleteByPrimaryKeyStatementEnabled="
+                + deleteByPrimaryKeyStatementEnabled + ", deleteByExampleStatementEnabled="
+                + deleteByExampleStatementEnabled + ", countByExampleStatementEnabled=" + countByExampleStatementEnabled
+                + ", updateByExampleStatementEnabled=" + updateByExampleStatementEnabled + ", columnOverrides="
+                + columnOverrides + ", ignoredColumns=" + ignoredColumns + ", generatedKey=" + generatedKey
+                + ", selectByPrimaryKeyQueryId='" + selectByPrimaryKeyQueryId + '\'' + ", selectByExampleQueryId='"
+                + selectByExampleQueryId + '\'' + ", catalog='" + catalog + '\'' + ", schema='" + schema + '\''
+                + ", domainObjectName='" + domainObjectName + '\'' + ", alias='" + alias + '\'' + ", modelType="
+                + modelType + ", wildcardEscapingEnabled=" + wildcardEscapingEnabled + ", delimitIdentifiers="
+                + delimitIdentifiers + ", domainObjectRenamingRule=" + domainObjectRenamingRule
+                + ", columnRenamingRule=" + columnRenamingRule + ", isAllColumnDelimitingEnabled="
+                + isAllColumnDelimitingEnabled + ", mapperName='" + mapperName + '\'' + ", sqlProviderName='"
+                + sqlProviderName + '\'' + ", ignoredColumnPatterns=" + ignoredColumnPatterns + '}';
     }
 
     public boolean isDelimitIdentifiers() {
@@ -396,8 +369,7 @@ public class TableSetConfiguration extends PropertyHolder {
         return countByExampleStatementEnabled;
     }
 
-    public void setCountByExampleStatementEnabled(
-            boolean countByExampleStatementEnabled) {
+    public void setCountByExampleStatementEnabled(boolean countByExampleStatementEnabled) {
         this.countByExampleStatementEnabled = countByExampleStatementEnabled;
     }
 
@@ -405,8 +377,7 @@ public class TableSetConfiguration extends PropertyHolder {
         return updateByExampleStatementEnabled;
     }
 
-    public void setUpdateByExampleStatementEnabled(
-            boolean updateByExampleStatementEnabled) {
+    public void setUpdateByExampleStatementEnabled(boolean updateByExampleStatementEnabled) {
         this.updateByExampleStatementEnabled = updateByExampleStatementEnabled;
     }
 
@@ -430,8 +401,7 @@ public class TableSetConfiguration extends PropertyHolder {
         return isAllColumnDelimitingEnabled;
     }
 
-    public void setAllColumnDelimitingEnabled(
-            boolean isAllColumnDelimitingEnabled) {
+    public void setAllColumnDelimitingEnabled(boolean isAllColumnDelimitingEnabled) {
         this.isAllColumnDelimitingEnabled = isAllColumnDelimitingEnabled;
     }
 

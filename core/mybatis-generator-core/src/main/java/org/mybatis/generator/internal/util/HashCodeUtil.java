@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2017 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -20,16 +20,19 @@ import java.lang.reflect.Array;
 /**
  * This class is from javapractices.com:
  * 
- * <p>http://www.javapractices.com/Topic28.cjp
+ * <p>
+ * http://www.javapractices.com/Topic28.cjp
  * 
- * <p>Collected methods which allow easy implementation of <code>hashCode</code>.
+ * <p>
+ * Collected methods which allow easy implementation of <code>hashCode</code>.
  * 
- * <p>Example use case:
+ * <p>
+ * Example use case:
  * 
  * <pre>
  * public int hashCode() {
  *     int result = HashCodeUtil.SEED;
- *     //collect the contributions of various fields
+ *     // collect the contributions of various fields
  *     result = HashCodeUtil.hash(result, fPrimitive);
  *     result = HashCodeUtil.hash(result, fObject);
  *     result = HashCodeUtil.hash(result, fArray);
@@ -40,9 +43,8 @@ import java.lang.reflect.Array;
 public final class HashCodeUtil {
 
     /**
-     * An initial value for a <code>hashCode</code>, to which is added
-     * contributions from fields. Using a non-zero value decreases collisons of
-     * <code>hashCode</code> values.
+     * An initial value for a <code>hashCode</code>, to which is added contributions from fields. Using a non-zero value
+     * decreases collisons of <code>hashCode</code> values.
      */
     public static final int SEED = 23;
     private static final int ODD_PRIME_NUMBER = 37;
@@ -57,8 +59,7 @@ public final class HashCodeUtil {
 
     public static int hash(int seed, int i) {
         /*
-         * Implementation Note Note that byte and short are handled by this
-         * method, through implicit conversion.
+         * Implementation Note Note that byte and short are handled by this method, through implicit conversion.
          */
         return firstTerm(seed) + i;
     }
@@ -78,7 +79,8 @@ public final class HashCodeUtil {
     /**
      * <code>aObject</code> is a possibly-null object field, and possibly an array.
      * 
-     * <p>If <code>aObject</code> is an array, then each element may be a primitive or a possibly-null object.
+     * <p>
+     * If <code>aObject</code> is an array, then each element may be a primitive or a possibly-null object.
      *
      * @param seed
      *            the seed

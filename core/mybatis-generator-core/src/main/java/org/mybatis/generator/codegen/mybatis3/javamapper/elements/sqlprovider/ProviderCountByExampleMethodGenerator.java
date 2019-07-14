@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -54,14 +54,12 @@ public class ProviderCountByExampleMethodGenerator extends AbstractJavaProviderM
         FullyQualifiedJavaType fqjt = new FullyQualifiedJavaType(introspectedTable.getExampleType());
         importedTypes.add(fqjt);
 
-        Method method = new Method(
-                introspectedTable.getCountByExampleStatementId());
+        Method method = new Method(introspectedTable.getCountByExampleStatementId());
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setReturnType(FullyQualifiedJavaType.getStringInstance());
         method.addParameter(new Parameter(fqjt, "example")); //$NON-NLS-1$
-        
-        context.getCommentGenerator().addGeneralMethodComment(method,
-                introspectedTable);
+
+        context.getCommentGenerator().addGeneralMethodComment(method, introspectedTable);
 
         if (useLegacyBuilder) {
             method.addBodyLine("BEGIN();"); //$NON-NLS-1$
@@ -77,9 +75,8 @@ public class ProviderCountByExampleMethodGenerator extends AbstractJavaProviderM
             method.addBodyLine("applyWhere(sql, example, false);"); //$NON-NLS-1$
             method.addBodyLine("return sql.toString();"); //$NON-NLS-1$
         }
-        
-        if (context.getPlugins().providerCountByExampleMethodGenerated(method, topLevelClass,
-                introspectedTable)) {
+
+        if (context.getPlugins().providerCountByExampleMethodGenerated(method, topLevelClass, introspectedTable)) {
             topLevelClass.addStaticImports(staticImports);
             topLevelClass.addImportedTypes(importedTypes);
             topLevelClass.addMethod(method);

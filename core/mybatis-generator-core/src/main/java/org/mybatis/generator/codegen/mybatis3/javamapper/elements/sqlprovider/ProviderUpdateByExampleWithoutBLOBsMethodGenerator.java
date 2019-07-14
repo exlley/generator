@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -36,8 +36,7 @@ import org.mybatis.generator.codegen.mybatis3.ListUtilities;
  * @author Jeff Butler
  * 
  */
-public class ProviderUpdateByExampleWithoutBLOBsMethodGenerator extends
-        AbstractJavaProviderMethodGenerator {
+public class ProviderUpdateByExampleWithoutBLOBsMethodGenerator extends AbstractJavaProviderMethodGenerator {
 
     public ProviderUpdateByExampleWithoutBLOBsMethodGenerator(boolean useLegacyBuilder) {
         super(useLegacyBuilder);
@@ -62,11 +61,11 @@ public class ProviderUpdateByExampleWithoutBLOBsMethodGenerator extends
         Method method = new Method(getMethodName());
         method.setReturnType(FullyQualifiedJavaType.getStringInstance());
         method.setVisibility(JavaVisibility.PUBLIC);
-        method.addParameter(new Parameter(new FullyQualifiedJavaType("java.util.Map<java.lang.String, java.lang.Object>"), //$NON-NLS-1$
-                "parameter")); //$NON-NLS-1$
-        
-        context.getCommentGenerator().addGeneralMethodComment(method,
-                introspectedTable);
+        method.addParameter(
+                new Parameter(new FullyQualifiedJavaType("java.util.Map<java.lang.String, java.lang.Object>"), //$NON-NLS-1$
+                        "parameter")); //$NON-NLS-1$
+
+        context.getCommentGenerator().addGeneralMethodComment(method, introspectedTable);
 
         if (useLegacyBuilder) {
             method.addBodyLine("BEGIN();"); //$NON-NLS-1$
@@ -75,8 +74,7 @@ public class ProviderUpdateByExampleWithoutBLOBsMethodGenerator extends
         }
 
         method.addBodyLine(String.format("%sUPDATE(\"%s\");", //$NON-NLS-1$
-                builderPrefix,
-                escapeStringForJava(introspectedTable.getAliasedFullyQualifiedTableNameAtRuntime())));
+                builderPrefix, escapeStringForJava(introspectedTable.getAliasedFullyQualifiedTableNameAtRuntime())));
         method.addBodyLine(""); //$NON-NLS-1$
 
         for (IntrospectedColumn introspectedColumn : ListUtilities.removeGeneratedAlwaysColumns(getColumns())) {
@@ -85,15 +83,13 @@ public class ProviderUpdateByExampleWithoutBLOBsMethodGenerator extends
             sb.insert(2, "record."); //$NON-NLS-1$
 
             method.addBodyLine(String.format("%sSET(\"%s = %s\");", //$NON-NLS-1$
-                    builderPrefix,
-                    escapeStringForJava(getAliasedEscapedColumnName(introspectedColumn)),
+                    builderPrefix, escapeStringForJava(getAliasedEscapedColumnName(introspectedColumn)),
                     sb.toString()));
         }
 
         method.addBodyLine(""); //$NON-NLS-1$
-        
-        FullyQualifiedJavaType example =
-                new FullyQualifiedJavaType(introspectedTable.getExampleType());
+
+        FullyQualifiedJavaType example = new FullyQualifiedJavaType(introspectedTable.getExampleType());
         importedTypes.add(example);
         method.addBodyLine(String.format("%s example = (%s) parameter.get(\"example\");", //$NON-NLS-1$
                 example.getShortName(), example.getShortName()));

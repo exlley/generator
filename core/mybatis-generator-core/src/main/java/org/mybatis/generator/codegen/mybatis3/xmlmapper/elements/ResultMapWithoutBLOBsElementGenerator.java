@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2016 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -29,8 +29,7 @@ import org.mybatis.generator.codegen.mybatis3.MyBatis3FormattingUtilities;
  * @author Jeff Butler
  * 
  */
-public class ResultMapWithoutBLOBsElementGenerator extends
-        AbstractXmlElementGenerator {
+public class ResultMapWithoutBLOBsElementGenerator extends AbstractXmlElementGenerator {
 
     private boolean isSimple;
 
@@ -67,28 +66,23 @@ public class ResultMapWithoutBLOBsElementGenerator extends
             addResultMapElements(answer);
         }
 
-        if (context.getPlugins().sqlMapResultMapWithoutBLOBsElementGenerated(
-                answer, introspectedTable)) {
+        if (context.getPlugins().sqlMapResultMapWithoutBLOBsElementGenerated(answer, introspectedTable)) {
             parentElement.addElement(answer);
         }
     }
 
     private void addResultMapElements(XmlElement answer) {
-        for (IntrospectedColumn introspectedColumn : introspectedTable
-                .getPrimaryKeyColumns()) {
+        for (IntrospectedColumn introspectedColumn : introspectedTable.getPrimaryKeyColumns()) {
             XmlElement resultElement = new XmlElement("id"); //$NON-NLS-1$
 
-            resultElement
-                    .addAttribute(new Attribute(
-                            "column", MyBatis3FormattingUtilities.getRenamedColumnNameForResultMap(introspectedColumn))); //$NON-NLS-1$
-            resultElement.addAttribute(new Attribute(
-                    "property", introspectedColumn.getJavaProperty())); //$NON-NLS-1$
+            resultElement.addAttribute(new Attribute("column", //$NON-NLS-1$
+                    MyBatis3FormattingUtilities.getRenamedColumnNameForResultMap(introspectedColumn)));
+            resultElement.addAttribute(new Attribute("property", introspectedColumn.getJavaProperty())); //$NON-NLS-1$
             resultElement.addAttribute(new Attribute("jdbcType", //$NON-NLS-1$
                     introspectedColumn.getJdbcTypeName()));
 
             if (stringHasValue(introspectedColumn.getTypeHandler())) {
-                resultElement.addAttribute(new Attribute(
-                        "typeHandler", introspectedColumn.getTypeHandler())); //$NON-NLS-1$
+                resultElement.addAttribute(new Attribute("typeHandler", introspectedColumn.getTypeHandler())); //$NON-NLS-1$
             }
 
             answer.addElement(resultElement);
@@ -103,17 +97,14 @@ public class ResultMapWithoutBLOBsElementGenerator extends
         for (IntrospectedColumn introspectedColumn : columns) {
             XmlElement resultElement = new XmlElement("result"); //$NON-NLS-1$
 
-            resultElement
-                    .addAttribute(new Attribute(
-                            "column", MyBatis3FormattingUtilities.getRenamedColumnNameForResultMap(introspectedColumn))); //$NON-NLS-1$
-            resultElement.addAttribute(new Attribute(
-                    "property", introspectedColumn.getJavaProperty())); //$NON-NLS-1$
+            resultElement.addAttribute(new Attribute("column", //$NON-NLS-1$
+                    MyBatis3FormattingUtilities.getRenamedColumnNameForResultMap(introspectedColumn)));
+            resultElement.addAttribute(new Attribute("property", introspectedColumn.getJavaProperty())); //$NON-NLS-1$
             resultElement.addAttribute(new Attribute("jdbcType", //$NON-NLS-1$
                     introspectedColumn.getJdbcTypeName()));
 
             if (stringHasValue(introspectedColumn.getTypeHandler())) {
-                resultElement.addAttribute(new Attribute(
-                        "typeHandler", introspectedColumn.getTypeHandler())); //$NON-NLS-1$
+                resultElement.addAttribute(new Attribute("typeHandler", introspectedColumn.getTypeHandler())); //$NON-NLS-1$
             }
 
             answer.addElement(resultElement);
@@ -123,22 +114,18 @@ public class ResultMapWithoutBLOBsElementGenerator extends
     private void addResultMapConstructorElements(XmlElement answer) {
         XmlElement constructor = new XmlElement("constructor"); //$NON-NLS-1$
 
-        for (IntrospectedColumn introspectedColumn : introspectedTable
-                .getPrimaryKeyColumns()) {
+        for (IntrospectedColumn introspectedColumn : introspectedTable.getPrimaryKeyColumns()) {
             XmlElement resultElement = new XmlElement("idArg"); //$NON-NLS-1$
 
-            resultElement
-                    .addAttribute(new Attribute(
-                            "column", MyBatis3FormattingUtilities.getRenamedColumnNameForResultMap(introspectedColumn))); //$NON-NLS-1$
+            resultElement.addAttribute(new Attribute("column", //$NON-NLS-1$
+                    MyBatis3FormattingUtilities.getRenamedColumnNameForResultMap(introspectedColumn)));
             resultElement.addAttribute(new Attribute("jdbcType", //$NON-NLS-1$
                     introspectedColumn.getJdbcTypeName()));
             resultElement.addAttribute(new Attribute("javaType", //$NON-NLS-1$
-                    introspectedColumn.getFullyQualifiedJavaType()
-                            .getFullyQualifiedName()));
+                    introspectedColumn.getFullyQualifiedJavaType().getFullyQualifiedName()));
 
             if (stringHasValue(introspectedColumn.getTypeHandler())) {
-                resultElement.addAttribute(new Attribute(
-                        "typeHandler", introspectedColumn.getTypeHandler())); //$NON-NLS-1$
+                resultElement.addAttribute(new Attribute("typeHandler", introspectedColumn.getTypeHandler())); //$NON-NLS-1$
             }
 
             constructor.addElement(resultElement);
@@ -153,18 +140,15 @@ public class ResultMapWithoutBLOBsElementGenerator extends
         for (IntrospectedColumn introspectedColumn : columns) {
             XmlElement resultElement = new XmlElement("arg"); //$NON-NLS-1$
 
-            resultElement
-                    .addAttribute(new Attribute(
-                            "column", MyBatis3FormattingUtilities.getRenamedColumnNameForResultMap(introspectedColumn))); //$NON-NLS-1$
+            resultElement.addAttribute(new Attribute("column", //$NON-NLS-1$
+                    MyBatis3FormattingUtilities.getRenamedColumnNameForResultMap(introspectedColumn)));
             resultElement.addAttribute(new Attribute("jdbcType", //$NON-NLS-1$
                     introspectedColumn.getJdbcTypeName()));
             resultElement.addAttribute(new Attribute("javaType", //$NON-NLS-1$
-                    introspectedColumn.getFullyQualifiedJavaType()
-                            .getFullyQualifiedName()));
+                    introspectedColumn.getFullyQualifiedJavaType().getFullyQualifiedName()));
 
             if (stringHasValue(introspectedColumn.getTypeHandler())) {
-                resultElement.addAttribute(new Attribute(
-                        "typeHandler", introspectedColumn.getTypeHandler())); //$NON-NLS-1$
+                resultElement.addAttribute(new Attribute("typeHandler", introspectedColumn.getTypeHandler())); //$NON-NLS-1$
             }
 
             constructor.addElement(resultElement);

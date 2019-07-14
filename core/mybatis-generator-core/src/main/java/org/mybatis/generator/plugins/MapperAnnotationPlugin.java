@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -35,14 +35,13 @@ public class MapperAnnotationPlugin extends PluginAdapter {
 
         if (introspectedTable.getTargetRuntime() == TargetRuntime.MYBATIS3) {
             // don't need to do this for MYBATIS3_DSQL as that runtime already adds this annotation
-            if(introspectedTable.getTableConfiguration().isSpringEnabled()) {
+            if (introspectedTable.getTableConfiguration().isSpringEnabled()) {
                 // 如果使用了spring，则引入@Repository注解
                 interfaze.addImportedType(
                         new FullyQualifiedJavaType("import org.springframework.stereotype.Repository")); //$NON-NLS-1$
                 interfaze.addAnnotation("@Repository"); //$NON-NLS-1$
             } else {
-                interfaze.addImportedType(
-                        new FullyQualifiedJavaType("org.apache.ibatis.annotations.Mapper")); //$NON-NLS-1$
+                interfaze.addImportedType(new FullyQualifiedJavaType("org.apache.ibatis.annotations.Mapper")); //$NON-NLS-1$
                 interfaze.addAnnotation("@Mapper"); //$NON-NLS-1$
             }
         }

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -33,8 +33,7 @@ public class DefaultShellCallback implements ShellCallback {
     }
 
     @Override
-    public File getDirectory(String targetProject, String targetPackage)
-            throws ShellException {
+    public File getDirectory(String targetProject, String targetPackage) throws ShellException {
         // targetProject is interpreted as a directory that must exist
         //
         // targetPackage is interpreted as a sub directory, but in package
@@ -83,8 +82,7 @@ public class DefaultShellCallback implements ShellCallback {
     }
 
     @Override
-    public String mergeJavaFile(String newFileSource,
-            File existingFile, String[] javadocTags, String fileEncoding)
+    public String mergeJavaFile(String newFileSource, File existingFile, String[] javadocTags, String fileEncoding)
             throws ShellException {
         throw new UnsupportedOperationException();
     }

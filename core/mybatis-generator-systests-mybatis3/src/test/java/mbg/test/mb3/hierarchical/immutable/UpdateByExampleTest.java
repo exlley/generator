@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -24,27 +24,27 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.jupiter.api.Test;
 
-import mbg.test.mb3.generated.hierarchical.immutable.mapper.FieldsblobsMapper;
-import mbg.test.mb3.generated.hierarchical.immutable.mapper.FieldsonlyMapper;
-import mbg.test.mb3.generated.hierarchical.immutable.mapper.PkblobsMapper;
-import mbg.test.mb3.generated.hierarchical.immutable.mapper.PkfieldsMapper;
-import mbg.test.mb3.generated.hierarchical.immutable.mapper.PkfieldsblobsMapper;
-import mbg.test.mb3.generated.hierarchical.immutable.mapper.PkonlyMapper;
-import mbg.test.mb3.generated.hierarchical.immutable.model.Fieldsblobs;
-import mbg.test.mb3.generated.hierarchical.immutable.model.FieldsblobsExample;
-import mbg.test.mb3.generated.hierarchical.immutable.model.FieldsblobsWithBLOBs;
-import mbg.test.mb3.generated.hierarchical.immutable.model.Fieldsonly;
-import mbg.test.mb3.generated.hierarchical.immutable.model.FieldsonlyExample;
-import mbg.test.mb3.generated.hierarchical.immutable.model.PkblobsExample;
-import mbg.test.mb3.generated.hierarchical.immutable.model.PkblobsKey;
-import mbg.test.mb3.generated.hierarchical.immutable.model.PkblobsWithBLOBs;
-import mbg.test.mb3.generated.hierarchical.immutable.model.Pkfields;
-import mbg.test.mb3.generated.hierarchical.immutable.model.PkfieldsExample;
-import mbg.test.mb3.generated.hierarchical.immutable.model.Pkfieldsblobs;
-import mbg.test.mb3.generated.hierarchical.immutable.model.PkfieldsblobsExample;
-import mbg.test.mb3.generated.hierarchical.immutable.model.PkfieldsblobsWithBLOBs;
-import mbg.test.mb3.generated.hierarchical.immutable.model.PkonlyExample;
-import mbg.test.mb3.generated.hierarchical.immutable.model.PkonlyKey;
+import mbg.test.mb3.generated.hierarchical.immutable.mapper.FieldsBlobsMapper;
+import mbg.test.mb3.generated.hierarchical.immutable.mapper.FieldsOnlyMapper;
+import mbg.test.mb3.generated.hierarchical.immutable.mapper.PKBlobsMapper;
+import mbg.test.mb3.generated.hierarchical.immutable.mapper.PKFieldsMapper;
+import mbg.test.mb3.generated.hierarchical.immutable.mapper.PKFieldsBlobsMapper;
+import mbg.test.mb3.generated.hierarchical.immutable.mapper.PKOnlyMapper;
+import mbg.test.mb3.generated.hierarchical.immutable.model.FieldsBlobs;
+import mbg.test.mb3.generated.hierarchical.immutable.model.FieldsBlobsExample;
+import mbg.test.mb3.generated.hierarchical.immutable.model.FieldsBlobsWithBLOBs;
+import mbg.test.mb3.generated.hierarchical.immutable.model.FieldsOnly;
+import mbg.test.mb3.generated.hierarchical.immutable.model.FieldsOnlyExample;
+import mbg.test.mb3.generated.hierarchical.immutable.model.PKBlobsExample;
+import mbg.test.mb3.generated.hierarchical.immutable.model.PKBlobsKey;
+import mbg.test.mb3.generated.hierarchical.immutable.model.PKBlobsWithBLOBs;
+import mbg.test.mb3.generated.hierarchical.immutable.model.PKFields;
+import mbg.test.mb3.generated.hierarchical.immutable.model.PKFieldsExample;
+import mbg.test.mb3.generated.hierarchical.immutable.model.PKFieldsBlobs;
+import mbg.test.mb3.generated.hierarchical.immutable.model.PKFieldsBlobsExample;
+import mbg.test.mb3.generated.hierarchical.immutable.model.PKFieldsBlobsWithBLOBs;
+import mbg.test.mb3.generated.hierarchical.immutable.model.PKOnlyExample;
+import mbg.test.mb3.generated.hierarchical.immutable.model.PKOnlyKey;
 
 /**
  * 
@@ -58,19 +58,19 @@ public class UpdateByExampleTest extends AbstractHierarchicalImmutableTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            FieldsonlyMapper mapper = sqlSession
-                    .getMapper(FieldsonlyMapper.class);
-            Fieldsonly record = new Fieldsonly(5, 11.22, 33.44);
+            FieldsOnlyMapper mapper = sqlSession
+                    .getMapper(FieldsOnlyMapper.class);
+            FieldsOnly record = new FieldsOnly(5, 11.22, 33.44);
             mapper.insert(record);
 
-            record = new Fieldsonly(8, 44.55, 66.77);
+            record = new FieldsOnly(8, 44.55, 66.77);
             mapper.insert(record);
 
-            record = new Fieldsonly(9, 88.99, 100.111);
+            record = new FieldsOnly(9, 88.99, 100.111);
             mapper.insert(record);
 
-            record = new Fieldsonly(null, 99d, null);
-            FieldsonlyExample example = new FieldsonlyExample();
+            record = new FieldsOnly(null, 99d, null);
+            FieldsOnlyExample example = new FieldsOnlyExample();
             example.createCriteria().andIntegerfieldGreaterThan(5);
 
             int rows = mapper.updateByExampleSelective(record, example);
@@ -78,7 +78,7 @@ public class UpdateByExampleTest extends AbstractHierarchicalImmutableTest {
 
             example.clear();
             example.createCriteria().andIntegerfieldEqualTo(5);
-            List<Fieldsonly> answer = mapper.selectByExample(example);
+            List<FieldsOnly> answer = mapper.selectByExample(example);
             assertEquals(1, answer.size());
             record = answer.get(0);
             assertEquals(record.getDoublefield(), 11.22, 0.001);
@@ -112,19 +112,19 @@ public class UpdateByExampleTest extends AbstractHierarchicalImmutableTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            FieldsonlyMapper mapper = sqlSession
-                    .getMapper(FieldsonlyMapper.class);
-            Fieldsonly record = new Fieldsonly(5, 11.22, 33.44);
+            FieldsOnlyMapper mapper = sqlSession
+                    .getMapper(FieldsOnlyMapper.class);
+            FieldsOnly record = new FieldsOnly(5, 11.22, 33.44);
             mapper.insert(record);
 
-            record = new Fieldsonly(8, 44.55, 66.77);
+            record = new FieldsOnly(8, 44.55, 66.77);
             mapper.insert(record);
 
-            record = new Fieldsonly(9, 88.99, 100.111);
+            record = new FieldsOnly(9, 88.99, 100.111);
             mapper.insert(record);
 
-            record = new Fieldsonly(22, null, null);
-            FieldsonlyExample example = new FieldsonlyExample();
+            record = new FieldsOnly(22, null, null);
+            FieldsOnlyExample example = new FieldsOnlyExample();
             example.createCriteria().andIntegerfieldEqualTo(5);
 
             int rows = mapper.updateByExample(record, example);
@@ -132,7 +132,7 @@ public class UpdateByExampleTest extends AbstractHierarchicalImmutableTest {
 
             example.clear();
             example.createCriteria().andIntegerfieldEqualTo(22);
-            List<Fieldsonly> answer = mapper.selectByExample(example);
+            List<FieldsOnly> answer = mapper.selectByExample(example);
             assertEquals(1, answer.size());
             record = answer.get(0);
             assertNull(record.getDoublefield());
@@ -148,19 +148,19 @@ public class UpdateByExampleTest extends AbstractHierarchicalImmutableTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkonlyMapper mapper = sqlSession.getMapper(PkonlyMapper.class);
-            PkonlyKey key = new PkonlyKey(1, 3);
+            PKOnlyMapper mapper = sqlSession.getMapper(PKOnlyMapper.class);
+            PKOnlyKey key = new PKOnlyKey(1, 3);
             mapper.insert(key);
 
-            key = new PkonlyKey(5, 6);
+            key = new PKOnlyKey(5, 6);
             mapper.insert(key);
 
-            key = new PkonlyKey(7, 8);
+            key = new PKOnlyKey(7, 8);
             mapper.insert(key);
 
-            PkonlyExample example = new PkonlyExample();
+            PKOnlyExample example = new PKOnlyExample();
             example.createCriteria().andIdGreaterThan(4);
-            key = new PkonlyKey(null, 3);
+            key = new PKOnlyKey(null, 3);
             int rows = mapper.updateByExampleSelective(key, example);
             assertEquals(2, rows);
 
@@ -185,19 +185,19 @@ public class UpdateByExampleTest extends AbstractHierarchicalImmutableTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkonlyMapper mapper = sqlSession.getMapper(PkonlyMapper.class);
-            PkonlyKey key = new PkonlyKey(1, 3);
+            PKOnlyMapper mapper = sqlSession.getMapper(PKOnlyMapper.class);
+            PKOnlyKey key = new PKOnlyKey(1, 3);
             mapper.insert(key);
 
-            key = new PkonlyKey(5, 6);
+            key = new PKOnlyKey(5, 6);
             mapper.insert(key);
 
-            key = new PkonlyKey(7, 8);
+            key = new PKOnlyKey(7, 8);
             mapper.insert(key);
 
-            PkonlyExample example = new PkonlyExample();
+            PKOnlyExample example = new PKOnlyExample();
             example.createCriteria().andIdEqualTo(7);
-            key = new PkonlyKey(22, 3);
+            key = new PKOnlyKey(22, 3);
             int rows = mapper.updateByExample(key, example);
             assertEquals(1, rows);
 
@@ -216,15 +216,15 @@ public class UpdateByExampleTest extends AbstractHierarchicalImmutableTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsMapper mapper = sqlSession.getMapper(PkfieldsMapper.class);
-            Pkfields record = new Pkfields();
+            PKFieldsMapper mapper = sqlSession.getMapper(PKFieldsMapper.class);
+            PKFields record = new PKFields();
             record.setFirstname("Jeff");
             record.setLastname("Smith");
             record.setId1(1);
             record.setId2(2);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Bob");
             record.setLastname("Jones");
             record.setId1(3);
@@ -232,9 +232,9 @@ public class UpdateByExampleTest extends AbstractHierarchicalImmutableTest {
 
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Fred");
-            PkfieldsExample example = new PkfieldsExample();
+            PKFieldsExample example = new PKFieldsExample();
             example.createCriteria().andLastnameLike("J%");
             int rows = mapper.updateByExampleSelective(record, example);
             assertEquals(1, rows);
@@ -256,15 +256,15 @@ public class UpdateByExampleTest extends AbstractHierarchicalImmutableTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsMapper mapper = sqlSession.getMapper(PkfieldsMapper.class);
-            Pkfields record = new Pkfields();
+            PKFieldsMapper mapper = sqlSession.getMapper(PKFieldsMapper.class);
+            PKFields record = new PKFields();
             record.setFirstname("Jeff");
             record.setLastname("Smith");
             record.setId1(1);
             record.setId2(2);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Bob");
             record.setLastname("Jones");
             record.setId1(3);
@@ -272,11 +272,11 @@ public class UpdateByExampleTest extends AbstractHierarchicalImmutableTest {
 
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Fred");
             record.setId1(3);
             record.setId2(4);
-            PkfieldsExample example = new PkfieldsExample();
+            PKFieldsExample example = new PKFieldsExample();
             example.createCriteria().andId1EqualTo(3).andId2EqualTo(4);
 
             int rows = mapper.updateByExample(record, example);
@@ -298,28 +298,28 @@ public class UpdateByExampleTest extends AbstractHierarchicalImmutableTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkblobsMapper mapper = sqlSession.getMapper(PkblobsMapper.class);
-            PkblobsWithBLOBs record = new PkblobsWithBLOBs(3,
+            PKBlobsMapper mapper = sqlSession.getMapper(PKBlobsMapper.class);
+            PKBlobsWithBLOBs record = new PKBlobsWithBLOBs(3,
                     generateRandomBlob(), generateRandomBlob(), "Long String 1");
             mapper.insert(record);
 
-            record = new PkblobsWithBLOBs(6, generateRandomBlob(),
+            record = new PKBlobsWithBLOBs(6, generateRandomBlob(),
                     generateRandomBlob(), "Long String 2");
             mapper.insert(record);
 
-            PkblobsWithBLOBs newRecord = new PkblobsWithBLOBs(null,
+            PKBlobsWithBLOBs newRecord = new PKBlobsWithBLOBs(null,
                     generateRandomBlob(), null, null);
 
-            PkblobsExample example = new PkblobsExample();
+            PKBlobsExample example = new PKBlobsExample();
             example.createCriteria().andIdGreaterThan(4);
             int rows = mapper.updateByExampleSelective(newRecord, example);
             assertEquals(1, rows);
 
-            List<PkblobsWithBLOBs> answer = mapper
+            List<PKBlobsWithBLOBs> answer = mapper
                     .selectByExampleWithBLOBs(example);
             assertEquals(1, answer.size());
 
-            PkblobsWithBLOBs returnedRecord = answer.get(0);
+            PKBlobsWithBLOBs returnedRecord = answer.get(0);
 
             assertEquals(6, returnedRecord.getId().intValue());
             assertTrue(blobsAreEqual(newRecord.getBlob1(),
@@ -337,27 +337,27 @@ public class UpdateByExampleTest extends AbstractHierarchicalImmutableTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkblobsMapper mapper = sqlSession.getMapper(PkblobsMapper.class);
-            PkblobsWithBLOBs record = new PkblobsWithBLOBs(3,
+            PKBlobsMapper mapper = sqlSession.getMapper(PKBlobsMapper.class);
+            PKBlobsWithBLOBs record = new PKBlobsWithBLOBs(3,
                     generateRandomBlob(), generateRandomBlob(), "Long String 1");
             mapper.insert(record);
 
-            record = new PkblobsWithBLOBs(6, generateRandomBlob(),
+            record = new PKBlobsWithBLOBs(6, generateRandomBlob(),
                     generateRandomBlob(), "Long String 2");
             mapper.insert(record);
 
-            PkblobsKey newRecord = new PkblobsKey(8);
+            PKBlobsKey newRecord = new PKBlobsKey(8);
 
-            PkblobsExample example = new PkblobsExample();
+            PKBlobsExample example = new PKBlobsExample();
             example.createCriteria().andIdGreaterThan(4);
             int rows = mapper.updateByExample(newRecord, example);
             assertEquals(1, rows);
 
-            List<PkblobsWithBLOBs> answer = mapper
+            List<PKBlobsWithBLOBs> answer = mapper
                     .selectByExampleWithBLOBs(example);
             assertEquals(1, answer.size());
 
-            PkblobsWithBLOBs returnedRecord = answer.get(0);
+            PKBlobsWithBLOBs returnedRecord = answer.get(0);
 
             assertEquals(8, returnedRecord.getId().intValue());
             assertTrue(blobsAreEqual(record.getBlob1(),
@@ -375,27 +375,27 @@ public class UpdateByExampleTest extends AbstractHierarchicalImmutableTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkblobsMapper mapper = sqlSession.getMapper(PkblobsMapper.class);
-            PkblobsWithBLOBs record = new PkblobsWithBLOBs(3,
+            PKBlobsMapper mapper = sqlSession.getMapper(PKBlobsMapper.class);
+            PKBlobsWithBLOBs record = new PKBlobsWithBLOBs(3,
                     generateRandomBlob(), generateRandomBlob(), "Long String 1");
             mapper.insert(record);
 
-            record = new PkblobsWithBLOBs(6, generateRandomBlob(),
+            record = new PKBlobsWithBLOBs(6, generateRandomBlob(),
                     generateRandomBlob(), "Long String 2");
             mapper.insert(record);
 
-            PkblobsWithBLOBs newRecord = new PkblobsWithBLOBs(8, null, null, null);
+            PKBlobsWithBLOBs newRecord = new PKBlobsWithBLOBs(8, null, null, null);
 
-            PkblobsExample example = new PkblobsExample();
+            PKBlobsExample example = new PKBlobsExample();
             example.createCriteria().andIdGreaterThan(4);
             int rows = mapper.updateByExampleWithBLOBs(newRecord, example);
             assertEquals(1, rows);
 
-            List<PkblobsWithBLOBs> answer = mapper
+            List<PKBlobsWithBLOBs> answer = mapper
                     .selectByExampleWithBLOBs(example);
             assertEquals(1, answer.size());
 
-            PkblobsWithBLOBs returnedRecord = answer.get(0);
+            PKBlobsWithBLOBs returnedRecord = answer.get(0);
 
             assertEquals(8, returnedRecord.getId().intValue());
             assertNull(returnedRecord.getBlob1());
@@ -411,28 +411,28 @@ public class UpdateByExampleTest extends AbstractHierarchicalImmutableTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsblobsMapper mapper = sqlSession
-                    .getMapper(PkfieldsblobsMapper.class);
-            PkfieldsblobsWithBLOBs record = new PkfieldsblobsWithBLOBs(3, 4,
+            PKFieldsBlobsMapper mapper = sqlSession
+                    .getMapper(PKFieldsBlobsMapper.class);
+            PKFieldsBlobsWithBLOBs record = new PKFieldsBlobsWithBLOBs(3, 4,
                     "Jeff", "Smith", generateRandomBlob());
             mapper.insert(record);
 
-            record = new PkfieldsblobsWithBLOBs(5, 6, "Scott", "Jones",
+            record = new PKFieldsBlobsWithBLOBs(5, 6, "Scott", "Jones",
                     generateRandomBlob());
             mapper.insert(record);
 
-            PkfieldsblobsWithBLOBs newRecord = new PkfieldsblobsWithBLOBs(null,
+            PKFieldsBlobsWithBLOBs newRecord = new PKFieldsBlobsWithBLOBs(null,
                     null, "Fred", null, null);
-            PkfieldsblobsExample example = new PkfieldsblobsExample();
+            PKFieldsBlobsExample example = new PKFieldsBlobsExample();
             example.createCriteria().andId1NotEqualTo(3);
             int rows = mapper.updateByExampleSelective(newRecord, example);
             assertEquals(1, rows);
 
-            List<PkfieldsblobsWithBLOBs> answer = mapper
+            List<PKFieldsBlobsWithBLOBs> answer = mapper
                     .selectByExampleWithBLOBs(example);
             assertEquals(1, answer.size());
 
-            PkfieldsblobsWithBLOBs returnedRecord = answer.get(0);
+            PKFieldsBlobsWithBLOBs returnedRecord = answer.get(0);
 
             assertEquals(record.getId1(), returnedRecord.getId1());
             assertEquals(record.getId2(), returnedRecord.getId2());
@@ -452,27 +452,27 @@ public class UpdateByExampleTest extends AbstractHierarchicalImmutableTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsblobsMapper mapper = sqlSession
-                    .getMapper(PkfieldsblobsMapper.class);
-            PkfieldsblobsWithBLOBs record = new PkfieldsblobsWithBLOBs(3, 4,
+            PKFieldsBlobsMapper mapper = sqlSession
+                    .getMapper(PKFieldsBlobsMapper.class);
+            PKFieldsBlobsWithBLOBs record = new PKFieldsBlobsWithBLOBs(3, 4,
                     "Jeff", "Smith", generateRandomBlob());
             mapper.insert(record);
 
-            record = new PkfieldsblobsWithBLOBs(5, 6, "Scott", "Jones",
+            record = new PKFieldsBlobsWithBLOBs(5, 6, "Scott", "Jones",
                     generateRandomBlob());
             mapper.insert(record);
 
-            Pkfieldsblobs newRecord = new Pkfieldsblobs(5, 8, "Fred", null);
-            PkfieldsblobsExample example = new PkfieldsblobsExample();
+            PKFieldsBlobs newRecord = new PKFieldsBlobs(5, 8, "Fred", null);
+            PKFieldsBlobsExample example = new PKFieldsBlobsExample();
             example.createCriteria().andId1EqualTo(5);
             int rows = mapper.updateByExample(newRecord, example);
             assertEquals(1, rows);
 
-            List<PkfieldsblobsWithBLOBs> answer = mapper
+            List<PKFieldsBlobsWithBLOBs> answer = mapper
                     .selectByExampleWithBLOBs(example);
             assertEquals(1, answer.size());
 
-            PkfieldsblobsWithBLOBs returnedRecord = answer.get(0);
+            PKFieldsBlobsWithBLOBs returnedRecord = answer.get(0);
 
             assertEquals(newRecord.getId1(), returnedRecord.getId1());
             assertEquals(newRecord.getId2(), returnedRecord.getId2());
@@ -492,28 +492,28 @@ public class UpdateByExampleTest extends AbstractHierarchicalImmutableTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsblobsMapper mapper = sqlSession
-                    .getMapper(PkfieldsblobsMapper.class);
-            PkfieldsblobsWithBLOBs record = new PkfieldsblobsWithBLOBs(3, 4,
+            PKFieldsBlobsMapper mapper = sqlSession
+                    .getMapper(PKFieldsBlobsMapper.class);
+            PKFieldsBlobsWithBLOBs record = new PKFieldsBlobsWithBLOBs(3, 4,
                     "Jeff", "Smith", generateRandomBlob());
             mapper.insert(record);
 
-            record = new PkfieldsblobsWithBLOBs(5, 6, "Scott", "Jones",
+            record = new PKFieldsBlobsWithBLOBs(5, 6, "Scott", "Jones",
                     generateRandomBlob());
             mapper.insert(record);
 
-            PkfieldsblobsWithBLOBs newRecord = new PkfieldsblobsWithBLOBs(3, 8,
+            PKFieldsBlobsWithBLOBs newRecord = new PKFieldsBlobsWithBLOBs(3, 8,
                     "Fred", null, null);
-            PkfieldsblobsExample example = new PkfieldsblobsExample();
+            PKFieldsBlobsExample example = new PKFieldsBlobsExample();
             example.createCriteria().andId1EqualTo(3);
             int rows = mapper.updateByExampleWithBLOBs(newRecord, example);
             assertEquals(1, rows);
 
-            List<PkfieldsblobsWithBLOBs> answer = mapper
+            List<PKFieldsBlobsWithBLOBs> answer = mapper
                     .selectByExampleWithBLOBs(example);
             assertEquals(1, answer.size());
 
-            PkfieldsblobsWithBLOBs returnedRecord = answer.get(0);
+            PKFieldsBlobsWithBLOBs returnedRecord = answer.get(0);
 
             assertEquals(newRecord.getId1(), returnedRecord.getId1());
             assertEquals(newRecord.getId2(), returnedRecord.getId2());
@@ -532,28 +532,28 @@ public class UpdateByExampleTest extends AbstractHierarchicalImmutableTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            FieldsblobsMapper mapper = sqlSession
-                    .getMapper(FieldsblobsMapper.class);
-            FieldsblobsWithBLOBs record = new FieldsblobsWithBLOBs("Jeff",
+            FieldsBlobsMapper mapper = sqlSession
+                    .getMapper(FieldsBlobsMapper.class);
+            FieldsBlobsWithBLOBs record = new FieldsBlobsWithBLOBs("Jeff",
                     "Smith", generateRandomBlob(), generateRandomBlob(), null);
             mapper.insert(record);
 
-            record = new FieldsblobsWithBLOBs("Scott", "Jones",
+            record = new FieldsBlobsWithBLOBs("Scott", "Jones",
                     generateRandomBlob(), generateRandomBlob(), null);
             mapper.insert(record);
 
-            FieldsblobsWithBLOBs newRecord = new FieldsblobsWithBLOBs(null,
+            FieldsBlobsWithBLOBs newRecord = new FieldsBlobsWithBLOBs(null,
                     "Doe", null, null, null);
-            FieldsblobsExample example = new FieldsblobsExample();
+            FieldsBlobsExample example = new FieldsBlobsExample();
             example.createCriteria().andFirstnameLike("S%");
             int rows = mapper.updateByExampleSelective(newRecord, example);
             assertEquals(1, rows);
 
-            List<FieldsblobsWithBLOBs> answer = mapper
+            List<FieldsBlobsWithBLOBs> answer = mapper
                     .selectByExampleWithBLOBs(example);
             assertEquals(1, answer.size());
 
-            FieldsblobsWithBLOBs returnedRecord = answer.get(0);
+            FieldsBlobsWithBLOBs returnedRecord = answer.get(0);
 
             assertEquals(record.getFirstname(), returnedRecord.getFirstname());
             assertEquals(newRecord.getLastname(), returnedRecord.getLastname());
@@ -571,27 +571,27 @@ public class UpdateByExampleTest extends AbstractHierarchicalImmutableTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            FieldsblobsMapper mapper = sqlSession
-                    .getMapper(FieldsblobsMapper.class);
-            FieldsblobsWithBLOBs record = new FieldsblobsWithBLOBs("Jeff",
+            FieldsBlobsMapper mapper = sqlSession
+                    .getMapper(FieldsBlobsMapper.class);
+            FieldsBlobsWithBLOBs record = new FieldsBlobsWithBLOBs("Jeff",
                     "Smith", generateRandomBlob(), generateRandomBlob(), null);
             mapper.insert(record);
 
-            record = new FieldsblobsWithBLOBs("Scott", "Jones",
+            record = new FieldsBlobsWithBLOBs("Scott", "Jones",
                     generateRandomBlob(), generateRandomBlob(), null);
             mapper.insert(record);
 
-            Fieldsblobs newRecord = new Fieldsblobs("Scott", "Doe");
-            FieldsblobsExample example = new FieldsblobsExample();
+            FieldsBlobs newRecord = new FieldsBlobs("Scott", "Doe");
+            FieldsBlobsExample example = new FieldsBlobsExample();
             example.createCriteria().andFirstnameLike("S%");
             int rows = mapper.updateByExample(newRecord, example);
             assertEquals(1, rows);
 
-            List<FieldsblobsWithBLOBs> answer = mapper
+            List<FieldsBlobsWithBLOBs> answer = mapper
                     .selectByExampleWithBLOBs(example);
             assertEquals(1, answer.size());
 
-            FieldsblobsWithBLOBs returnedRecord = answer.get(0);
+            FieldsBlobsWithBLOBs returnedRecord = answer.get(0);
 
             assertEquals(newRecord.getFirstname(),
                     returnedRecord.getFirstname());
@@ -610,28 +610,28 @@ public class UpdateByExampleTest extends AbstractHierarchicalImmutableTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            FieldsblobsMapper mapper = sqlSession
-                    .getMapper(FieldsblobsMapper.class);
-            FieldsblobsWithBLOBs record = new FieldsblobsWithBLOBs("Jeff",
+            FieldsBlobsMapper mapper = sqlSession
+                    .getMapper(FieldsBlobsMapper.class);
+            FieldsBlobsWithBLOBs record = new FieldsBlobsWithBLOBs("Jeff",
                     "Smith", generateRandomBlob(), generateRandomBlob(), null);
             mapper.insert(record);
 
-            record = new FieldsblobsWithBLOBs("Scott", "Jones",
+            record = new FieldsBlobsWithBLOBs("Scott", "Jones",
                     generateRandomBlob(), generateRandomBlob(), null);
             mapper.insert(record);
 
-            FieldsblobsWithBLOBs newRecord = new FieldsblobsWithBLOBs("Scott",
+            FieldsBlobsWithBLOBs newRecord = new FieldsBlobsWithBLOBs("Scott",
                     "Doe", null, null, null);
-            FieldsblobsExample example = new FieldsblobsExample();
+            FieldsBlobsExample example = new FieldsBlobsExample();
             example.createCriteria().andFirstnameLike("S%");
             int rows = mapper.updateByExampleWithBLOBs(newRecord, example);
             assertEquals(1, rows);
 
-            List<FieldsblobsWithBLOBs> answer = mapper
+            List<FieldsBlobsWithBLOBs> answer = mapper
                     .selectByExampleWithBLOBs(example);
             assertEquals(1, answer.size());
 
-            FieldsblobsWithBLOBs returnedRecord = answer.get(0);
+            FieldsBlobsWithBLOBs returnedRecord = answer.get(0);
 
             assertEquals(newRecord.getFirstname(),
                     returnedRecord.getFirstname());

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -23,16 +23,13 @@ import org.mybatis.generator.internal.util.CustomCollectors;
 public class ParameterRenderer {
 
     public String render(Parameter parameter, CompilationUnit compilationUnit) {
-        return renderAnnotations(parameter)
-                + JavaDomUtils.calculateTypeName(compilationUnit, parameter.getType())
-                + " " //$NON-NLS-1$
+        return renderAnnotations(parameter) + JavaDomUtils.calculateTypeName(compilationUnit, parameter.getType()) + " " //$NON-NLS-1$
                 + (parameter.isVarargs() ? "... " : "") //$NON-NLS-1$ //$NON-NLS-2$
                 + parameter.getName();
     }
-    
+
     // should return empty string if no annotations
     private String renderAnnotations(Parameter parameter) {
-        return parameter.getAnnotations().stream()
-                .collect(CustomCollectors.joining(" ", "", " ")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        return parameter.getAnnotations().stream().collect(CustomCollectors.joining(" ", "", " ")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     }
 }

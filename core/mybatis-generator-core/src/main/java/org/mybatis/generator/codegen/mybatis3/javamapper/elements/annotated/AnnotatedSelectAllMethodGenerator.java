@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2017 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ import org.mybatis.generator.internal.util.StringUtility;
  * @author Jeff Butler
  */
 public class AnnotatedSelectAllMethodGenerator extends SelectAllMethodGenerator {
-    
+
     public AnnotatedSelectAllMethodGenerator() {
         super();
     }
@@ -48,7 +48,7 @@ public class AnnotatedSelectAllMethodGenerator extends SelectAllMethodGenerator 
         javaIndent(sb, 1);
         sb.append("\"select\","); //$NON-NLS-1$
         method.addAnnotation(sb.toString());
-        
+
         sb.setLength(0);
         javaIndent(sb, 1);
         sb.append('"');
@@ -77,16 +77,15 @@ public class AnnotatedSelectAllMethodGenerator extends SelectAllMethodGenerator 
             sb.append("\","); //$NON-NLS-1$
             method.addAnnotation(sb.toString());
         }
-        
+
         sb.setLength(0);
         javaIndent(sb, 1);
         sb.append("\"from "); //$NON-NLS-1$
-        sb.append(escapeStringForJava(introspectedTable
-                .getAliasedFullyQualifiedTableNameAtRuntime()));
+        sb.append(escapeStringForJava(introspectedTable.getAliasedFullyQualifiedTableNameAtRuntime()));
         sb.append('\"');
 
-        String orderByClause = introspectedTable.getTableConfigurationProperty(
-                PropertyRegistry.TABLE_SELECT_ALL_ORDER_BY_CLAUSE);
+        String orderByClause = introspectedTable
+                .getTableConfigurationProperty(PropertyRegistry.TABLE_SELECT_ALL_ORDER_BY_CLAUSE);
         boolean hasOrderBy = StringUtility.stringHasValue(orderByClause);
         if (hasOrderBy) {
             sb.append(',');
@@ -123,9 +122,8 @@ public class AnnotatedSelectAllMethodGenerator extends SelectAllMethodGenerator 
             IntrospectedColumn introspectedColumn = iterPk.next();
             sb.setLength(0);
             javaIndent(sb, 1);
-            sb.append(getResultAnnotation(interfaze, introspectedColumn, true,
-                    introspectedTable.isConstructorBased()));
-            
+            sb.append(getResultAnnotation(interfaze, introspectedColumn, true, introspectedTable.isConstructorBased()));
+
             if (iterPk.hasNext() || iterNonPk.hasNext()) {
                 sb.append(',');
             }
@@ -137,9 +135,9 @@ public class AnnotatedSelectAllMethodGenerator extends SelectAllMethodGenerator 
             IntrospectedColumn introspectedColumn = iterNonPk.next();
             sb.setLength(0);
             javaIndent(sb, 1);
-            sb.append(getResultAnnotation(interfaze, introspectedColumn, false,
-                    introspectedTable.isConstructorBased()));
-            
+            sb.append(
+                    getResultAnnotation(interfaze, introspectedColumn, false, introspectedTable.isConstructorBased()));
+
             if (iterNonPk.hasNext()) {
                 sb.append(',');
             }

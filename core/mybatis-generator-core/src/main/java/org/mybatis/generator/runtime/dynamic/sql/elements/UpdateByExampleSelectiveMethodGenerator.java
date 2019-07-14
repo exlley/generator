@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import org.mybatis.generator.api.dom.java.Parameter;
 public class UpdateByExampleSelectiveMethodGenerator extends AbstractMethodGenerator {
     private FullyQualifiedJavaType recordType;
     private FragmentGenerator fragmentGenerator;
-    
+
     private UpdateByExampleSelectiveMethodGenerator(Builder builder) {
         super(builder);
         recordType = builder.recordType;
@@ -44,12 +44,13 @@ public class UpdateByExampleSelectiveMethodGenerator extends AbstractMethodGener
         imports.add(new FullyQualifiedJavaType("org.mybatis.dynamic.sql.update.UpdateDSL")); //$NON-NLS-1$
         imports.add(new FullyQualifiedJavaType("org.mybatis.dynamic.sql.update.MyBatis3UpdateModelAdapter")); //$NON-NLS-1$
         imports.add(recordType);
-        
+
         Method method = new Method("updateByExampleSelective"); //$NON-NLS-1$
         method.setDefault(true);
         context.getCommentGenerator().addGeneralMethodAnnotation(method, introspectedTable, imports);
-        
-        FullyQualifiedJavaType returnType = new FullyQualifiedJavaType("UpdateDSL<MyBatis3UpdateModelAdapter<Integer>>"); //$NON-NLS-1$
+
+        FullyQualifiedJavaType returnType = new FullyQualifiedJavaType(
+                "UpdateDSL<MyBatis3UpdateModelAdapter<Integer>>"); //$NON-NLS-1$
         method.setReturnType(returnType);
         method.addParameter(new Parameter(recordType, "record")); //$NON-NLS-1$
 
@@ -57,9 +58,7 @@ public class UpdateByExampleSelectiveMethodGenerator extends AbstractMethodGener
 
         method.addBodyLines(fragmentGenerator.getSetEqualWhenPresentLines(introspectedTable.getAllColumns(), true));
 
-        return MethodAndImports.withMethod(method)
-                .withImports(imports)
-                .build();
+        return MethodAndImports.withMethod(method).withImports(imports).build();
     }
 
     @Override
@@ -70,12 +69,12 @@ public class UpdateByExampleSelectiveMethodGenerator extends AbstractMethodGener
     public static class Builder extends BaseBuilder<Builder, UpdateByExampleSelectiveMethodGenerator> {
         private FullyQualifiedJavaType recordType;
         private FragmentGenerator fragmentGenerator;
-        
+
         public Builder withRecordType(FullyQualifiedJavaType recordType) {
             this.recordType = recordType;
             return this;
         }
-        
+
         public Builder withFragmentGenerator(FragmentGenerator fragmentGenerator) {
             this.fragmentGenerator = fragmentGenerator;
             return this;

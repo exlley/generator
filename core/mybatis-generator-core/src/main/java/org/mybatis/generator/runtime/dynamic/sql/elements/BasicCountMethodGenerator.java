@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.Parameter;
 
 public class BasicCountMethodGenerator extends AbstractMethodGenerator {
-    
+
     private BasicCountMethodGenerator(Builder builder) {
         super(builder);
     }
@@ -34,17 +34,18 @@ public class BasicCountMethodGenerator extends AbstractMethodGenerator {
         if (!introspectedTable.getRules().generateCountByExample()) {
             return null;
         }
-        
+
         Set<FullyQualifiedJavaType> imports = new HashSet<>();
-        
-        FullyQualifiedJavaType parameterType = new FullyQualifiedJavaType("org.mybatis.dynamic.sql.select.render.SelectStatementProvider"); //$NON-NLS-1$
+
+        FullyQualifiedJavaType parameterType = new FullyQualifiedJavaType(
+                "org.mybatis.dynamic.sql.select.render.SelectStatementProvider"); //$NON-NLS-1$
         FullyQualifiedJavaType adapter = new FullyQualifiedJavaType("org.mybatis.dynamic.sql.util.SqlProviderAdapter"); //$NON-NLS-1$
         FullyQualifiedJavaType annotation = new FullyQualifiedJavaType("org.apache.ibatis.annotations.SelectProvider"); //$NON-NLS-1$
-        
+
         imports.add(parameterType);
         imports.add(adapter);
         imports.add(annotation);
-        
+
         Method method = new Method("count"); //$NON-NLS-1$
         method.setAbstract(true);
         method.setReturnType(new FullyQualifiedJavaType("long")); //$NON-NLS-1$
@@ -52,22 +53,20 @@ public class BasicCountMethodGenerator extends AbstractMethodGenerator {
         context.getCommentGenerator().addGeneralMethodAnnotation(method, introspectedTable, imports);
         method.addAnnotation("@SelectProvider(type=SqlProviderAdapter.class, method=\"select\")"); //$NON-NLS-1$
 
-        return MethodAndImports.withMethod(method)
-                .withImports(imports)
-                .build();
+        return MethodAndImports.withMethod(method).withImports(imports).build();
     }
-    
+
     @Override
     public boolean callPlugins(Method method, Interface interfaze) {
         return context.getPlugins().clientBasicCountMethodGenerated(method, interfaze, introspectedTable);
     }
-    
+
     public static class Builder extends BaseBuilder<Builder, BasicCountMethodGenerator> {
         @Override
         public Builder getThis() {
             return this;
         }
-        
+
         @Override
         public BasicCountMethodGenerator build() {
             return new BasicCountMethodGenerator(this);

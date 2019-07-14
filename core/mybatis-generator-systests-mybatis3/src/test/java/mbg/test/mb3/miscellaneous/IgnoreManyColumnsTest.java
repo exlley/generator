@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -22,99 +22,99 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.jupiter.api.Test;
 
-import mbg.test.mb3.generated.miscellaneous.mapper.IgnoremanycolumnsMapper;
-import mbg.test.mb3.generated.miscellaneous.model.Ignoremanycolumns;
+import mbg.test.mb3.generated.miscellaneous.mapper.IgnoreManyColumnsMapper;
+import mbg.test.mb3.generated.miscellaneous.model.IgnoreManyColumns;
 
 public class IgnoreManyColumnsTest extends AbstractMiscellaneousTest {
 
     @Test
     public void testField02Ignored() {
         assertThrows(NoSuchFieldException.class, () -> {
-            Ignoremanycolumns.class.getDeclaredField("col02");
+            IgnoreManyColumns.class.getDeclaredField("col02");
         });
     }
 
     @Test
     public void testField03Ignored() {
         assertThrows(NoSuchFieldException.class, () -> {
-            Ignoremanycolumns.class.getDeclaredField("col03");
+            IgnoreManyColumns.class.getDeclaredField("col03");
         });
     }
 
     @Test
     public void testField04Ignored() {
         assertThrows(NoSuchFieldException.class, () -> {
-            Ignoremanycolumns.class.getDeclaredField("col04");
+            IgnoreManyColumns.class.getDeclaredField("col04");
         });
     }
 
     @Test
     public void testField05Ignored() {
         assertThrows(NoSuchFieldException.class, () -> {
-            Ignoremanycolumns.class.getDeclaredField("col05");
+            IgnoreManyColumns.class.getDeclaredField("col05");
         });
     }
 
     @Test
     public void testField06Ignored() {
         assertThrows(NoSuchFieldException.class, () -> {
-            Ignoremanycolumns.class.getDeclaredField("col06");
+            IgnoreManyColumns.class.getDeclaredField("col06");
         });
     }
 
     @Test
     public void testField07Ignored() {
         assertThrows(NoSuchFieldException.class, () -> {
-            Ignoremanycolumns.class.getDeclaredField("col07");
+            IgnoreManyColumns.class.getDeclaredField("col07");
         });
     }
 
     @Test
     public void testField08Ignored() {
         assertThrows(NoSuchFieldException.class, () -> {
-            Ignoremanycolumns.class.getDeclaredField("col08");
+            IgnoreManyColumns.class.getDeclaredField("col08");
         });
     }
 
     @Test
     public void testField09Ignored() {
         assertThrows(NoSuchFieldException.class, () -> {
-            Ignoremanycolumns.class.getDeclaredField("col09");
+            IgnoreManyColumns.class.getDeclaredField("col09");
         });
     }
 
     @Test
     public void testField10Ignored() {
         assertThrows(NoSuchFieldException.class, () -> {
-            Ignoremanycolumns.class.getDeclaredField("col10");
+            IgnoreManyColumns.class.getDeclaredField("col10");
         });
     }
 
     @Test
     public void testField11Ignored() {
         assertThrows(NoSuchFieldException.class, () -> {
-            Ignoremanycolumns.class.getDeclaredField("col11");
+            IgnoreManyColumns.class.getDeclaredField("col11");
         });
     }
 
     @Test
     public void testField12Ignored() {
         assertThrows(NoSuchFieldException.class, () -> {
-            Ignoremanycolumns.class.getDeclaredField("col12");
+            IgnoreManyColumns.class.getDeclaredField("col12");
         });
     }
 
     @Test
     public void testField14Ignored() {
         assertThrows(NoSuchFieldException.class, () -> {
-            Ignoremanycolumns.class.getDeclaredField("col14");
+            IgnoreManyColumns.class.getDeclaredField("col14");
         });
     }
 
     @Test
     public void testField15Ignored() {
         assertThrows(NoSuchFieldException.class, () -> {
-            Ignoremanycolumns.class.getDeclaredField("col15");
+            IgnoreManyColumns.class.getDeclaredField("col15");
         });
     }
 
@@ -123,18 +123,18 @@ public class IgnoreManyColumnsTest extends AbstractMiscellaneousTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            IgnoremanycolumnsMapper mapper = sqlSession.getMapper(IgnoremanycolumnsMapper.class);
+            IgnoreManyColumnsMapper mapper = sqlSession.getMapper(IgnoreManyColumnsMapper.class);
             
-            Ignoremanycolumns imc = new Ignoremanycolumns();
+            IgnoreManyColumns imc = new IgnoreManyColumns();
             imc.setCol01(22);
             imc.setCol13(33);
             int rows = mapper.insert(imc);
             assertEquals(1, rows);
             
-            List<Ignoremanycolumns> returnedRecords = mapper.selectByExample(null);
+            List<IgnoreManyColumns> returnedRecords = mapper.selectByExample(null);
             assertEquals(1, returnedRecords.size());
             
-            Ignoremanycolumns returnedRecord = returnedRecords.get(0);
+            IgnoreManyColumns returnedRecord = returnedRecords.get(0);
             assertEquals(22, returnedRecord.getCol01().intValue());
             assertEquals(33, returnedRecord.getCol13().intValue());
         } finally {

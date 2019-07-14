@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2017 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectByPrimar
  * @author Jeff Butler
  */
 public class AnnotatedSelectByPrimaryKeyMethodGenerator extends SelectByPrimaryKeyMethodGenerator {
-    
+
     private boolean useResultMapIfAvailable;
 
     public AnnotatedSelectByPrimaryKeyMethodGenerator(boolean useResultMapIfAvailable, boolean isSimple) {
@@ -50,7 +50,7 @@ public class AnnotatedSelectByPrimaryKeyMethodGenerator extends SelectByPrimaryK
         javaIndent(sb, 1);
         sb.append("\"select\","); //$NON-NLS-1$
         method.addAnnotation(sb.toString());
-        
+
         sb.setLength(0);
         javaIndent(sb, 1);
         sb.append('"');
@@ -83,8 +83,7 @@ public class AnnotatedSelectByPrimaryKeyMethodGenerator extends SelectByPrimaryK
         sb.setLength(0);
         javaIndent(sb, 1);
         sb.append("\"from "); //$NON-NLS-1$
-        sb.append(escapeStringForJava(introspectedTable
-                .getAliasedFullyQualifiedTableNameAtRuntime()));
+        sb.append(escapeStringForJava(introspectedTable.getAliasedFullyQualifiedTableNameAtRuntime()));
         sb.append("\","); //$NON-NLS-1$
         method.addAnnotation(sb.toString());
 
@@ -129,8 +128,8 @@ public class AnnotatedSelectByPrimaryKeyMethodGenerator extends SelectByPrimaryK
 
         String annotation = String.format("@ResultMap(\"%s.%s\")", //$NON-NLS-1$
                 introspectedTable.getMyBatis3SqlMapNamespace(),
-                introspectedTable.getRules().generateResultMapWithBLOBs()
-                    ? introspectedTable.getResultMapWithBLOBsId() : introspectedTable.getBaseResultMapId());
+                introspectedTable.getRules().generateResultMapWithBLOBs() ? introspectedTable.getResultMapWithBLOBsId()
+                        : introspectedTable.getBaseResultMapId());
         method.addAnnotation(annotation);
     }
 
@@ -150,9 +149,8 @@ public class AnnotatedSelectByPrimaryKeyMethodGenerator extends SelectByPrimaryK
             IntrospectedColumn introspectedColumn = iterPk.next();
             sb.setLength(0);
             javaIndent(sb, 1);
-            sb.append(getResultAnnotation(interfaze, introspectedColumn, true,
-                    introspectedTable.isConstructorBased()));
-            
+            sb.append(getResultAnnotation(interfaze, introspectedColumn, true, introspectedTable.isConstructorBased()));
+
             if (iterPk.hasNext() || iterNonPk.hasNext()) {
                 sb.append(',');
             }
@@ -164,9 +162,9 @@ public class AnnotatedSelectByPrimaryKeyMethodGenerator extends SelectByPrimaryK
             IntrospectedColumn introspectedColumn = iterNonPk.next();
             sb.setLength(0);
             javaIndent(sb, 1);
-            sb.append(getResultAnnotation(interfaze, introspectedColumn, false,
-                    introspectedTable.isConstructorBased()));
-            
+            sb.append(
+                    getResultAnnotation(interfaze, introspectedColumn, false, introspectedTable.isConstructorBased()));
+
             if (iterNonPk.hasNext()) {
                 sb.append(',');
             }
@@ -184,8 +182,7 @@ public class AnnotatedSelectByPrimaryKeyMethodGenerator extends SelectByPrimaryK
         if (useResultMapIfAvailable) {
             if (introspectedTable.getRules().generateBaseResultMap()
                     || introspectedTable.getRules().generateResultMapWithBLOBs()) {
-                interfaze.addImportedType(
-                        new FullyQualifiedJavaType("org.apache.ibatis.annotations.ResultMap")); //$NON-NLS-1$
+                interfaze.addImportedType(new FullyQualifiedJavaType("org.apache.ibatis.annotations.ResultMap")); //$NON-NLS-1$
             } else {
                 addAnnotationImports(interfaze);
             }
@@ -199,12 +196,10 @@ public class AnnotatedSelectByPrimaryKeyMethodGenerator extends SelectByPrimaryK
 
         if (introspectedTable.isConstructorBased()) {
             interfaze.addImportedType(new FullyQualifiedJavaType("org.apache.ibatis.annotations.Arg")); //$NON-NLS-1$
-            interfaze.addImportedType(
-                    new FullyQualifiedJavaType("org.apache.ibatis.annotations.ConstructorArgs")); //$NON-NLS-1$
+            interfaze.addImportedType(new FullyQualifiedJavaType("org.apache.ibatis.annotations.ConstructorArgs")); //$NON-NLS-1$
         } else {
             interfaze.addImportedType(new FullyQualifiedJavaType("org.apache.ibatis.annotations.Result")); //$NON-NLS-1$
-            interfaze.addImportedType(
-                    new FullyQualifiedJavaType("org.apache.ibatis.annotations.Results")); //$NON-NLS-1$
+            interfaze.addImportedType(new FullyQualifiedJavaType("org.apache.ibatis.annotations.Results")); //$NON-NLS-1$
         }
     }
 }

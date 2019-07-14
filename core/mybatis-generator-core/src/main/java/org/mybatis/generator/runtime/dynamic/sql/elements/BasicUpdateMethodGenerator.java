@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.Parameter;
 
 public class BasicUpdateMethodGenerator extends AbstractMethodGenerator {
-    
+
     private BasicUpdateMethodGenerator(Builder builder) {
         super(builder);
     }
@@ -39,17 +39,18 @@ public class BasicUpdateMethodGenerator extends AbstractMethodGenerator {
                 && !introspectedTable.getRules().generateUpdateByPrimaryKeyWithoutBLOBs()) {
             return null;
         }
-        
+
         Set<FullyQualifiedJavaType> imports = new HashSet<>();
-        
-        FullyQualifiedJavaType parameterType = new FullyQualifiedJavaType("org.mybatis.dynamic.sql.update.render.UpdateStatementProvider"); //$NON-NLS-1$
+
+        FullyQualifiedJavaType parameterType = new FullyQualifiedJavaType(
+                "org.mybatis.dynamic.sql.update.render.UpdateStatementProvider"); //$NON-NLS-1$
         FullyQualifiedJavaType adapter = new FullyQualifiedJavaType("org.mybatis.dynamic.sql.util.SqlProviderAdapter"); //$NON-NLS-1$
         FullyQualifiedJavaType annotation = new FullyQualifiedJavaType("org.apache.ibatis.annotations.UpdateProvider"); //$NON-NLS-1$
-        
+
         imports.add(parameterType);
         imports.add(adapter);
         imports.add(annotation);
-        
+
         Method method = new Method("update"); //$NON-NLS-1$
         method.setAbstract(true);
         method.setReturnType(FullyQualifiedJavaType.getIntInstance());
@@ -57,9 +58,7 @@ public class BasicUpdateMethodGenerator extends AbstractMethodGenerator {
         context.getCommentGenerator().addGeneralMethodAnnotation(method, introspectedTable, imports);
         method.addAnnotation("@UpdateProvider(type=SqlProviderAdapter.class, method=\"update\")"); //$NON-NLS-1$
 
-        return MethodAndImports.withMethod(method)
-                .withImports(imports)
-                .build();
+        return MethodAndImports.withMethod(method).withImports(imports).build();
     }
 
     @Override

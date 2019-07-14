@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -19,13 +19,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * This class contains a somewhat comprehensive list of SQL reserved words.
- * Since different databases have different reserved words, this list is
- * inclusive of many different databases - so it may include words that are not
- * reserved in some databases.
+ * This class contains a somewhat comprehensive list of SQL reserved words. Since different databases have different
+ * reserved words, this list is inclusive of many different databases - so it may include words that are not reserved in
+ * some databases.
  * 
- * <p>This list is based on the list from Drupal Handbook:
- * http://drupal.org/node/141051 With additions for DB2
+ * <p>
+ * This list is based on the list from Drupal Handbook: http://drupal.org/node/141051 With additions for DB2
  * 
  * @author Jeff Butler
  * 

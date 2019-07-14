@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.internal.util.CustomCollectors;
 
 public class ElementRenderer implements ElementVisitor<Stream<String>> {
-    
+
     private AttributeRenderer attributeRenderer = new AttributeRenderer();
 
     @Override
@@ -43,34 +43,25 @@ public class ElementRenderer implements ElementVisitor<Stream<String>> {
 
     private Stream<String> renderWithoutChildren(XmlElement element) {
         return Stream.of("<" //$NON-NLS-1$
-                + element.getName()
-                + renderAttributes(element)
-                + " />"); //$NON-NLS-1$
+                + element.getName() + renderAttributes(element) + " />"); //$NON-NLS-1$
     }
 
     public Stream<String> renderWithChildren(XmlElement element) {
-        return Stream.of(renderOpen(element), renderChildren(element), renderClose(element))
-                .flatMap(s -> s);
+        return Stream.of(renderOpen(element), renderChildren(element), renderClose(element)).flatMap(s -> s);
     }
 
     private String renderAttributes(XmlElement element) {
-        return element.getAttributes().stream()
-                .sorted()
-                .map(attributeRenderer::render)
+        return element.getAttributes().stream().sorted().map(attributeRenderer::render)
                 .collect(CustomCollectors.joining(" ", " ", "")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     }
 
     private Stream<String> renderOpen(XmlElement element) {
         return Stream.of("<" //$NON-NLS-1$
-                + element.getName()
-                + renderAttributes(element)
-                + ">"); //$NON-NLS-1$
+                + element.getName() + renderAttributes(element) + ">"); //$NON-NLS-1$
     }
 
     private Stream<String> renderChildren(XmlElement element) {
-        return element.getElements().stream()
-                .flatMap(this::renderChild)
-                .map(this::indent);
+        return element.getElements().stream().flatMap(this::renderChild).map(this::indent);
     }
 
     private Stream<String> renderChild(Element child) {
@@ -83,7 +74,6 @@ public class ElementRenderer implements ElementVisitor<Stream<String>> {
 
     private Stream<String> renderClose(XmlElement element) {
         return Stream.of("</" //$NON-NLS-1$
-                + element.getName()
-                + ">"); //$NON-NLS-1$
+                + element.getName() + ">"); //$NON-NLS-1$
     }
 }

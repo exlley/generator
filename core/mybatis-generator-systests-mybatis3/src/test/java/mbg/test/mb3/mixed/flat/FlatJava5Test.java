@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -31,26 +31,26 @@ import org.apache.ibatis.session.SqlSession;
 import org.junit.jupiter.api.Test;
 
 import mbg.test.mb3.generated.mixed.flat.mapper.AwfulTableMapper;
-import mbg.test.mb3.generated.mixed.flat.mapper.FieldsblobsMapper;
-import mbg.test.mb3.generated.mixed.flat.mapper.FieldsonlyMapper;
-import mbg.test.mb3.generated.mixed.flat.mapper.PkblobsMapper;
-import mbg.test.mb3.generated.mixed.flat.mapper.PkfieldsMapper;
-import mbg.test.mb3.generated.mixed.flat.mapper.PkfieldsblobsMapper;
-import mbg.test.mb3.generated.mixed.flat.mapper.PkonlyMapper;
+import mbg.test.mb3.generated.mixed.flat.mapper.FieldsBlobsMapper;
+import mbg.test.mb3.generated.mixed.flat.mapper.FieldsOnlyMapper;
+import mbg.test.mb3.generated.mixed.flat.mapper.PKBlobsMapper;
+import mbg.test.mb3.generated.mixed.flat.mapper.PKFieldsMapper;
+import mbg.test.mb3.generated.mixed.flat.mapper.PKFieldsBlobsMapper;
+import mbg.test.mb3.generated.mixed.flat.mapper.PKOnlyMapper;
 import mbg.test.mb3.generated.mixed.flat.model.AwfulTable;
 import mbg.test.mb3.generated.mixed.flat.model.AwfulTableExample;
-import mbg.test.mb3.generated.mixed.flat.model.Fieldsblobs;
-import mbg.test.mb3.generated.mixed.flat.model.FieldsblobsExample;
-import mbg.test.mb3.generated.mixed.flat.model.Fieldsonly;
-import mbg.test.mb3.generated.mixed.flat.model.FieldsonlyExample;
-import mbg.test.mb3.generated.mixed.flat.model.Pkblobs;
-import mbg.test.mb3.generated.mixed.flat.model.PkblobsExample;
-import mbg.test.mb3.generated.mixed.flat.model.Pkfields;
-import mbg.test.mb3.generated.mixed.flat.model.PkfieldsExample;
-import mbg.test.mb3.generated.mixed.flat.model.Pkfieldsblobs;
-import mbg.test.mb3.generated.mixed.flat.model.PkfieldsblobsExample;
-import mbg.test.mb3.generated.mixed.flat.model.Pkonly;
-import mbg.test.mb3.generated.mixed.flat.model.PkonlyExample;
+import mbg.test.mb3.generated.mixed.flat.model.FieldsBlobs;
+import mbg.test.mb3.generated.mixed.flat.model.FieldsBlobsExample;
+import mbg.test.mb3.generated.mixed.flat.model.FieldsOnly;
+import mbg.test.mb3.generated.mixed.flat.model.FieldsOnlyExample;
+import mbg.test.mb3.generated.mixed.flat.model.PKBlobs;
+import mbg.test.mb3.generated.mixed.flat.model.PKBlobsExample;
+import mbg.test.mb3.generated.mixed.flat.model.PKFields;
+import mbg.test.mb3.generated.mixed.flat.model.PKFieldsExample;
+import mbg.test.mb3.generated.mixed.flat.model.PKFieldsBlobs;
+import mbg.test.mb3.generated.mixed.flat.model.PKFieldsBlobsExample;
+import mbg.test.mb3.generated.mixed.flat.model.PKOnly;
+import mbg.test.mb3.generated.mixed.flat.model.PKOnlyExample;
 
 /**
  * @author Jeff Butler
@@ -63,20 +63,20 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            FieldsonlyMapper mapper = sqlSession.getMapper(FieldsonlyMapper.class);
-            Fieldsonly record = new Fieldsonly();
+            FieldsOnlyMapper mapper = sqlSession.getMapper(FieldsOnlyMapper.class);
+            FieldsOnly record = new FieldsOnly();
             record.setDoublefield(11.22);
             record.setFloatfield(33.44);
             record.setIntegerfield(5);
             mapper.insert(record);
 
-            FieldsonlyExample example = new FieldsonlyExample();
+            FieldsOnlyExample example = new FieldsOnlyExample();
             example.createCriteria().andIntegerfieldEqualTo(5);
 
-            List<Fieldsonly> answer = mapper.selectByExample(example);
+            List<FieldsOnly> answer = mapper.selectByExample(example);
             assertEquals(1, answer.size());
 
-            Fieldsonly returnedRecord = answer.get(0);
+            FieldsOnly returnedRecord = answer.get(0);
             assertEquals(record.getIntegerfield(), returnedRecord
                     .getIntegerfield());
             assertEquals(record.getDoublefield(), returnedRecord
@@ -92,32 +92,32 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            FieldsonlyMapper mapper = sqlSession.getMapper(FieldsonlyMapper.class);
-            Fieldsonly record = new Fieldsonly();
+            FieldsOnlyMapper mapper = sqlSession.getMapper(FieldsOnlyMapper.class);
+            FieldsOnly record = new FieldsOnly();
             record.setDoublefield(11.22);
             record.setFloatfield(33.44);
             record.setIntegerfield(5);
             mapper.insert(record);
 
-            record = new Fieldsonly();
+            record = new FieldsOnly();
             record.setDoublefield(44.55);
             record.setFloatfield(66.77);
             record.setIntegerfield(8);
             mapper.insert(record);
 
-            record = new Fieldsonly();
+            record = new FieldsOnly();
             record.setDoublefield(88.99);
             record.setFloatfield(100.111);
             record.setIntegerfield(9);
             mapper.insert(record);
 
-            FieldsonlyExample example = new FieldsonlyExample();
+            FieldsOnlyExample example = new FieldsOnlyExample();
             example.createCriteria().andIntegerfieldGreaterThan(5);
 
-            List<Fieldsonly> answer = mapper.selectByExample(example);
+            List<FieldsOnly> answer = mapper.selectByExample(example);
             assertEquals(2, answer.size());
 
-            example = new FieldsonlyExample();
+            example = new FieldsOnlyExample();
             answer = mapper.selectByExample(example);
             assertEquals(3, answer.size());
         } finally {
@@ -130,8 +130,8 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            FieldsonlyMapper mapper = sqlSession.getMapper(FieldsonlyMapper.class);
-            Fieldsonly record = new Fieldsonly();
+            FieldsOnlyMapper mapper = sqlSession.getMapper(FieldsOnlyMapper.class);
+            FieldsOnly record = new FieldsOnly();
             record.setDoublefield(11.22);
             record.setFloatfield(33.44);
             record.setIntegerfield(5);
@@ -139,23 +139,23 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             mapper.insert(record);
             mapper.insert(record);
 
-            record = new Fieldsonly();
+            record = new FieldsOnly();
             record.setDoublefield(44.55);
             record.setFloatfield(66.77);
             record.setIntegerfield(8);
             mapper.insert(record);
 
-            record = new Fieldsonly();
+            record = new FieldsOnly();
             record.setDoublefield(88.99);
             record.setFloatfield(100.111);
             record.setIntegerfield(9);
             mapper.insert(record);
 
-            FieldsonlyExample example = new FieldsonlyExample();
+            FieldsOnlyExample example = new FieldsOnlyExample();
             example.createCriteria().andIntegerfieldEqualTo(5);
             example.setDistinct(true);
 
-            List<Fieldsonly> answer = mapper.selectByExample(example);
+            List<FieldsOnly> answer = mapper.selectByExample(example);
             assertEquals(1, answer.size());
 
             example.clear();
@@ -171,29 +171,29 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            FieldsonlyMapper mapper = sqlSession.getMapper(FieldsonlyMapper.class);
-            Fieldsonly record = new Fieldsonly();
+            FieldsOnlyMapper mapper = sqlSession.getMapper(FieldsOnlyMapper.class);
+            FieldsOnly record = new FieldsOnly();
             record.setDoublefield(11.22);
             record.setFloatfield(33.44);
             record.setIntegerfield(5);
             mapper.insert(record);
 
-            record = new Fieldsonly();
+            record = new FieldsOnly();
             record.setDoublefield(44.55);
             record.setFloatfield(66.77);
             record.setIntegerfield(8);
             mapper.insert(record);
 
-            record = new Fieldsonly();
+            record = new FieldsOnly();
             record.setDoublefield(88.99);
             record.setFloatfield(100.111);
             record.setIntegerfield(9);
             mapper.insert(record);
 
-            FieldsonlyExample example = new FieldsonlyExample();
+            FieldsOnlyExample example = new FieldsOnlyExample();
             example.createCriteria();
 
-            List<Fieldsonly> answer = mapper.selectByExample(example);
+            List<FieldsOnly> answer = mapper.selectByExample(example);
             assertEquals(3, answer.size());
 
             answer = mapper.selectByExample(null);
@@ -208,33 +208,33 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            FieldsonlyMapper mapper = sqlSession.getMapper(FieldsonlyMapper.class);
-            Fieldsonly record = new Fieldsonly();
+            FieldsOnlyMapper mapper = sqlSession.getMapper(FieldsOnlyMapper.class);
+            FieldsOnly record = new FieldsOnly();
             record.setDoublefield(11.22);
             record.setFloatfield(33.44);
             record.setIntegerfield(5);
             mapper.insert(record);
 
-            record = new Fieldsonly();
+            record = new FieldsOnly();
             record.setDoublefield(44.55);
             record.setFloatfield(66.77);
             record.setIntegerfield(8);
             mapper.insert(record);
 
-            record = new Fieldsonly();
+            record = new FieldsOnly();
             record.setDoublefield(88.99);
             record.setFloatfield(100.111);
             record.setIntegerfield(9);
             mapper.insert(record);
 
-            FieldsonlyExample example = new FieldsonlyExample();
+            FieldsOnlyExample example = new FieldsOnlyExample();
             example.createCriteria().andIntegerfieldGreaterThan(5);
 
             int rows = mapper.deleteByExample(example);
             assertEquals(2, rows);
 
-            example = new FieldsonlyExample();
-            List<Fieldsonly> answer = mapper.selectByExample(example);
+            example = new FieldsOnlyExample();
+            List<FieldsOnly> answer = mapper.selectByExample(example);
             assertEquals(1, answer.size());
         } finally {
             sqlSession.close();
@@ -246,26 +246,26 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            FieldsonlyMapper mapper = sqlSession.getMapper(FieldsonlyMapper.class);
-            Fieldsonly record = new Fieldsonly();
+            FieldsOnlyMapper mapper = sqlSession.getMapper(FieldsOnlyMapper.class);
+            FieldsOnly record = new FieldsOnly();
             record.setDoublefield(11.22);
             record.setFloatfield(33.44);
             record.setIntegerfield(5);
             mapper.insert(record);
 
-            record = new Fieldsonly();
+            record = new FieldsOnly();
             record.setDoublefield(44.55);
             record.setFloatfield(66.77);
             record.setIntegerfield(8);
             mapper.insert(record);
 
-            record = new Fieldsonly();
+            record = new FieldsOnly();
             record.setDoublefield(88.99);
             record.setFloatfield(100.111);
             record.setIntegerfield(9);
             mapper.insert(record);
 
-            FieldsonlyExample example = new FieldsonlyExample();
+            FieldsOnlyExample example = new FieldsOnlyExample();
             example.createCriteria().andIntegerfieldGreaterThan(5);
             long rows = mapper.countByExample(example);
             assertEquals(2, rows);
@@ -283,17 +283,17 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkonlyMapper mapper = sqlSession.getMapper(PkonlyMapper.class);
-            Pkonly key = new Pkonly();
+            PKOnlyMapper mapper = sqlSession.getMapper(PKOnlyMapper.class);
+            PKOnly key = new PKOnly();
             key.setId(1);
             key.setSeqNum(3);
             mapper.insert(key);
 
-            PkonlyExample example = new PkonlyExample();
-            List<Pkonly> answer = mapper.selectByExample(example);
+            PKOnlyExample example = new PKOnlyExample();
+            List<PKOnly> answer = mapper.selectByExample(example);
             assertEquals(1, answer.size());
 
-            Pkonly returnedRecord = answer.get(0);
+            PKOnly returnedRecord = answer.get(0);
             assertEquals(key.getId(), returnedRecord.getId());
             assertEquals(key.getSeqNum(), returnedRecord.getSeqNum());
         } finally {
@@ -306,19 +306,19 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkonlyMapper mapper = sqlSession.getMapper(PkonlyMapper.class);
-            Pkonly key = new Pkonly();
+            PKOnlyMapper mapper = sqlSession.getMapper(PKOnlyMapper.class);
+            PKOnly key = new PKOnly();
             key.setId(1);
             key.setSeqNum(3);
             int rows = mapper.insert(key);
 
-            key = new Pkonly();
+            key = new PKOnly();
             key.setId(5);
             key.setSeqNum(6);
             rows = mapper.insert(key);
 
-            PkonlyExample example = new PkonlyExample();
-            List<Pkonly> answer = mapper.selectByExample(example);
+            PKOnlyExample example = new PKOnlyExample();
+            List<PKOnly> answer = mapper.selectByExample(example);
             assertEquals(2, answer.size());
 
             rows = mapper.deleteByPrimaryKey(5, 6);
@@ -336,29 +336,29 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkonlyMapper mapper = sqlSession.getMapper(PkonlyMapper.class);
-            Pkonly key = new Pkonly();
+            PKOnlyMapper mapper = sqlSession.getMapper(PKOnlyMapper.class);
+            PKOnly key = new PKOnly();
             key.setId(1);
             key.setSeqNum(3);
             mapper.insert(key);
 
-            key = new Pkonly();
+            key = new PKOnly();
             key.setId(5);
             key.setSeqNum(6);
             mapper.insert(key);
 
-            key = new Pkonly();
+            key = new PKOnly();
             key.setId(7);
             key.setSeqNum(8);
             mapper.insert(key);
 
-            PkonlyExample example = new PkonlyExample();
+            PKOnlyExample example = new PKOnlyExample();
             example.createCriteria().andIdGreaterThan(4);
             int rows = mapper.deleteByExample(example);
             assertEquals(2, rows);
 
-            example = new PkonlyExample();
-            List<Pkonly> answer = mapper.selectByExample(example);
+            example = new PKOnlyExample();
+            List<PKOnly> answer = mapper.selectByExample(example);
             assertEquals(1, answer.size());
         } finally {
             sqlSession.close();
@@ -370,25 +370,25 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkonlyMapper mapper = sqlSession.getMapper(PkonlyMapper.class);
-            Pkonly key = new Pkonly();
+            PKOnlyMapper mapper = sqlSession.getMapper(PKOnlyMapper.class);
+            PKOnly key = new PKOnly();
             key.setId(1);
             key.setSeqNum(3);
             mapper.insert(key);
 
-            key = new Pkonly();
+            key = new PKOnly();
             key.setId(5);
             key.setSeqNum(6);
             mapper.insert(key);
 
-            key = new Pkonly();
+            key = new PKOnly();
             key.setId(7);
             key.setSeqNum(8);
             mapper.insert(key);
 
-            PkonlyExample example = new PkonlyExample();
+            PKOnlyExample example = new PKOnlyExample();
             example.createCriteria().andIdGreaterThan(4);
-            List<Pkonly> answer = mapper.selectByExample(example);
+            List<PKOnly> answer = mapper.selectByExample(example);
             assertEquals(2, answer.size());
         } finally {
             sqlSession.close();
@@ -400,25 +400,25 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkonlyMapper mapper = sqlSession.getMapper(PkonlyMapper.class);
-            Pkonly key = new Pkonly();
+            PKOnlyMapper mapper = sqlSession.getMapper(PKOnlyMapper.class);
+            PKOnly key = new PKOnly();
             key.setId(1);
             key.setSeqNum(3);
             mapper.insert(key);
 
-            key = new Pkonly();
+            key = new PKOnly();
             key.setId(5);
             key.setSeqNum(6);
             mapper.insert(key);
 
-            key = new Pkonly();
+            key = new PKOnly();
             key.setId(7);
             key.setSeqNum(8);
             mapper.insert(key);
 
-            PkonlyExample example = new PkonlyExample();
+            PKOnlyExample example = new PKOnlyExample();
             example.createCriteria();
-            List<Pkonly> answer = mapper.selectByExample(example);
+            List<PKOnly> answer = mapper.selectByExample(example);
             assertEquals(3, answer.size());
         } finally {
             sqlSession.close();
@@ -430,23 +430,23 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkonlyMapper mapper = sqlSession.getMapper(PkonlyMapper.class);
-            Pkonly key = new Pkonly();
+            PKOnlyMapper mapper = sqlSession.getMapper(PKOnlyMapper.class);
+            PKOnly key = new PKOnly();
             key.setId(1);
             key.setSeqNum(3);
             mapper.insert(key);
 
-            key = new Pkonly();
+            key = new PKOnly();
             key.setId(5);
             key.setSeqNum(6);
             mapper.insert(key);
 
-            key = new Pkonly();
+            key = new PKOnly();
             key.setId(7);
             key.setSeqNum(8);
             mapper.insert(key);
 
-            PkonlyExample example = new PkonlyExample();
+            PKOnlyExample example = new PKOnlyExample();
             example.createCriteria().andIdGreaterThan(4);
             long rows = mapper.countByExample(example);
             assertEquals(2, rows);
@@ -464,8 +464,8 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsMapper mapper = sqlSession.getMapper(PkfieldsMapper.class);
-            Pkfields record = new Pkfields();
+            PKFieldsMapper mapper = sqlSession.getMapper(PKFieldsMapper.class);
+            PKFields record = new PKFields();
             record.setDatefield(new Date());
             record.setDecimal100field(10L);
             record.setDecimal155field(new BigDecimal("15.12345"));
@@ -480,7 +480,7 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
 
             mapper.insert(record);
 
-            Pkfields returnedRecord = mapper.selectByPrimaryKey(2, 1);
+            PKFields returnedRecord = mapper.selectByPrimaryKey(2, 1);
             assertNotNull(returnedRecord);
 
             assertTrue(datesAreEqual(record.getDatefield(), returnedRecord
@@ -511,8 +511,8 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsMapper mapper = sqlSession.getMapper(PkfieldsMapper.class);
-            Pkfields record = new Pkfields();
+            PKFieldsMapper mapper = sqlSession.getMapper(PKFieldsMapper.class);
+            PKFields record = new PKFields();
             record.setFirstname("Jeff");
             record.setLastname("Smith");
             record.setId1(1);
@@ -526,7 +526,7 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             int rows = mapper.updateByPrimaryKey(record);
             assertEquals(1, rows);
 
-            Pkfields record2 = mapper.selectByPrimaryKey(2, 1);
+            PKFields record2 = mapper.selectByPrimaryKey(2, 1);
 
             assertEquals(record.getFirstname(), record2.getFirstname());
             assertEquals(record.getLastname(), record2.getLastname());
@@ -542,8 +542,8 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsMapper mapper = sqlSession.getMapper(PkfieldsMapper.class);
-            Pkfields record = new Pkfields();
+            PKFieldsMapper mapper = sqlSession.getMapper(PKFieldsMapper.class);
+            PKFields record = new PKFields();
             record.setFirstname("Jeff");
             record.setLastname("Smith");
             record.setDecimal60field(5);
@@ -552,7 +552,7 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
 
             mapper.insert(record);
 
-            Pkfields newRecord = new Pkfields();
+            PKFields newRecord = new PKFields();
             newRecord.setId1(1);
             newRecord.setId2(2);
             newRecord.setFirstname("Scott");
@@ -561,7 +561,7 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             int rows = mapper.updateByPrimaryKeySelective(newRecord);
             assertEquals(1, rows);
 
-            Pkfields returnedRecord = mapper.selectByPrimaryKey(2, 1);
+            PKFields returnedRecord = mapper.selectByPrimaryKey(2, 1);
 
             assertTrue(datesAreEqual(record.getDatefield(), returnedRecord
                     .getDatefield()));
@@ -592,8 +592,8 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsMapper mapper = sqlSession.getMapper(PkfieldsMapper.class);
-            Pkfields record = new Pkfields();
+            PKFieldsMapper mapper = sqlSession.getMapper(PKFieldsMapper.class);
+            PKFields record = new PKFields();
             record.setFirstname("Jeff");
             record.setLastname("Smith");
             record.setId1(1);
@@ -604,8 +604,8 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             int rows = mapper.deleteByPrimaryKey(2, 1);
             assertEquals(1, rows);
 
-            PkfieldsExample example = new PkfieldsExample();
-            List<Pkfields> answer = mapper.selectByExample(example);
+            PKFieldsExample example = new PKFieldsExample();
+            List<PKFields> answer = mapper.selectByExample(example);
             assertEquals(0, answer.size());
         } finally {
             sqlSession.close();
@@ -617,15 +617,15 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsMapper mapper = sqlSession.getMapper(PkfieldsMapper.class);
-            Pkfields record = new Pkfields();
+            PKFieldsMapper mapper = sqlSession.getMapper(PKFieldsMapper.class);
+            PKFields record = new PKFields();
             record.setFirstname("Jeff");
             record.setLastname("Smith");
             record.setId1(1);
             record.setId2(2);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Bob");
             record.setLastname("Jones");
             record.setId1(3);
@@ -633,16 +633,16 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
 
             mapper.insert(record);
 
-            PkfieldsExample example = new PkfieldsExample();
-            List<Pkfields> answer = mapper.selectByExample(example);
+            PKFieldsExample example = new PKFieldsExample();
+            List<PKFields> answer = mapper.selectByExample(example);
             assertEquals(2, answer.size());
 
-            example = new PkfieldsExample();
+            example = new PKFieldsExample();
             example.createCriteria().andLastnameLike("J%");
             int rows = mapper.deleteByExample(example);
             assertEquals(1, rows);
 
-            example = new PkfieldsExample();
+            example = new PKFieldsExample();
             answer = mapper.selectByExample(example);
             assertEquals(1, answer.size());
         } finally {
@@ -655,22 +655,22 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsMapper mapper = sqlSession.getMapper(PkfieldsMapper.class);
-            Pkfields record = new Pkfields();
+            PKFieldsMapper mapper = sqlSession.getMapper(PKFieldsMapper.class);
+            PKFields record = new PKFields();
             record.setFirstname("Jeff");
             record.setLastname("Smith");
             record.setId1(1);
             record.setId2(2);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Bob");
             record.setLastname("Jones");
             record.setId1(3);
             record.setId2(4);
             mapper.insert(record);
 
-            Pkfields newRecord = mapper.selectByPrimaryKey(4, 3);
+            PKFields newRecord = mapper.selectByPrimaryKey(4, 3);
 
             assertNotNull(newRecord);
             assertEquals(record.getFirstname(), newRecord.getFirstname());
@@ -687,55 +687,55 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsMapper mapper = sqlSession.getMapper(PkfieldsMapper.class);
-            Pkfields record = new Pkfields();
+            PKFieldsMapper mapper = sqlSession.getMapper(PKFieldsMapper.class);
+            PKFields record = new PKFields();
             record.setFirstname("Fred");
             record.setLastname("Flintstone");
             record.setId1(1);
             record.setId2(1);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Wilma");
             record.setLastname("Flintstone");
             record.setId1(1);
             record.setId2(2);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Pebbles");
             record.setLastname("Flintstone");
             record.setId1(1);
             record.setId2(3);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Barney");
             record.setLastname("Rubble");
             record.setId1(2);
             record.setId2(1);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Betty");
             record.setLastname("Rubble");
             record.setId1(2);
             record.setId2(2);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Bamm Bamm");
             record.setLastname("Rubble");
             record.setId1(2);
             record.setId2(3);
             mapper.insert(record);
 
-            PkfieldsExample example = new PkfieldsExample();
+            PKFieldsExample example = new PKFieldsExample();
             example.createCriteria().andFirstnameLike("B%");
             example.setOrderByClause("ID1, ID2");
-            List<Pkfields> answer = mapper.selectByExample(example);
+            List<PKFields> answer = mapper.selectByExample(example);
             assertEquals(3, answer.size());
-            Pkfields returnedRecord = answer.get(0);
+            PKFields returnedRecord = answer.get(0);
             assertEquals(2, returnedRecord.getId1().intValue());
             assertEquals(1, returnedRecord.getId2().intValue());
             returnedRecord = answer.get(1);
@@ -754,55 +754,55 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsMapper mapper = sqlSession.getMapper(PkfieldsMapper.class);
-            Pkfields record = new Pkfields();
+            PKFieldsMapper mapper = sqlSession.getMapper(PKFieldsMapper.class);
+            PKFields record = new PKFields();
             record.setFirstname("Fred");
             record.setLastname("Flintstone");
             record.setId1(1);
             record.setId2(1);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Wilma");
             record.setLastname("Flintstone");
             record.setId1(1);
             record.setId2(2);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Pebbles");
             record.setLastname("Flintstone");
             record.setId1(1);
             record.setId2(3);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Barney");
             record.setLastname("Rubble");
             record.setId1(2);
             record.setId2(1);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Betty");
             record.setLastname("Rubble");
             record.setId1(2);
             record.setId2(2);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Bamm Bamm");
             record.setLastname("Rubble");
             record.setId1(2);
             record.setId2(3);
             mapper.insert(record);
 
-            PkfieldsExample example = new PkfieldsExample();
+            PKFieldsExample example = new PKFieldsExample();
             example.createCriteria().andFirstnameNotLike("B%");
             example.setOrderByClause("ID1, ID2");
-            List<Pkfields> answer = mapper.selectByExample(example);
+            List<PKFields> answer = mapper.selectByExample(example);
             assertEquals(3, answer.size());
-            Pkfields returnedRecord = answer.get(0);
+            PKFields returnedRecord = answer.get(0);
             assertEquals(1, returnedRecord.getId1().intValue());
             assertEquals(1, returnedRecord.getId2().intValue());
             returnedRecord = answer.get(1);
@@ -821,57 +821,57 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsMapper mapper = sqlSession.getMapper(PkfieldsMapper.class);
-            Pkfields record = new Pkfields();
+            PKFieldsMapper mapper = sqlSession.getMapper(PKFieldsMapper.class);
+            PKFields record = new PKFields();
             record.setFirstname("Fred");
             record.setLastname("Flintstone");
             record.setId1(1);
             record.setId2(1);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Wilma");
             record.setLastname("Flintstone");
             record.setId1(1);
             record.setId2(2);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Pebbles");
             record.setLastname("Flintstone");
             record.setId1(1);
             record.setId2(3);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Barney");
             record.setLastname("Rubble");
             record.setId1(2);
             record.setId2(1);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Betty");
             record.setLastname("Rubble");
             record.setId1(2);
             record.setId2(2);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Bamm Bamm");
             record.setLastname("Rubble");
             record.setId1(2);
             record.setId2(3);
             mapper.insert(record);
 
-            PkfieldsExample example = new PkfieldsExample();
+            PKFieldsExample example = new PKFieldsExample();
             example.createCriteria().andFirstnameLike("B%").andId2EqualTo(3);
             example.or(example.createCriteria().andFirstnameLike("Wi%"));
 
             example.setOrderByClause("ID1, ID2");
-            List<Pkfields> answer = mapper.selectByExample(example);
+            List<PKFields> answer = mapper.selectByExample(example);
             assertEquals(2, answer.size());
-            Pkfields returnedRecord = answer.get(0);
+            PKFields returnedRecord = answer.get(0);
             assertEquals(1, returnedRecord.getId1().intValue());
             assertEquals(2, returnedRecord.getId2().intValue());
             returnedRecord = answer.get(1);
@@ -887,43 +887,43 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsMapper mapper = sqlSession.getMapper(PkfieldsMapper.class);
-            Pkfields record = new Pkfields();
+            PKFieldsMapper mapper = sqlSession.getMapper(PKFieldsMapper.class);
+            PKFields record = new PKFields();
             record.setFirstname("Fred");
             record.setLastname("Flintstone");
             record.setId1(1);
             record.setId2(1);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Wilma");
             record.setLastname("Flintstone");
             record.setId1(1);
             record.setId2(2);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Pebbles");
             record.setLastname("Flintstone");
             record.setId1(1);
             record.setId2(3);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Barney");
             record.setLastname("Rubble");
             record.setId1(2);
             record.setId2(1);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Betty");
             record.setLastname("Rubble");
             record.setId1(2);
             record.setId2(2);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Bamm Bamm");
             record.setLastname("Rubble");
             record.setId1(2);
@@ -934,13 +934,13 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             ids.add(1);
             ids.add(3);
 
-            PkfieldsExample example = new PkfieldsExample();
+            PKFieldsExample example = new PKFieldsExample();
             example.createCriteria().andId2In(ids);
 
             example.setOrderByClause("ID1, ID2");
-            List<Pkfields> answer = mapper.selectByExample(example);
+            List<PKFields> answer = mapper.selectByExample(example);
             assertEquals(4, answer.size());
-            Pkfields returnedRecord = answer.get(0);
+            PKFields returnedRecord = answer.get(0);
             assertEquals(1, returnedRecord.getId1().intValue());
             assertEquals(1, returnedRecord.getId2().intValue());
             returnedRecord = answer.get(1);
@@ -962,54 +962,54 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsMapper mapper = sqlSession.getMapper(PkfieldsMapper.class);
-            Pkfields record = new Pkfields();
+            PKFieldsMapper mapper = sqlSession.getMapper(PKFieldsMapper.class);
+            PKFields record = new PKFields();
             record.setFirstname("Fred");
             record.setLastname("Flintstone");
             record.setId1(1);
             record.setId2(1);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Wilma");
             record.setLastname("Flintstone");
             record.setId1(1);
             record.setId2(2);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Pebbles");
             record.setLastname("Flintstone");
             record.setId1(1);
             record.setId2(3);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Barney");
             record.setLastname("Rubble");
             record.setId1(2);
             record.setId2(1);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Betty");
             record.setLastname("Rubble");
             record.setId1(2);
             record.setId2(2);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Bamm Bamm");
             record.setLastname("Rubble");
             record.setId1(2);
             record.setId2(3);
             mapper.insert(record);
 
-            PkfieldsExample example = new PkfieldsExample();
+            PKFieldsExample example = new PKFieldsExample();
             example.createCriteria().andId2Between(1, 3);
 
             example.setOrderByClause("ID1, ID2");
-            List<Pkfields> answer = mapper.selectByExample(example);
+            List<PKFields> answer = mapper.selectByExample(example);
             assertEquals(6, answer.size());
         } finally {
             sqlSession.close();
@@ -1021,55 +1021,55 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsMapper mapper = sqlSession.getMapper(PkfieldsMapper.class);
-            Pkfields record = new Pkfields();
+            PKFieldsMapper mapper = sqlSession.getMapper(PKFieldsMapper.class);
+            PKFields record = new PKFields();
             record.setFirstname("Fred");
             record.setLastname("Flintstone");
             record.setId1(1);
             record.setId2(1);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Wilma");
             record.setLastname("Flintstone");
             record.setId1(1);
             record.setId2(2);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Pebbles");
             record.setLastname("Flintstone");
             record.setId1(1);
             record.setId2(3);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Barney");
             record.setLastname("Rubble");
             record.setId1(2);
             record.setId2(1);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Betty");
             record.setLastname("Rubble");
             record.setId1(2);
             record.setId2(2);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Bamm Bamm");
             record.setLastname("Rubble");
             record.setId1(2);
             record.setId2(3);
             mapper.insert(record);
 
-            PkfieldsExample example = new PkfieldsExample();
+            PKFieldsExample example = new PKFieldsExample();
             example.createCriteria().andId2Between(1, 3);
 
             example.setOrderByClause("ID1, ID2");
             RowBounds rb = new RowBounds(2, 3);
-            List<Pkfields> answer = mapper.selectByExampleWithRowbounds(example, rb);
+            List<PKFields> answer = mapper.selectByExampleWithRowbounds(example, rb);
             assertEquals(3, answer.size());
             assertEquals("Pebbles", answer.get(0).getFirstname());
             assertEquals("Barney", answer.get(1).getFirstname());
@@ -1084,54 +1084,54 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsMapper mapper = sqlSession.getMapper(PkfieldsMapper.class);
-            Pkfields record = new Pkfields();
+            PKFieldsMapper mapper = sqlSession.getMapper(PKFieldsMapper.class);
+            PKFields record = new PKFields();
             record.setFirstname("Fred");
             record.setLastname("Flintstone");
             record.setId1(1);
             record.setId2(1);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Wilma");
             record.setLastname("Flintstone");
             record.setId1(1);
             record.setId2(2);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Pebbles");
             record.setLastname("Flintstone");
             record.setId1(1);
             record.setId2(3);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Barney");
             record.setLastname("Rubble");
             record.setId1(2);
             record.setId2(1);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Betty");
             record.setLastname("Rubble");
             record.setId1(2);
             record.setId2(2);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Bamm Bamm");
             record.setLastname("Rubble");
             record.setId1(2);
             record.setId2(3);
             mapper.insert(record);
 
-            PkfieldsExample example = new PkfieldsExample();
+            PKFieldsExample example = new PKFieldsExample();
             example.createCriteria();
 
             example.setOrderByClause("ID1, ID2");
-            List<Pkfields> answer = mapper.selectByExample(example);
+            List<PKFields> answer = mapper.selectByExample(example);
             assertEquals(6, answer.size());
         } finally {
             sqlSession.close();
@@ -1143,8 +1143,8 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsMapper mapper = sqlSession.getMapper(PkfieldsMapper.class);
-            Pkfields record = new Pkfields();
+            PKFieldsMapper mapper = sqlSession.getMapper(PKFieldsMapper.class);
+            PKFields record = new PKFields();
             record.setFirstname("Fred");
             record.setLastname("Flintstone");
             record.setId1(1);
@@ -1152,7 +1152,7 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             record.setWierdField(11);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Wilma");
             record.setLastname("Flintstone");
             record.setId1(1);
@@ -1160,7 +1160,7 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             record.setWierdField(22);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Pebbles");
             record.setLastname("Flintstone");
             record.setId1(1);
@@ -1168,7 +1168,7 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             record.setWierdField(33);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Barney");
             record.setLastname("Rubble");
             record.setId1(2);
@@ -1176,7 +1176,7 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             record.setWierdField(44);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Betty");
             record.setLastname("Rubble");
             record.setId1(2);
@@ -1184,7 +1184,7 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             record.setWierdField(55);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Bamm Bamm");
             record.setLastname("Rubble");
             record.setId1(2);
@@ -1196,12 +1196,12 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             values.add(11);
             values.add(22);
 
-            PkfieldsExample example = new PkfieldsExample();
+            PKFieldsExample example = new PKFieldsExample();
             example.createCriteria().andWierdFieldLessThan(40).andWierdFieldIn(
                     values);
 
             example.setOrderByClause("ID1, ID2");
-            List<Pkfields> answer = mapper.selectByExample(example);
+            List<PKFields> answer = mapper.selectByExample(example);
             assertEquals(2, answer.size());
         } finally {
             sqlSession.close();
@@ -1213,22 +1213,22 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsMapper mapper = sqlSession.getMapper(PkfieldsMapper.class);
-            Pkfields record = new Pkfields();
+            PKFieldsMapper mapper = sqlSession.getMapper(PKFieldsMapper.class);
+            PKFields record = new PKFields();
             record.setFirstname("Jeff");
             record.setLastname("Smith");
             record.setId1(1);
             record.setId2(2);
             mapper.insert(record);
 
-            record = new Pkfields();
+            record = new PKFields();
             record.setFirstname("Bob");
             record.setLastname("Jones");
             record.setId1(3);
             record.setId2(4);
             mapper.insert(record);
 
-            PkfieldsExample example = new PkfieldsExample();
+            PKFieldsExample example = new PKFieldsExample();
             example.createCriteria().andLastnameLike("J%");
             long rows = mapper.countByExample(example);
             assertEquals(1, rows);
@@ -1246,18 +1246,18 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkblobsMapper mapper = sqlSession.getMapper(PkblobsMapper.class);
-            Pkblobs record = new Pkblobs();
+            PKBlobsMapper mapper = sqlSession.getMapper(PKBlobsMapper.class);
+            PKBlobs record = new PKBlobs();
             record.setId(3);
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
 
-            PkblobsExample example = new PkblobsExample();
-            List<Pkblobs> answer = mapper.selectByExampleWithBLOBs(example);
+            PKBlobsExample example = new PKBlobsExample();
+            List<PKBlobs> answer = mapper.selectByExampleWithBLOBs(example);
             assertEquals(1, answer.size());
 
-            Pkblobs returnedRecord = answer.get(0);
+            PKBlobs returnedRecord = answer.get(0);
             assertEquals(record.getId(), returnedRecord.getId());
             assertTrue(blobsAreEqual(record.getBlob1(), returnedRecord
                     .getBlob1()));
@@ -1273,21 +1273,21 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkblobsMapper mapper = sqlSession.getMapper(PkblobsMapper.class);
-            Pkblobs record = new Pkblobs();
+            PKBlobsMapper mapper = sqlSession.getMapper(PKBlobsMapper.class);
+            PKBlobs record = new PKBlobs();
             record.setId(3);
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
 
-            record = new Pkblobs();
+            record = new PKBlobs();
             record.setId(3);
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             int rows = mapper.updateByPrimaryKeyWithBLOBs(record);
             assertEquals(1, rows);
 
-            Pkblobs newRecord = mapper.selectByPrimaryKey(3);
+            PKBlobs newRecord = mapper.selectByPrimaryKey(3);
 
             assertNotNull(newRecord);
             assertEquals(record.getId(), newRecord.getId());
@@ -1303,19 +1303,19 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkblobsMapper mapper = sqlSession.getMapper(PkblobsMapper.class);
-            Pkblobs record = new Pkblobs();
+            PKBlobsMapper mapper = sqlSession.getMapper(PKBlobsMapper.class);
+            PKBlobs record = new PKBlobs();
             record.setId(3);
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
 
-            Pkblobs newRecord = new Pkblobs();
+            PKBlobs newRecord = new PKBlobs();
             newRecord.setId(3);
             newRecord.setBlob2(generateRandomBlob());
             mapper.updateByPrimaryKeySelective(newRecord);
 
-            Pkblobs returnedRecord = mapper.selectByPrimaryKey(3);
+            PKBlobs returnedRecord = mapper.selectByPrimaryKey(3);
             assertNotNull(returnedRecord);
             assertEquals(record.getId(), returnedRecord.getId());
             assertTrue(blobsAreEqual(record.getBlob1(), returnedRecord
@@ -1332,21 +1332,21 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkblobsMapper mapper = sqlSession.getMapper(PkblobsMapper.class);
-            Pkblobs record = new Pkblobs();
+            PKBlobsMapper mapper = sqlSession.getMapper(PKBlobsMapper.class);
+            PKBlobs record = new PKBlobs();
             record.setId(3);
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
 
-            PkblobsExample example = new PkblobsExample();
-            List<Pkblobs> answer = mapper.selectByExample(example);
+            PKBlobsExample example = new PKBlobsExample();
+            List<PKBlobs> answer = mapper.selectByExample(example);
             assertEquals(1, answer.size());
 
             int rows = mapper.deleteByPrimaryKey(3);
             assertEquals(1, rows);
 
-            example = new PkblobsExample();
+            example = new PKBlobsExample();
             answer = mapper.selectByExample(example);
             assertEquals(0, answer.size());
         } finally {
@@ -1359,29 +1359,29 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkblobsMapper mapper = sqlSession.getMapper(PkblobsMapper.class);
-            Pkblobs record = new Pkblobs();
+            PKBlobsMapper mapper = sqlSession.getMapper(PKBlobsMapper.class);
+            PKBlobs record = new PKBlobs();
             record.setId(3);
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
 
-            record = new Pkblobs();
+            record = new PKBlobs();
             record.setId(6);
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
 
-            PkblobsExample example = new PkblobsExample();
-            List<Pkblobs> answer = mapper.selectByExample(example);
+            PKBlobsExample example = new PKBlobsExample();
+            List<PKBlobs> answer = mapper.selectByExample(example);
             assertEquals(2, answer.size());
 
-            example = new PkblobsExample();
+            example = new PKBlobsExample();
             example.createCriteria().andIdLessThan(4);
             int rows = mapper.deleteByExample(example);
             assertEquals(1, rows);
 
-            example = new PkblobsExample();
+            example = new PKBlobsExample();
             answer = mapper.selectByExample(example);
             assertEquals(1, answer.size());
         } finally {
@@ -1394,20 +1394,20 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkblobsMapper mapper = sqlSession.getMapper(PkblobsMapper.class);
-            Pkblobs record = new Pkblobs();
+            PKBlobsMapper mapper = sqlSession.getMapper(PKBlobsMapper.class);
+            PKBlobs record = new PKBlobs();
             record.setId(3);
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
 
-            record = new Pkblobs();
+            record = new PKBlobs();
             record.setId(6);
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
 
-            Pkblobs newRecord = mapper.selectByPrimaryKey(6);
+            PKBlobs newRecord = mapper.selectByPrimaryKey(6);
             assertNotNull(newRecord);
             assertEquals(record.getId(), newRecord.getId());
             assertTrue(blobsAreEqual(record.getBlob1(), newRecord.getBlob1()));
@@ -1422,26 +1422,26 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkblobsMapper mapper = sqlSession.getMapper(PkblobsMapper.class);
-            Pkblobs record = new Pkblobs();
+            PKBlobsMapper mapper = sqlSession.getMapper(PKBlobsMapper.class);
+            PKBlobs record = new PKBlobs();
             record.setId(3);
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
 
-            record = new Pkblobs();
+            record = new PKBlobs();
             record.setId(6);
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
 
-            PkblobsExample example = new PkblobsExample();
+            PKBlobsExample example = new PKBlobsExample();
             example.createCriteria().andIdGreaterThan(4);
-            List<Pkblobs> answer = mapper.selectByExample(example);
+            List<PKBlobs> answer = mapper.selectByExample(example);
 
             assertEquals(1, answer.size());
 
-            Pkblobs key = answer.get(0);
+            PKBlobs key = answer.get(0);
             assertEquals(6, key.getId().intValue());
             assertNull(key.getBlob1());
             assertNull(key.getBlob2());
@@ -1455,22 +1455,22 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkblobsMapper mapper = sqlSession.getMapper(PkblobsMapper.class);
-            Pkblobs record = new Pkblobs();
+            PKBlobsMapper mapper = sqlSession.getMapper(PKBlobsMapper.class);
+            PKBlobs record = new PKBlobs();
             record.setId(3);
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
 
-            record = new Pkblobs();
+            record = new PKBlobs();
             record.setId(6);
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
 
-            PkblobsExample example = new PkblobsExample();
+            PKBlobsExample example = new PKBlobsExample();
             example.createCriteria();
-            List<Pkblobs> answer = mapper.selectByExample(example);
+            List<PKBlobs> answer = mapper.selectByExample(example);
 
             assertEquals(2, answer.size());
         } finally {
@@ -1483,26 +1483,26 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkblobsMapper mapper = sqlSession.getMapper(PkblobsMapper.class);
-            Pkblobs record = new Pkblobs();
+            PKBlobsMapper mapper = sqlSession.getMapper(PKBlobsMapper.class);
+            PKBlobs record = new PKBlobs();
             record.setId(3);
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
 
-            record = new Pkblobs();
+            record = new PKBlobs();
             record.setId(6);
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
 
-            PkblobsExample example = new PkblobsExample();
+            PKBlobsExample example = new PKBlobsExample();
             example.createCriteria().andIdGreaterThan(4);
-            List<Pkblobs> answer = mapper.selectByExampleWithBLOBs(example);
+            List<PKBlobs> answer = mapper.selectByExampleWithBLOBs(example);
 
             assertEquals(1, answer.size());
 
-            Pkblobs newRecord = answer.get(0);
+            PKBlobs newRecord = answer.get(0);
             assertEquals(record.getId(), newRecord.getId());
             assertTrue(blobsAreEqual(record.getBlob1(), newRecord.getBlob1()));
             assertTrue(blobsAreEqual(record.getBlob2(), newRecord.getBlob2()));
@@ -1516,20 +1516,20 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkblobsMapper mapper = sqlSession.getMapper(PkblobsMapper.class);
-            Pkblobs record = new Pkblobs();
+            PKBlobsMapper mapper = sqlSession.getMapper(PKBlobsMapper.class);
+            PKBlobs record = new PKBlobs();
             record.setId(3);
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
 
-            record = new Pkblobs();
+            record = new PKBlobs();
             record.setId(6);
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
 
-            PkblobsExample example = new PkblobsExample();
+            PKBlobsExample example = new PKBlobsExample();
             example.createCriteria().andIdLessThan(4);
             long rows = mapper.countByExample(example);
             assertEquals(1, rows);
@@ -1547,8 +1547,8 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsblobsMapper mapper = sqlSession.getMapper(PkfieldsblobsMapper.class);
-            Pkfieldsblobs record = new Pkfieldsblobs();
+            PKFieldsBlobsMapper mapper = sqlSession.getMapper(PKFieldsBlobsMapper.class);
+            PKFieldsBlobs record = new PKFieldsBlobs();
             record.setId1(3);
             record.setId2(4);
             record.setFirstname("Jeff");
@@ -1556,11 +1556,11 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             record.setBlob1(generateRandomBlob());
             mapper.insert(record);
 
-            PkfieldsblobsExample example = new PkfieldsblobsExample();
-            List<Pkfieldsblobs> answer = mapper.selectByExampleWithBLOBs(example);
+            PKFieldsBlobsExample example = new PKFieldsBlobsExample();
+            List<PKFieldsBlobs> answer = mapper.selectByExampleWithBLOBs(example);
             assertEquals(1, answer.size());
 
-            Pkfieldsblobs returnedRecord = answer.get(0);
+            PKFieldsBlobs returnedRecord = answer.get(0);
             assertEquals(record.getId1(), returnedRecord.getId1());
             assertEquals(record.getId2(), returnedRecord.getId2());
             assertEquals(record.getFirstname(), returnedRecord.getFirstname());
@@ -1577,8 +1577,8 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsblobsMapper mapper = sqlSession.getMapper(PkfieldsblobsMapper.class);
-            Pkfieldsblobs record = new Pkfieldsblobs();
+            PKFieldsBlobsMapper mapper = sqlSession.getMapper(PKFieldsBlobsMapper.class);
+            PKFieldsBlobs record = new PKFieldsBlobs();
             record.setId1(3);
             record.setId2(4);
             record.setFirstname("Jeff");
@@ -1586,7 +1586,7 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             record.setBlob1(generateRandomBlob());
             mapper.insert(record);
 
-            Pkfieldsblobs updateRecord = new Pkfieldsblobs();
+            PKFieldsBlobs updateRecord = new PKFieldsBlobs();
             updateRecord.setId1(3);
             updateRecord.setId2(4);
             updateRecord.setFirstname("Scott");
@@ -1596,7 +1596,7 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             int rows = mapper.updateByPrimaryKeyWithBLOBs(updateRecord);
             assertEquals(1, rows);
 
-            Pkfieldsblobs newRecord = mapper.selectByPrimaryKey(3, 4);
+            PKFieldsBlobs newRecord = mapper.selectByPrimaryKey(3, 4);
             assertEquals(updateRecord.getFirstname(), newRecord.getFirstname());
             assertEquals(updateRecord.getLastname(), newRecord.getLastname());
             assertEquals(record.getId1(), newRecord.getId1());
@@ -1613,8 +1613,8 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsblobsMapper mapper = sqlSession.getMapper(PkfieldsblobsMapper.class);
-            Pkfieldsblobs record = new Pkfieldsblobs();
+            PKFieldsBlobsMapper mapper = sqlSession.getMapper(PKFieldsBlobsMapper.class);
+            PKFieldsBlobs record = new PKFieldsBlobs();
             record.setId1(3);
             record.setId2(4);
             record.setFirstname("Jeff");
@@ -1622,7 +1622,7 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             record.setBlob1(generateRandomBlob());
             mapper.insert(record);
 
-            Pkfieldsblobs updateRecord = new Pkfieldsblobs();
+            PKFieldsBlobs updateRecord = new PKFieldsBlobs();
             updateRecord.setId1(3);
             updateRecord.setId2(4);
             updateRecord.setFirstname("Scott");
@@ -1631,7 +1631,7 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             int rows = mapper.updateByPrimaryKey(updateRecord);
             assertEquals(1, rows);
 
-            Pkfieldsblobs newRecord = mapper.selectByPrimaryKey(3, 4);
+            PKFieldsBlobs newRecord = mapper.selectByPrimaryKey(3, 4);
             assertEquals(updateRecord.getFirstname(), newRecord.getFirstname());
             assertEquals(updateRecord.getLastname(), newRecord.getLastname());
             assertEquals(record.getId1(), newRecord.getId1());
@@ -1647,8 +1647,8 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsblobsMapper mapper = sqlSession.getMapper(PkfieldsblobsMapper.class);
-            Pkfieldsblobs record = new Pkfieldsblobs();
+            PKFieldsBlobsMapper mapper = sqlSession.getMapper(PKFieldsBlobsMapper.class);
+            PKFieldsBlobs record = new PKFieldsBlobs();
             record.setId1(3);
             record.setId2(4);
             record.setFirstname("Jeff");
@@ -1656,7 +1656,7 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             record.setBlob1(generateRandomBlob());
             mapper.insert(record);
 
-            Pkfieldsblobs updateRecord = new Pkfieldsblobs();
+            PKFieldsBlobs updateRecord = new PKFieldsBlobs();
             updateRecord.setId1(3);
             updateRecord.setId2(4);
             updateRecord.setLastname("Jones");
@@ -1664,7 +1664,7 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             int rows = mapper.updateByPrimaryKeySelective(updateRecord);
             assertEquals(1, rows);
 
-            Pkfieldsblobs returnedRecord = mapper.selectByPrimaryKey(3, 4);
+            PKFieldsBlobs returnedRecord = mapper.selectByPrimaryKey(3, 4);
             assertEquals(record.getFirstname(), returnedRecord.getFirstname());
             assertEquals(updateRecord.getLastname(), returnedRecord
                     .getLastname());
@@ -1682,8 +1682,8 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsblobsMapper mapper = sqlSession.getMapper(PkfieldsblobsMapper.class);
-            Pkfieldsblobs record = new Pkfieldsblobs();
+            PKFieldsBlobsMapper mapper = sqlSession.getMapper(PKFieldsBlobsMapper.class);
+            PKFieldsBlobs record = new PKFieldsBlobs();
             record.setId1(3);
             record.setId2(4);
             record.setFirstname("Jeff");
@@ -1691,7 +1691,7 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             record.setBlob1(generateRandomBlob());
             mapper.insert(record);
 
-            record = new Pkfieldsblobs();
+            record = new PKFieldsBlobs();
             record.setId1(5);
             record.setId2(6);
             record.setFirstname("Scott");
@@ -1699,15 +1699,15 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             record.setBlob1(generateRandomBlob());
             mapper.insert(record);
 
-            PkfieldsblobsExample example = new PkfieldsblobsExample();
-            List<Pkfieldsblobs> answer = mapper
+            PKFieldsBlobsExample example = new PKFieldsBlobsExample();
+            List<PKFieldsBlobs> answer = mapper
                     .selectByExample(example);
             assertEquals(2, answer.size());
 
             int rows = mapper.deleteByPrimaryKey(5, 6);
             assertEquals(1, rows);
 
-            example = new PkfieldsblobsExample();
+            example = new PKFieldsBlobsExample();
             answer = mapper.selectByExample(example);
             assertEquals(1, answer.size());
         } finally {
@@ -1720,8 +1720,8 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsblobsMapper mapper = sqlSession.getMapper(PkfieldsblobsMapper.class);
-            Pkfieldsblobs record = new Pkfieldsblobs();
+            PKFieldsBlobsMapper mapper = sqlSession.getMapper(PKFieldsBlobsMapper.class);
+            PKFieldsBlobs record = new PKFieldsBlobs();
             record.setId1(3);
             record.setId2(4);
             record.setFirstname("Jeff");
@@ -1729,7 +1729,7 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             record.setBlob1(generateRandomBlob());
             mapper.insert(record);
 
-            record = new Pkfieldsblobs();
+            record = new PKFieldsBlobs();
             record.setId1(5);
             record.setId2(6);
             record.setFirstname("Scott");
@@ -1737,17 +1737,17 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             record.setBlob1(generateRandomBlob());
             mapper.insert(record);
 
-            PkfieldsblobsExample example = new PkfieldsblobsExample();
-            List<Pkfieldsblobs> answer = mapper
+            PKFieldsBlobsExample example = new PKFieldsBlobsExample();
+            List<PKFieldsBlobs> answer = mapper
                     .selectByExample(example);
             assertEquals(2, answer.size());
 
-            example = new PkfieldsblobsExample();
+            example = new PKFieldsBlobsExample();
             example.createCriteria().andId1NotEqualTo(3);
             int rows = mapper.deleteByExample(example);
             assertEquals(1, rows);
 
-            example = new PkfieldsblobsExample();
+            example = new PKFieldsBlobsExample();
             answer = mapper.selectByExample(example);
             assertEquals(1, answer.size());
         } finally {
@@ -1760,8 +1760,8 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsblobsMapper mapper = sqlSession.getMapper(PkfieldsblobsMapper.class);
-            Pkfieldsblobs record = new Pkfieldsblobs();
+            PKFieldsBlobsMapper mapper = sqlSession.getMapper(PKFieldsBlobsMapper.class);
+            PKFieldsBlobs record = new PKFieldsBlobs();
             record.setId1(3);
             record.setId2(4);
             record.setFirstname("Jeff");
@@ -1769,7 +1769,7 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             record.setBlob1(generateRandomBlob());
             mapper.insert(record);
 
-            record = new Pkfieldsblobs();
+            record = new PKFieldsBlobs();
             record.setId1(5);
             record.setId2(6);
             record.setFirstname("Scott");
@@ -1777,12 +1777,12 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             record.setBlob1(generateRandomBlob());
             mapper.insert(record);
 
-            PkfieldsblobsExample example = new PkfieldsblobsExample();
-            List<Pkfieldsblobs> answer = mapper
+            PKFieldsBlobsExample example = new PKFieldsBlobsExample();
+            List<PKFieldsBlobs> answer = mapper
                     .selectByExample(example);
             assertEquals(2, answer.size());
 
-            Pkfieldsblobs newRecord = mapper.selectByPrimaryKey(5, 6);
+            PKFieldsBlobs newRecord = mapper.selectByPrimaryKey(5, 6);
             assertEquals(record.getId1(), newRecord.getId1());
             assertEquals(record.getId2(), newRecord.getId2());
             assertEquals(record.getFirstname(), newRecord.getFirstname());
@@ -1798,8 +1798,8 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsblobsMapper mapper = sqlSession.getMapper(PkfieldsblobsMapper.class);
-            Pkfieldsblobs record = new Pkfieldsblobs();
+            PKFieldsBlobsMapper mapper = sqlSession.getMapper(PKFieldsBlobsMapper.class);
+            PKFieldsBlobs record = new PKFieldsBlobs();
             record.setId1(3);
             record.setId2(4);
             record.setFirstname("Jeff");
@@ -1807,7 +1807,7 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             record.setBlob1(generateRandomBlob());
             mapper.insert(record);
 
-            record = new Pkfieldsblobs();
+            record = new PKFieldsBlobs();
             record.setId1(5);
             record.setId2(6);
             record.setFirstname("Scott");
@@ -1815,13 +1815,13 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             record.setBlob1(generateRandomBlob());
             mapper.insert(record);
 
-            PkfieldsblobsExample example = new PkfieldsblobsExample();
+            PKFieldsBlobsExample example = new PKFieldsBlobsExample();
             example.createCriteria().andId2EqualTo(6);
-            List<Pkfieldsblobs> answer = mapper
+            List<PKFieldsBlobs> answer = mapper
                     .selectByExample(example);
             assertEquals(1, answer.size());
 
-            Pkfieldsblobs newRecord = answer.get(0);
+            PKFieldsBlobs newRecord = answer.get(0);
             assertEquals(record.getId1(), newRecord.getId1());
             assertEquals(record.getId2(), newRecord.getId2());
             assertEquals(record.getFirstname(), newRecord.getFirstname());
@@ -1837,8 +1837,8 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsblobsMapper mapper = sqlSession.getMapper(PkfieldsblobsMapper.class);
-            Pkfieldsblobs record = new Pkfieldsblobs();
+            PKFieldsBlobsMapper mapper = sqlSession.getMapper(PKFieldsBlobsMapper.class);
+            PKFieldsBlobs record = new PKFieldsBlobs();
             record.setId1(3);
             record.setId2(4);
             record.setFirstname("Jeff");
@@ -1846,7 +1846,7 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             record.setBlob1(generateRandomBlob());
             mapper.insert(record);
 
-            record = new Pkfieldsblobs();
+            record = new PKFieldsBlobs();
             record.setId1(5);
             record.setId2(6);
             record.setFirstname("Scott");
@@ -1854,12 +1854,12 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             record.setBlob1(generateRandomBlob());
             mapper.insert(record);
 
-            PkfieldsblobsExample example = new PkfieldsblobsExample();
+            PKFieldsBlobsExample example = new PKFieldsBlobsExample();
             example.createCriteria().andId2EqualTo(6);
-            List<Pkfieldsblobs> answer = mapper.selectByExampleWithBLOBs(example);
+            List<PKFieldsBlobs> answer = mapper.selectByExampleWithBLOBs(example);
             assertEquals(1, answer.size());
 
-            Pkfieldsblobs newRecord = answer.get(0);
+            PKFieldsBlobs newRecord = answer.get(0);
             assertEquals(record.getId1(), newRecord.getId1());
             assertEquals(record.getId2(), newRecord.getId2());
             assertEquals(record.getFirstname(), newRecord.getFirstname());
@@ -1875,8 +1875,8 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsblobsMapper mapper = sqlSession.getMapper(PkfieldsblobsMapper.class);
-            Pkfieldsblobs record = new Pkfieldsblobs();
+            PKFieldsBlobsMapper mapper = sqlSession.getMapper(PKFieldsBlobsMapper.class);
+            PKFieldsBlobs record = new PKFieldsBlobs();
             record.setId1(3);
             record.setId2(4);
             record.setFirstname("Jeff");
@@ -1884,7 +1884,7 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             record.setBlob1(generateRandomBlob());
             mapper.insert(record);
 
-            record = new Pkfieldsblobs();
+            record = new PKFieldsBlobs();
             record.setId1(5);
             record.setId2(6);
             record.setFirstname("Scott");
@@ -1892,9 +1892,9 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             record.setBlob1(generateRandomBlob());
             mapper.insert(record);
 
-            PkfieldsblobsExample example = new PkfieldsblobsExample();
+            PKFieldsBlobsExample example = new PKFieldsBlobsExample();
             example.createCriteria();
-            List<Pkfieldsblobs> answer = mapper.selectByExampleWithBLOBs(example);
+            List<PKFieldsBlobs> answer = mapper.selectByExampleWithBLOBs(example);
             assertEquals(2, answer.size());
         } finally {
             sqlSession.close();
@@ -1906,19 +1906,19 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            FieldsblobsMapper mapper = sqlSession.getMapper(FieldsblobsMapper.class);
-            Fieldsblobs record = new Fieldsblobs();
+            FieldsBlobsMapper mapper = sqlSession.getMapper(FieldsBlobsMapper.class);
+            FieldsBlobs record = new FieldsBlobs();
             record.setFirstname("Jeff");
             record.setLastname("Smith");
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
 
-            FieldsblobsExample example = new FieldsblobsExample();
-            List<Fieldsblobs> answer = mapper.selectByExampleWithBLOBs(example);
+            FieldsBlobsExample example = new FieldsBlobsExample();
+            List<FieldsBlobs> answer = mapper.selectByExampleWithBLOBs(example);
             assertEquals(1, answer.size());
 
-            Fieldsblobs returnedRecord = answer.get(0);
+            FieldsBlobs returnedRecord = answer.get(0);
             assertEquals(record.getFirstname(), returnedRecord.getFirstname());
             assertEquals(record.getLastname(), returnedRecord.getLastname());
             assertTrue(blobsAreEqual(record.getBlob1(), returnedRecord
@@ -1935,31 +1935,31 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            FieldsblobsMapper mapper = sqlSession.getMapper(FieldsblobsMapper.class);
-            Fieldsblobs record = new Fieldsblobs();
+            FieldsBlobsMapper mapper = sqlSession.getMapper(FieldsBlobsMapper.class);
+            FieldsBlobs record = new FieldsBlobs();
             record.setFirstname("Jeff");
             record.setLastname("Smith");
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
 
-            record = new Fieldsblobs();
+            record = new FieldsBlobs();
             record.setFirstname("Scott");
             record.setLastname("Jones");
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
 
-            FieldsblobsExample example = new FieldsblobsExample();
-            List<Fieldsblobs> answer = mapper.selectByExample(example);
+            FieldsBlobsExample example = new FieldsBlobsExample();
+            List<FieldsBlobs> answer = mapper.selectByExample(example);
             assertEquals(2, answer.size());
 
-            example = new FieldsblobsExample();
+            example = new FieldsBlobsExample();
             example.createCriteria().andFirstnameLike("S%");
             int rows = mapper.deleteByExample(example);
             assertEquals(1, rows);
 
-            example = new FieldsblobsExample();
+            example = new FieldsBlobsExample();
             answer = mapper.selectByExample(example);
             assertEquals(1, answer.size());
         } finally {
@@ -1972,27 +1972,27 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            FieldsblobsMapper mapper = sqlSession.getMapper(FieldsblobsMapper.class);
-            Fieldsblobs record = new Fieldsblobs();
+            FieldsBlobsMapper mapper = sqlSession.getMapper(FieldsBlobsMapper.class);
+            FieldsBlobs record = new FieldsBlobs();
             record.setFirstname("Jeff");
             record.setLastname("Smith");
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
 
-            record = new Fieldsblobs();
+            record = new FieldsBlobs();
             record.setFirstname("Scott");
             record.setLastname("Jones");
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
 
-            FieldsblobsExample example = new FieldsblobsExample();
+            FieldsBlobsExample example = new FieldsBlobsExample();
             example.createCriteria().andFirstnameLike("S%");
-            List<Fieldsblobs> answer = mapper.selectByExample(example);
+            List<FieldsBlobs> answer = mapper.selectByExample(example);
             assertEquals(1, answer.size());
 
-            Fieldsblobs newRecord = answer.get(0);
+            FieldsBlobs newRecord = answer.get(0);
             assertEquals(record.getFirstname(), newRecord.getFirstname());
             assertEquals(record.getLastname(), newRecord.getLastname());
             assertNull(newRecord.getBlob1());
@@ -2007,27 +2007,27 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            FieldsblobsMapper mapper = sqlSession.getMapper(FieldsblobsMapper.class);
-            Fieldsblobs record = new Fieldsblobs();
+            FieldsBlobsMapper mapper = sqlSession.getMapper(FieldsBlobsMapper.class);
+            FieldsBlobs record = new FieldsBlobs();
             record.setFirstname("Jeff");
             record.setLastname("Smith");
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
 
-            record = new Fieldsblobs();
+            record = new FieldsBlobs();
             record.setFirstname("Scott");
             record.setLastname("Jones");
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
 
-            FieldsblobsExample example = new FieldsblobsExample();
+            FieldsBlobsExample example = new FieldsBlobsExample();
             example.createCriteria().andFirstnameLike("S%");
-            List<Fieldsblobs> answer = mapper.selectByExampleWithBLOBs(example);
+            List<FieldsBlobs> answer = mapper.selectByExampleWithBLOBs(example);
             assertEquals(1, answer.size());
 
-            Fieldsblobs newRecord = answer.get(0);
+            FieldsBlobs newRecord = answer.get(0);
             assertEquals(record.getFirstname(), newRecord.getFirstname());
             assertEquals(record.getLastname(), newRecord.getLastname());
             assertTrue(blobsAreEqual(record.getBlob1(), newRecord.getBlob1()));
@@ -2042,24 +2042,24 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            FieldsblobsMapper mapper = sqlSession.getMapper(FieldsblobsMapper.class);
-            Fieldsblobs record = new Fieldsblobs();
+            FieldsBlobsMapper mapper = sqlSession.getMapper(FieldsBlobsMapper.class);
+            FieldsBlobs record = new FieldsBlobs();
             record.setFirstname("Jeff");
             record.setLastname("Smith");
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
 
-            record = new Fieldsblobs();
+            record = new FieldsBlobs();
             record.setFirstname("Scott");
             record.setLastname("Jones");
             record.setBlob1(generateRandomBlob());
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
 
-            FieldsblobsExample example = new FieldsblobsExample();
+            FieldsBlobsExample example = new FieldsBlobsExample();
             example.createCriteria();
-            List<Fieldsblobs> answer = mapper.selectByExampleWithBLOBs(example);
+            List<FieldsBlobs> answer = mapper.selectByExampleWithBLOBs(example);
             assertEquals(2, answer.size());
         } finally {
             sqlSession.close();
@@ -2071,8 +2071,8 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         try {
-            PkfieldsblobsMapper mapper = sqlSession.getMapper(PkfieldsblobsMapper.class);
-            Pkfieldsblobs record = new Pkfieldsblobs();
+            PKFieldsBlobsMapper mapper = sqlSession.getMapper(PKFieldsBlobsMapper.class);
+            PKFieldsBlobs record = new PKFieldsBlobs();
             record.setId1(3);
             record.setId2(4);
             record.setFirstname("Jeff");
@@ -2080,7 +2080,7 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             record.setBlob1(generateRandomBlob());
             mapper.insert(record);
 
-            record = new Pkfieldsblobs();
+            record = new PKFieldsBlobs();
             record.setId1(5);
             record.setId2(6);
             record.setFirstname("Scott");
@@ -2088,7 +2088,7 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
             record.setBlob1(generateRandomBlob());
             mapper.insert(record);
 
-            PkfieldsblobsExample example = new PkfieldsblobsExample();
+            PKFieldsBlobsExample example = new PKFieldsBlobsExample();
             example.createCriteria().andId1NotEqualTo(3);
             long rows = mapper.countByExample(example);
             assertEquals(1, rows);
@@ -3144,23 +3144,23 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
     
     @Test
     public void testEquals1() {
-        Pkfields pkfields1 = new Pkfields();
+        PKFields pkfields1 = new PKFields();
         assertFalse(pkfields1.equals(null));
     }
     
     @Test
     public void testEquals2() {
-        Pkfields pkfields1 = new Pkfields();
-        Pkfields pkfields2 = new Pkfields();
+        PKFields pkfields1 = new PKFields();
+        PKFields pkfields2 = new PKFields();
         assertTrue(pkfields1.equals(pkfields2));
     }
     
     @Test
     public void testEquals3() {
-        Pkfields pkfields1 = new Pkfields();
+        PKFields pkfields1 = new PKFields();
         pkfields1.setId1(2);
         
-        Pkfields pkfields2 = new Pkfields();
+        PKFields pkfields2 = new PKFields();
         pkfields2.setId1(2);
         
         assertTrue(pkfields1.equals(pkfields2));
@@ -3168,10 +3168,10 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
     
     @Test
     public void testEquals4() {
-        Pkfields pkfields1 = new Pkfields();
+        PKFields pkfields1 = new PKFields();
         pkfields1.setId1(2);
         
-        Pkfields pkfields2 = new Pkfields();
+        PKFields pkfields2 = new PKFields();
         pkfields2.setId1(3);
         
         assertFalse(pkfields1.equals(pkfields2));
@@ -3219,17 +3219,17 @@ public class FlatJava5Test extends AbstractMixedFlatTest {
 
     @Test
     public void testHashCode1() {
-        Pkfields pkfields1 = new Pkfields();
-        Pkfields pkfields2 = new Pkfields();
+        PKFields pkfields1 = new PKFields();
+        PKFields pkfields2 = new PKFields();
         assertTrue(pkfields1.hashCode() == pkfields2.hashCode());
     }
     
     @Test
     public void testHashCode2() {
-        Pkfields pkfields1 = new Pkfields();
+        PKFields pkfields1 = new PKFields();
         pkfields1.setId1(2);
         
-        Pkfields pkfields2 = new Pkfields();
+        PKFields pkfields2 = new PKFields();
         pkfields2.setId1(2);
         
         assertTrue(pkfields1.hashCode() == pkfields2.hashCode());

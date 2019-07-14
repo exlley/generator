@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -79,21 +79,18 @@ public class MyBatisGenerator {
      * @param configuration
      *            The configuration for this invocation
      * @param shellCallback
-     *            an instance of a ShellCallback interface. You may specify
-     *            <code>null</code> in which case the DefaultShellCallback will
-     *            be used.
+     *            an instance of a ShellCallback interface. You may specify <code>null</code> in which case the
+     *            DefaultShellCallback will be used.
      * @param warnings
-     *            Any warnings generated during execution will be added to this
-     *            list. Warnings do not affect the running of the tool, but they
-     *            may affect the results. A typical warning is an unsupported
-     *            data type. In that case, the column will be ignored and
-     *            generation will continue. You may specify <code>null</code> if
+     *            Any warnings generated during execution will be added to this list. Warnings do not affect the running
+     *            of the tool, but they may affect the results. A typical warning is an unsupported data type. In that
+     *            case, the column will be ignored and generation will continue. You may specify <code>null</code> if
      *            you do not want warnings returned.
      * @throws InvalidConfigurationException
      *             if the specified configuration is invalid
      */
-    public MyBatisGenerator(Configuration configuration, ShellCallback shellCallback,
-            List<String> warnings) throws InvalidConfigurationException {
+    public MyBatisGenerator(Configuration configuration, ShellCallback shellCallback, List<String> warnings)
+            throws InvalidConfigurationException {
         super();
         if (configuration == null) {
             throw new IllegalArgumentException(getString("RuntimeError.2")); //$NON-NLS-1$
@@ -134,8 +131,7 @@ public class MyBatisGenerator {
      * @throws InterruptedException
      *             if the method is canceled through the ProgressCallback
      */
-    public void generate(ProgressCallback callback) throws SQLException,
-            IOException, InterruptedException {
+    public void generate(ProgressCallback callback) throws SQLException, IOException, InterruptedException {
         generate(callback, null, null, true);
     }
 
@@ -183,9 +179,8 @@ public class MyBatisGenerator {
      * @throws InterruptedException
      *             if the method is canceled through the ProgressCallback
      */
-    public void generate(ProgressCallback callback, Set<String> contextIds,
-            Set<String> fullyQualifiedTableNames) throws SQLException,
-            IOException, InterruptedException {
+    public void generate(ProgressCallback callback, Set<String> contextIds, Set<String> fullyQualifiedTableNames)
+            throws SQLException, IOException, InterruptedException {
         generate(callback, contextIds, fullyQualifiedTableNames, true);
     }
 
@@ -205,8 +200,8 @@ public class MyBatisGenerator {
      *            qualified table name is "foo.bar". If the Set is null or empty, then all tables in the configuration
      *            will be used for code generation.
      * @param writeFiles
-     *            if true, then the generated files will be written to disk.  If false,
-     *            then the generator runs but nothing is written
+     *            if true, then the generated files will be written to disk. If false, then the generator runs but
+     *            nothing is written
      * @throws SQLException
      *             the SQL exception
      * @throws IOException
@@ -214,9 +209,8 @@ public class MyBatisGenerator {
      * @throws InterruptedException
      *             if the method is canceled through the ProgressCallback
      */
-    public void generate(ProgressCallback callback, Set<String> contextIds,
-            Set<String> fullyQualifiedTableNames, boolean writeFiles) throws SQLException,
-            IOException, InterruptedException {
+    public void generate(ProgressCallback callback, Set<String> contextIds, Set<String> fullyQualifiedTableNames,
+            boolean writeFiles) throws SQLException, IOException, InterruptedException {
 
         if (callback == null) {
             callback = new NullProgressCallback();
@@ -254,8 +248,7 @@ public class MyBatisGenerator {
         callback.introspectionStarted(totalSteps);
 
         for (Context context : contextsToRun) {
-            context.introspectTables(callback, warnings,
-                    fullyQualifiedTableNames);
+            context.introspectTables(callback, warnings, fullyQualifiedTableNames);
         }
 
         // now run the generates
@@ -266,14 +259,12 @@ public class MyBatisGenerator {
         callback.generationStarted(totalSteps);
 
         for (Context context : contextsToRun) {
-            context.generateFiles(callback, generatedJavaFiles,
-                    generatedXmlFiles, warnings);
+            context.generateFiles(callback, generatedJavaFiles, generatedXmlFiles, warnings);
         }
 
         // now save the files
         if (writeFiles) {
-            callback.saveStarted(generatedXmlFiles.size()
-                    + generatedJavaFiles.size());
+            callback.saveStarted(generatedXmlFiles.size() + generatedJavaFiles.size());
 
             for (GeneratedXmlFile gxf : generatedXmlFiles) {
                 projects.add(gxf.getTargetProject());
@@ -298,33 +289,27 @@ public class MyBatisGenerator {
         File targetFile;
         String source;
         try {
-            File directory = shellCallback.getDirectory(gjf
-                    .getTargetProject(), gjf.getTargetPackage());
+            File directory = shellCallback.getDirectory(gjf.getTargetProject(), gjf.getTargetPackage());
             targetFile = new File(directory, gjf.getFileName());
             if (targetFile.exists()) {
                 if (shellCallback.isMergeSupported()) {
-                    source = shellCallback.mergeJavaFile(gjf
-                            .getFormattedContent(), targetFile,
-                            MergeConstants.OLD_ELEMENT_TAGS,
-                            gjf.getFileEncoding());
+                    source = shellCallback.mergeJavaFile(gjf.getFormattedContent(), targetFile,
+                            MergeConstants.OLD_ELEMENT_TAGS, gjf.getFileEncoding());
                 } else if (shellCallback.isOverwriteEnabled()) {
                     source = gjf.getFormattedContent();
                     warnings.add(getString("Warning.11", //$NON-NLS-1$
                             targetFile.getAbsolutePath()));
                 } else {
                     source = gjf.getFormattedContent();
-                    targetFile = getUniqueFileName(directory, gjf
-                            .getFileName());
-                    warnings.add(getString(
-                            "Warning.2", targetFile.getAbsolutePath())); //$NON-NLS-1$
+                    targetFile = getUniqueFileName(directory, gjf.getFileName());
+                    warnings.add(getString("Warning.2", targetFile.getAbsolutePath())); //$NON-NLS-1$
                 }
             } else {
                 source = gjf.getFormattedContent();
             }
 
             callback.checkCancel();
-            callback.startTask(getString(
-                    "Progress.15", targetFile.getName())); //$NON-NLS-1$
+            callback.startTask(getString("Progress.15", targetFile.getName())); //$NON-NLS-1$
             writeFile(targetFile, source, gjf.getFileEncoding());
         } catch (ShellException e) {
             warnings.add(e.getMessage());
@@ -336,31 +321,26 @@ public class MyBatisGenerator {
         File targetFile;
         String source;
         try {
-            File directory = shellCallback.getDirectory(gxf
-                    .getTargetProject(), gxf.getTargetPackage());
+            File directory = shellCallback.getDirectory(gxf.getTargetProject(), gxf.getTargetPackage());
             targetFile = new File(directory, gxf.getFileName());
             if (targetFile.exists()) {
                 if (gxf.isMergeable()) {
-                    source = XmlFileMergerJaxp.getMergedSource(gxf,
-                            targetFile);
+                    source = XmlFileMergerJaxp.getMergedSource(gxf, targetFile);
                 } else if (shellCallback.isOverwriteEnabled()) {
                     source = gxf.getFormattedContent();
                     warnings.add(getString("Warning.11", //$NON-NLS-1$
                             targetFile.getAbsolutePath()));
                 } else {
                     source = gxf.getFormattedContent();
-                    targetFile = getUniqueFileName(directory, gxf
-                            .getFileName());
-                    warnings.add(getString(
-                            "Warning.2", targetFile.getAbsolutePath())); //$NON-NLS-1$
+                    targetFile = getUniqueFileName(directory, gxf.getFileName());
+                    warnings.add(getString("Warning.2", targetFile.getAbsolutePath())); //$NON-NLS-1$
                 }
             } else {
                 source = gxf.getFormattedContent();
             }
 
             callback.checkCancel();
-            callback.startTask(getString(
-                    "Progress.15", targetFile.getName())); //$NON-NLS-1$
+            callback.startTask(getString("Progress.15", targetFile.getName())); //$NON-NLS-1$
             writeFile(targetFile, source, "UTF-8"); //$NON-NLS-1$
         } catch (ShellException e) {
             warnings.add(e.getMessage());
@@ -421,18 +401,16 @@ public class MyBatisGenerator {
         }
 
         if (answer == null) {
-            throw new RuntimeException(getString(
-                    "RuntimeError.3", directory.getAbsolutePath())); //$NON-NLS-1$
+            throw new RuntimeException(getString("RuntimeError.3", directory.getAbsolutePath())); //$NON-NLS-1$
         }
 
         return answer;
     }
 
     /**
-     * Returns the list of generated Java files after a call to one of the generate methods.
-     * This is useful if you prefer to process the generated files yourself and do not want
-     * the generator to write them to disk.
-     *  
+     * Returns the list of generated Java files after a call to one of the generate methods. This is useful if you
+     * prefer to process the generated files yourself and do not want the generator to write them to disk.
+     * 
      * @return the list of generated Java files
      */
     public List<GeneratedJavaFile> getGeneratedJavaFiles() {
@@ -440,10 +418,9 @@ public class MyBatisGenerator {
     }
 
     /**
-     * Returns the list of generated XML files after a call to one of the generate methods.
-     * This is useful if you prefer to process the generated files yourself and do not want
-     * the generator to write them to disk.
-     *  
+     * Returns the list of generated XML files after a call to one of the generate methods. This is useful if you prefer
+     * to process the generated files yourself and do not want the generator to write them to disk.
+     * 
      * @return the list of generated XML files
      */
     public List<GeneratedXmlFile> getGeneratedXmlFiles() {

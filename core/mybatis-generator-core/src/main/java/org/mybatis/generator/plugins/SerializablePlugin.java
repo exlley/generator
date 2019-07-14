@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2018 the original author or authors.
+ *    Copyright 2006-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -27,14 +27,14 @@ import org.mybatis.generator.api.dom.java.JavaVisibility;
 import org.mybatis.generator.api.dom.java.TopLevelClass;
 
 /**
- * This plugin adds the java.io.Serializable marker interface to all generated
- * model objects.
+ * This plugin adds the java.io.Serializable marker interface to all generated model objects.
  * 
- * <p>This plugin demonstrates adding capabilities to generated Java artifacts, and
- * shows the proper way to add imports to a compilation unit.
+ * <p>
+ * This plugin demonstrates adding capabilities to generated Java artifacts, and shows the proper way to add imports to
+ * a compilation unit.
  * 
- * <p>Important: This is a simplistic implementation of serializable and does not
- * attempt to do any versioning of classes.
+ * <p>
+ * Important: This is a simplistic implementation of serializable and does not attempt to do any versioning of classes.
  * 
  * @author Jeff Butler
  * 
@@ -66,28 +66,25 @@ public class SerializablePlugin extends PluginAdapter {
     }
 
     @Override
-    public boolean modelBaseRecordClassGenerated(TopLevelClass topLevelClass,
-            IntrospectedTable introspectedTable) {
+    public boolean modelBaseRecordClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         makeSerializable(topLevelClass, introspectedTable);
         return true;
     }
 
     @Override
-    public boolean modelPrimaryKeyClassGenerated(TopLevelClass topLevelClass,
-            IntrospectedTable introspectedTable) {
+    public boolean modelPrimaryKeyClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         makeSerializable(topLevelClass, introspectedTable);
         return true;
     }
 
     @Override
-    public boolean modelRecordWithBLOBsClassGenerated(
-            TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+    public boolean modelRecordWithBLOBsClassGenerated(TopLevelClass topLevelClass,
+            IntrospectedTable introspectedTable) {
         makeSerializable(topLevelClass, introspectedTable);
         return true;
     }
 
-    protected void makeSerializable(TopLevelClass topLevelClass,
-            IntrospectedTable introspectedTable) {
+    protected void makeSerializable(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         if (addGWTInterface) {
             topLevelClass.addImportedType(gwtSerializable);
             topLevelClass.addSuperInterface(gwtSerializable);
@@ -103,7 +100,7 @@ public class SerializablePlugin extends PluginAdapter {
             field.setInitializationString("1L"); //$NON-NLS-1$
             field.setStatic(true);
             field.setVisibility(JavaVisibility.PRIVATE);
-            
+
             if (introspectedTable.getTargetRuntime() == TargetRuntime.MYBATIS3_DSQL) {
                 context.getCommentGenerator().addFieldAnnotation(field, introspectedTable,
                         topLevelClass.getImportedTypes());
