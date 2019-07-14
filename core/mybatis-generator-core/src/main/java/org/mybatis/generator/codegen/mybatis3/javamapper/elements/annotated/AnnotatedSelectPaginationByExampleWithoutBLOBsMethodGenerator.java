@@ -95,7 +95,7 @@ public class AnnotatedSelectPaginationByExampleWithoutBLOBsMethodGenerator
     public void addExtraImports(Interface interfaze) {
         interfaze.addImportedType(new FullyQualifiedJavaType("org.apache.ibatis.annotations.SelectProvider")); //$NON-NLS-1$
         interfaze.addImportedType(new FullyQualifiedJavaType("org.apache.ibatis.type.JdbcType")); //$NON-NLS-1$
-
+        interfaze.addImportedType(new FullyQualifiedJavaType("org.apache.ibatis.annotations.Param;"));
         if (introspectedTable.isConstructorBased()) {
             interfaze.addImportedType(new FullyQualifiedJavaType("org.apache.ibatis.annotations.Arg")); //$NON-NLS-1$
             interfaze.addImportedType(new FullyQualifiedJavaType("org.apache.ibatis.annotations.ConstructorArgs")); //$NON-NLS-1$

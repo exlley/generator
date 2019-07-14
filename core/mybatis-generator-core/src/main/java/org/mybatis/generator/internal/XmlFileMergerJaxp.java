@@ -22,6 +22,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,7 +76,7 @@ public class XmlFileMergerJaxp {
 
         try {
             return getMergedSource(new InputSource(new StringReader(generatedXmlFile.getFormattedContent())),
-                    new InputSource(new InputStreamReader(new FileInputStream(existingFile), "UTF-8")), //$NON-NLS-1$
+                    new InputSource(new InputStreamReader(new FileInputStream(existingFile), Charset.forName("UTF-8"))), //$NON-NLS-1$
                     existingFile.getName());
         } catch (IOException e) {
             throw new ShellException(getString("Warning.13", //$NON-NLS-1$

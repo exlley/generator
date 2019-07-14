@@ -133,6 +133,17 @@ public class RulesDelegate implements Rules {
     }
 
     @Override
+    public boolean generateSelectPaginationByExampleWithBLOBs() {
+        return rules.generateSelectPaginationByExampleWithBLOBs();
+    }
+
+    @Override
+    public boolean generateSelectPaginationByExampleWithoutBLOBs() {
+        return rules.generateSelectPaginationByExampleWithoutBLOBs();
+    }
+
+
+    @Override
     public boolean generateSelectByPrimaryKey() {
         return rules.generateSelectByPrimaryKey();
     }

@@ -129,14 +129,14 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
     }
 
     protected void addSelectPaginationByExampleWithoutBLOBsElement(XmlElement parentElement) {
-        if (introspectedTable.getRules().generateSelectByExampleWithoutBLOBs()) {
+        if (introspectedTable.getRules().generateSelectPaginationByExampleWithoutBLOBs()) {
             AbstractXmlElementGenerator elementGenerator = new SelectPaginationByExampleWithoutBLOBsElementGenerator();
             initializeAndExecuteGenerator(elementGenerator, parentElement);
         }
     }
 
     protected void addSelectPaginationByExampleWithBLOBsElement(XmlElement parentElement) {
-        if (introspectedTable.getRules().generateSelectByExampleWithBLOBs()) {
+        if (introspectedTable.getRules().generateSelectPaginationByExampleWithBLOBs()) {
             AbstractXmlElementGenerator elementGenerator = new SelectPaginationByExampleWithBLOBsElementGenerator();
             initializeAndExecuteGenerator(elementGenerator, parentElement);
         }

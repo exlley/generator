@@ -125,7 +125,7 @@ public class FullyQualifiedTable {
                     alias = strings[0].toLowerCase();
                 }
             } else {
-                StringBuffer sb = new StringBuffer();
+                StringBuilder sb = new StringBuilder();
                 for (String s : strings) {
                     sb.append(s.toUpperCase());
                 }

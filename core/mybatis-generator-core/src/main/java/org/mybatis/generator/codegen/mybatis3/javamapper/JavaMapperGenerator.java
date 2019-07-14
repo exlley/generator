@@ -194,14 +194,14 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
     }
 
     protected void addSelectPaginationByExampleWithBLOBsMethod(Interface interfaze) {
-        if (introspectedTable.getRules().generateSelectByExampleWithBLOBs()) {
+        if (introspectedTable.getRules().generateSelectPaginationByExampleWithBLOBs()) {
             AbstractJavaMapperMethodGenerator methodGenerator = new SelectPaginationByExampleWithBLOBsMethodGenetor();
             initializeAndExecuteGenerator(methodGenerator, interfaze);
         }
     }
 
     protected void addSelectPaginationByExampleWithoutBLOBsMethod(Interface interfaze) {
-        if (introspectedTable.getRules().generateSelectByExampleWithoutBLOBs()) {
+        if (introspectedTable.getRules().generateSelectPaginationByExampleWithoutBLOBs()) {
             AbstractJavaMapperMethodGenerator methodGenerator = new SelectPaginationByExampleWithoutBLOBsMethodGenerator();
             initializeAndExecuteGenerator(methodGenerator, interfaze);
         }

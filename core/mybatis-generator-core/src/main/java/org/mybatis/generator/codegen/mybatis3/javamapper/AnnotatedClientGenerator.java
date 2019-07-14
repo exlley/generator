@@ -89,7 +89,7 @@ public class AnnotatedClientGenerator extends JavaMapperGenerator {
 
     @Override
     protected void addSelectPaginationByExampleWithBLOBsMethod(Interface interfaze) {
-        if (introspectedTable.getRules().generateSelectByExampleWithBLOBs()) {
+        if (introspectedTable.getRules().generateSelectPaginationByExampleWithBLOBs()) {
             AbstractJavaMapperMethodGenerator methodGenerator = new AnnotatedSelectPaginationByExampleWithBLOBsMethodGenerator();
             initializeAndExecuteGenerator(methodGenerator, interfaze);
         }
@@ -97,7 +97,7 @@ public class AnnotatedClientGenerator extends JavaMapperGenerator {
 
     @Override
     protected void addSelectPaginationByExampleWithoutBLOBsMethod(Interface interfaze) {
-        if (introspectedTable.getRules().generateSelectByExampleWithoutBLOBs()) {
+        if (introspectedTable.getRules().generateSelectPaginationByExampleWithoutBLOBs()) {
             AbstractJavaMapperMethodGenerator methodGenerator = new AnnotatedSelectPaginationByExampleWithoutBLOBsMethodGenerator();
             initializeAndExecuteGenerator(methodGenerator, interfaze);
         }

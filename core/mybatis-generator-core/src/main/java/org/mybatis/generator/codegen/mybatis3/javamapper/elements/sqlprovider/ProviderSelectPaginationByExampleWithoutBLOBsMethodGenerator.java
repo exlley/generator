@@ -61,6 +61,8 @@ public class ProviderSelectPaginationByExampleWithoutBLOBsMethodGenerator extend
         Method method = new Method(getMethodName());
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setReturnType(FullyQualifiedJavaType.getStringInstance());
+        method.addParameter(new Parameter(new FullyQualifiedJavaType("int"), "pageSize"));
+        method.addParameter(new Parameter(new FullyQualifiedJavaType("int"), "pageNumber"));
         method.addParameter(new Parameter(fqjt, "example")); //$NON-NLS-1$
 
         context.getCommentGenerator().addGeneralMethodComment(method, introspectedTable);
@@ -100,13 +102,15 @@ public class ProviderSelectPaginationByExampleWithoutBLOBsMethodGenerator extend
         method.addBodyLine(""); //$NON-NLS-1$
         method.addBodyLine("if (example != null && example.getOrderByClause() != null) {"); //$NON-NLS-1$
         method.addBodyLine(String.format("%sORDER_BY(example.getOrderByClause());", builderPrefix)); //$NON-NLS-1$
+        method.addBodyLine("");
         method.addBodyLine("}"); //$NON-NLS-1$
-
         method.addBodyLine(""); //$NON-NLS-1$
+
+        String paginationMySQL = "\"limit \" + pageSize * pageNumber + \", \" + pageSize";
         if (useLegacyBuilder) {
-            method.addBodyLine("return SQL();"); //$NON-NLS-1$
+            method.addBodyLine("return SQL() + " + paginationMySQL + ";"); //$NON-NLS-1$
         } else {
-            method.addBodyLine("return sql.toString();"); //$NON-NLS-1$
+            method.addBodyLine("return sql.toString()  + " + paginationMySQL + ";"); //$NON-NLS-1$
         }
 
         if (callPlugins(method, topLevelClass)) {

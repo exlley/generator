@@ -337,6 +337,26 @@ public abstract class BaseRules implements Rules {
         return rc;
     }
 
+    @Override
+    public boolean generateSelectPaginationByExampleWithoutBLOBs() {
+        if (isModelOnly) {
+            return false;
+        }
+
+        return tableConfiguration.isSelectByExampleStatementEnabled();
+    }
+
+    @Override
+    public boolean generateSelectPaginationByExampleWithBLOBs() {
+        if (isModelOnly) {
+            return false;
+        }
+
+        boolean rc = tableConfiguration.isSelectByExampleStatementEnabled() && introspectedTable.hasBLOBColumns();
+
+        return rc;
+    }
+
     /**
      * Implements the rule for generating an example class. The class should be generated if the selectByExample or
      * deleteByExample or countByExample methods are allowed.
