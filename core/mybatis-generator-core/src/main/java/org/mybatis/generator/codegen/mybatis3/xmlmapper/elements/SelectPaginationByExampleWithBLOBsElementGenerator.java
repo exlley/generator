@@ -77,7 +77,7 @@ public class SelectPaginationByExampleWithBLOBsElementGenerator extends Abstract
         answer.addElement(ifElement);
 
         answer.addElement(new TextElement("limit ${pageNumber*pageSize}, ${pageSize}"));
-        if (context.getPlugins().sqlMapSelectByExampleWithBLOBsElementGenerated(answer, introspectedTable)) {
+        if (context.getPlugins().sqlMapSelectPaginationByExampleWithBLOBsElementGenerated(answer, introspectedTable)) {
             parentElement.addElement(answer);
         }
     }

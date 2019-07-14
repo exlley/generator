@@ -70,7 +70,7 @@ public class SelectPaginationByExampleWithoutBLOBsMethodGenerator extends Abstra
 
         addMapperAnnotations(interfaze, method);
 
-        if (context.getPlugins().clientSelectByExampleWithoutBLOBsMethodGenerated(method, interfaze,
+        if (context.getPlugins().clientSelectPaginationByExampleWithoutBLOBsMethodGenerated(method, interfaze,
                 introspectedTable)) {
             addExtraImports(interfaze);
             interfaze.addImportedTypes(importedTypes);

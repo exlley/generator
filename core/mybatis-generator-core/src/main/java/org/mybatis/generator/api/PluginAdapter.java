@@ -451,4 +451,24 @@ public abstract class PluginAdapter implements Plugin {
     public boolean sqlMapSelectAllElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
         return true;
     }
+
+    @Override
+    public boolean clientSelectPaginationByExampleWithBLOBsMethodGenerated(Method method, Interface interfaze, IntrospectedTable introspectedTable) {
+        return true;
+    }
+
+    @Override
+    public boolean clientSelectPaginationByExampleWithoutBLOBsMethodGenerated(Method method, Interface interfaze, IntrospectedTable introspectedTable) {
+        return true;
+    }
+
+    @Override
+    public boolean sqlMapSelectPaginationByExampleWithoutBLOBsElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
+        return true;
+    }
+
+    @Override
+    public boolean sqlMapSelectPaginationByExampleWithBLOBsElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
+        return true;
+    }
 }

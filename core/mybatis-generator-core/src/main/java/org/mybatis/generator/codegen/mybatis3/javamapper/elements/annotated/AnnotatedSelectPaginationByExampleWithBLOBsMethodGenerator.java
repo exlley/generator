@@ -23,7 +23,8 @@ import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.api.dom.java.Interface;
 import org.mybatis.generator.api.dom.java.Method;
-import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectByExampleWithBLOBsMethodGenerator;
+import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectPaginationByExampleWithBLOBsMethodGenetor;
+
 import java.util.Iterator;
 
 import static org.mybatis.generator.api.dom.OutputUtilities.javaIndent;
@@ -34,7 +35,7 @@ import static org.mybatis.generator.api.dom.OutputUtilities.javaIndent;
  * @date 2019-07-13
  */
 public class AnnotatedSelectPaginationByExampleWithBLOBsMethodGenerator
-        extends SelectByExampleWithBLOBsMethodGenerator {
+        extends SelectPaginationByExampleWithBLOBsMethodGenetor {
 
     public AnnotatedSelectPaginationByExampleWithBLOBsMethodGenerator() {
         super();

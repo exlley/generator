@@ -42,7 +42,7 @@ public class SelectPaginationByExampleWithBLOBsMethodGenetor extends AbstractJav
         importedTypes.add(type);
         importedTypes.add(FullyQualifiedJavaType.getNewListInstance());
 
-        Method method = new Method(introspectedTable.getSelectByExampleStatementId());
+        Method method = new Method(introspectedTable.getSelectPaginationByExampleStatementId());
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setAbstract(true);
 
@@ -65,7 +65,7 @@ public class SelectPaginationByExampleWithBLOBsMethodGenetor extends AbstractJav
 
         addMapperAnnotations(interfaze, method);
 
-        if (context.getPlugins().clientSelectByExampleWithBLOBsMethodGenerated(method, interfaze, introspectedTable)) {
+        if (context.getPlugins().clientSelectPaginationByExampleWithBLOBsMethodGenerated(method, interfaze, introspectedTable)) {
             addExtraImports(interfaze);
             interfaze.addImportedTypes(importedTypes);
             interfaze.addMethod(method);

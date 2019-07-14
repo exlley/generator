@@ -303,6 +303,34 @@ public final class PluginAggregator implements Plugin {
     }
 
     @Override
+    public boolean sqlMapSelectPaginationByExampleWithoutBLOBsElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
+        boolean rc = true;
+
+        for (Plugin plugin : plugins) {
+            if (!plugin.sqlMapSelectPaginationByExampleWithoutBLOBsElementGenerated(element, introspectedTable)) {
+                rc = false;
+                break;
+            }
+        }
+
+        return rc;
+    }
+
+    @Override
+    public boolean sqlMapSelectPaginationByExampleWithBLOBsElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
+        boolean rc = true;
+
+        for (Plugin plugin : plugins) {
+            if (!plugin.sqlMapSelectPaginationByExampleWithBLOBsElementGenerated(element, introspectedTable)) {
+                rc = false;
+                break;
+            }
+        }
+
+        return rc;
+    }
+
+    @Override
     public boolean sqlMapSelectByPrimaryKeyElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
         boolean rc = true;
 
@@ -621,6 +649,34 @@ public final class PluginAggregator implements Plugin {
 
         for (Plugin plugin : plugins) {
             if (!plugin.clientSelectByExampleWithoutBLOBsMethodGenerated(method, interfaze, introspectedTable)) {
+                rc = false;
+                break;
+            }
+        }
+
+        return rc;
+    }
+
+    @Override
+    public boolean clientSelectPaginationByExampleWithBLOBsMethodGenerated(Method method, Interface interfaze, IntrospectedTable introspectedTable) {
+        boolean rc = true;
+
+        for (Plugin plugin : plugins) {
+            if (!plugin.clientSelectPaginationByExampleWithBLOBsMethodGenerated(method, interfaze, introspectedTable)) {
+                rc = false;
+                break;
+            }
+        }
+
+        return rc;
+    }
+
+    @Override
+    public boolean clientSelectPaginationByExampleWithoutBLOBsMethodGenerated(Method method, Interface interfaze, IntrospectedTable introspectedTable) {
+        boolean rc = true;
+
+        for (Plugin plugin : plugins) {
+            if (!plugin.clientSelectPaginationByExampleWithoutBLOBsMethodGenerated(method, interfaze, introspectedTable)) {
                 rc = false;
                 break;
             }

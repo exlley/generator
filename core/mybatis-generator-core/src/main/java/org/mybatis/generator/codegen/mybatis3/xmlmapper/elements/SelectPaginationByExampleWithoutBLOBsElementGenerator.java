@@ -56,9 +56,9 @@ public class SelectPaginationByExampleWithoutBLOBsElementGenerator extends Abstr
         answer.addElement(ifElement);
 
         StringBuilder sb = new StringBuilder();
-        if (stringHasValue(introspectedTable.getSelectByExampleQueryId())) {
+        if (stringHasValue(introspectedTable.getSelectPaginationByExampleQueryId())) {
             sb.append('\'');
-            sb.append(introspectedTable.getSelectByExampleQueryId());
+            sb.append(introspectedTable.getSelectPaginationByExampleQueryId());
             sb.append("' as QUERYID,"); //$NON-NLS-1$
             answer.addElement(new TextElement(sb.toString()));
         }
@@ -76,7 +76,7 @@ public class SelectPaginationByExampleWithoutBLOBsElementGenerator extends Abstr
         answer.addElement(ifElement);
 
         answer.addElement(new TextElement("limit ${pageNumber*pageSize}, ${pageSize}"));
-        if (context.getPlugins().sqlMapSelectByExampleWithoutBLOBsElementGenerated(answer, introspectedTable)) {
+        if (context.getPlugins().sqlMapSelectPaginationByExampleWithoutBLOBsElementGenerated(answer, introspectedTable)) {
             parentElement.addElement(answer);
         }
     }

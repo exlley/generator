@@ -59,6 +59,8 @@ public class SqlProviderGenerator extends AbstractJavaGenerator {
         addInsertSelectiveMethod(topLevelClass);
         addApplyWhereMethod |= addSelectByExampleWithBLOBsMethod(topLevelClass);
         addApplyWhereMethod |= addSelectByExampleWithoutBLOBsMethod(topLevelClass);
+        addApplyWhereMethod |= addSelectPaginationByExampleWithBLOBsMethod(topLevelClass);
+        addApplyWhereMethod |= addSelectPaginationByExampleWithoutBLOBsMethod(topLevelClass);
         addApplyWhereMethod |= addUpdateByExampleSelectiveMethod(topLevelClass);
         addApplyWhereMethod |= addUpdateByExampleWithBLOBsMethod(topLevelClass);
         addApplyWhereMethod |= addUpdateByExampleWithoutBLOBsMethod(topLevelClass);
