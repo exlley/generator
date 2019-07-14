@@ -42,7 +42,7 @@ public class SelectPaginationByExampleWithBLOBsMethodGenetor extends AbstractJav
         importedTypes.add(type);
         importedTypes.add(FullyQualifiedJavaType.getNewListInstance());
 
-        Method method = new Method(introspectedTable.getSelectPaginationByExampleStatementId());
+        Method method = new Method(introspectedTable.getSelectPaginationByExampleWithBLOBsStatementId());
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setAbstract(true);
 

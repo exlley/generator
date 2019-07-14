@@ -71,6 +71,26 @@ public class RowBoundsPlugin extends PluginAdapter {
     }
 
     @Override
+    public boolean clientSelectPaginationByExampleWithBLOBsMethodGenerated(Method method, Interface interfaze,
+                                                                 IntrospectedTable introspectedTable) {
+        if (introspectedTable.getTargetRuntime() == TargetRuntime.MYBATIS3) {
+            copyAndAddMethod(method, interfaze);
+        } else if (introspectedTable.getTargetRuntime() == TargetRuntime.MYBATIS3_DSQL) {
+            copyAndAddSelectByExampleMethodForDSQL(method, interfaze);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean clientSelectPaginationByExampleWithoutBLOBsMethodGenerated(Method method, Interface interfaze,
+                                                                    IntrospectedTable introspectedTable) {
+        if (introspectedTable.getTargetRuntime() == TargetRuntime.MYBATIS3) {
+            copyAndAddMethod(method, interfaze);
+        }
+        return true;
+    }
+
+    @Override
     public boolean sqlMapSelectByExampleWithoutBLOBsElementGenerated(XmlElement element,
             IntrospectedTable introspectedTable) {
         if (introspectedTable.getTargetRuntime() == TargetRuntime.MYBATIS3) {
@@ -82,6 +102,24 @@ public class RowBoundsPlugin extends PluginAdapter {
     @Override
     public boolean sqlMapSelectByExampleWithBLOBsElementGenerated(XmlElement element,
             IntrospectedTable introspectedTable) {
+        if (introspectedTable.getTargetRuntime() == TargetRuntime.MYBATIS3) {
+            copyAndSaveElement(element, introspectedTable.getFullyQualifiedTable());
+        }
+        return true;
+    }
+
+    @Override
+    public boolean sqlMapSelectPaginationByExampleWithoutBLOBsElementGenerated(XmlElement element,
+                                                                     IntrospectedTable introspectedTable) {
+        if (introspectedTable.getTargetRuntime() == TargetRuntime.MYBATIS3) {
+            copyAndSaveElement(element, introspectedTable.getFullyQualifiedTable());
+        }
+        return true;
+    }
+
+    @Override
+    public boolean sqlMapSelectPaginationByExampleWithBLOBsElementGenerated(XmlElement element,
+                                                                  IntrospectedTable introspectedTable) {
         if (introspectedTable.getTargetRuntime() == TargetRuntime.MYBATIS3) {
             copyAndSaveElement(element, introspectedTable.getFullyQualifiedTable());
         }
@@ -132,7 +170,7 @@ public class RowBoundsPlugin extends PluginAdapter {
     /**
      * Use the method copy constructor to create a new method, then add the rowBounds parameter.
      * 
-     * @param fullyQualifiedTable
+     * @param interfaze
      *            the table
      * @param method
      *            the method
@@ -211,9 +249,9 @@ public class RowBoundsPlugin extends PluginAdapter {
     /**
      * Use the method copy constructor to create a new element.
      * 
-     * @param fullyQualifiedTable
+     * @param fqt
      *            the table
-     * @param method
+     * @param element
      *            the method
      */
     private void copyAndSaveElement(XmlElement element, FullyQualifiedTable fqt) {
