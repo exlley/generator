@@ -322,6 +322,11 @@ public class MyBatisGeneratorConfigurationParser {
             tc.setSelectByExampleQueryId(selectByExampleQueryId);
         }
 
+        String selectPaginationByExampleQueryId = attributes.getProperty("selectPaginationByExampleQueryId"); //$NON-NLS-1$
+        if (stringHasValue(selectPaginationByExampleQueryId)) {
+            tc.setSelectPaginationByExampleQueryId(selectPaginationByExampleQueryId);
+        }
+
         String modelType = attributes.getProperty("modelType"); //$NON-NLS-1$
         if (stringHasValue(modelType)) {
             tc.setConfiguredModelType(modelType);

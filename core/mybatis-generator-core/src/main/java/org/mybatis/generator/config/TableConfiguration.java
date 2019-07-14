@@ -109,7 +109,6 @@ public class TableConfiguration extends PropertyHolder {
         deleteByExampleStatementEnabled = true;
         countByExampleStatementEnabled = true;
         updateByExampleStatementEnabled = true;
-        selectPaginationByExampleQueryId = "selectPaginationByExampleQueryId";
     }
 
     public boolean isDeleteByPrimaryKeyStatementEnabled() {
