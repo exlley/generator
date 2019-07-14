@@ -18,8 +18,7 @@ package org.mybatis.generator.api;
 import static org.mybatis.generator.internal.util.EqualsUtil.areEqual;
 import static org.mybatis.generator.internal.util.HashCodeUtil.SEED;
 import static org.mybatis.generator.internal.util.HashCodeUtil.hash;
-import static org.mybatis.generator.internal.util.JavaBeansUtil.getCamelCaseString;
-import static org.mybatis.generator.internal.util.JavaBeansUtil.getFirstCharacterUppercase;
+import static org.mybatis.generator.internal.util.JavaBeansUtil.*;
 import static org.mybatis.generator.internal.util.StringUtility.composeFullyQualifiedTableName;
 import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
 
@@ -114,26 +113,7 @@ public class FullyQualifiedTable {
             }
         }
 
-        if (alias == null) {
-            this.alias = null;
-        } else if (alias.equals("")) {
-            String[] strings = splitWithDelimiters(name);
-            if (strings.length == 1) {
-                if (strings[0].length() >= 3) {
-                    alias = strings[0].substring(0, 3).toLowerCase();
-                } else {
-                    alias = strings[0].toLowerCase();
-                }
-            } else {
-                StringBuilder sb = new StringBuilder();
-                for (String s : strings) {
-                    sb.append(s.toUpperCase());
-                }
-                alias = sb.toString().toLowerCase();
-            }
-        } else {
-            this.alias = alias.trim();
-        }
+        this.alias = alias;
 
         beginningDelimiter = delimitIdentifiers ? context.getBeginningDelimiter() : ""; //$NON-NLS-1$
         endingDelimiter = delimitIdentifiers ? context.getEndingDelimiter() : ""; //$NON-NLS-1$
@@ -213,7 +193,7 @@ public class FullyQualifiedTable {
             packageName = splitWithDelimiters(name)[0];
             int pos = packageName.length();
             if (pos > 0 && pos < name.length() - 1) {
-                packageName = name.substring(0, pos - 1).toLowerCase();
+                packageName = name.substring(0, pos).toLowerCase();
                 restName = name.substring(pos + 1);
             }
         }
@@ -234,6 +214,16 @@ public class FullyQualifiedTable {
         return (packageName.isEmpty() ? "" : packageName + '.') + finalDomainObjectName;
     }
 
+    public String getXmlMapperName() {
+        String xmlMapperName = getDomainObjectName();
+        if(suffixAsPackage) {
+            int pos = xmlMapperName.indexOf('.');
+            if(pos > 1 || pos <= xmlMapperName.length()-2) {
+                return xmlMapperName.substring(0, pos) + '/' + xmlMapperName.substring(pos+1);
+            }
+        }
+        return xmlMapperName;
+    }
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -342,10 +332,6 @@ public class FullyQualifiedTable {
 
     public String getDomainObjectSubPackage() {
         return domainObjectSubPackage;
-    }
-
-    public String[] splitWithDelimiters(String value) {
-        return value.split("_|-|\\$|#| |/|&");
     }
 
 }

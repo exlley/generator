@@ -65,6 +65,12 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
             interfaze.addImportedType(fqjt);
         }
 
+        if (introspectedTable.getTableConfiguration().isSpringEnabled()) {
+            interfaze.addImportedType(
+                    new FullyQualifiedJavaType("org.springframework.stereotype.Repository")); //$NON-NLS-1$
+            interfaze.addAnnotation("@Repository"); //$NON-NLS-1$
+        }
+
         addCountByExampleMethod(interfaze);
         addDeleteByExampleMethod(interfaze);
         addDeleteByPrimaryKeyMethod(interfaze);

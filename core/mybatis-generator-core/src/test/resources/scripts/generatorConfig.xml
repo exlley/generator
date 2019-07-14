@@ -48,13 +48,13 @@
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
     <tableSet>
-    <table tableName="FieldsOnly" domainObjectName="subpackage.Fieldsonly"/>
-    <table tableName="PKOnly" />
+    <table tableName="Fields_Only" suffixAsPackage="true"/>
+    <table tableName="PKOnly" alias="" />
     <table tableName="PKFields" alias="B" >
       <columnOverride column="wierd$Field" delimitedColumnName="true"/>
       <columnOverride column="stringBoolean" javaType="boolean" typeHandler="mbg.test.mb3.common.StringBooleanTypeHandler"/>
     </table>
-    <table tableName="PKBlobs" />
+    <table tableName="PKBlobs" alias=""/>
     <table tableName="PKFieldsBlobs" />
     <table tableName="FieldsBlobs" />
     <table tableName="awful table" alias="A">

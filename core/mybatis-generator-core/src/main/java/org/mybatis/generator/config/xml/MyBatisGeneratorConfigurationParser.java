@@ -30,6 +30,7 @@ package org.mybatis.generator.config.xml;
 
 import static org.mybatis.generator.config.TableSetConfiguration.ATTR_SUFFIX_AS_PACKAGE;
 import static org.mybatis.generator.config.TableSetConfiguration.SUFFIX_AS_PACKAGE_VALUE_TRUE;
+import static org.mybatis.generator.internal.util.JavaBeansUtil.splitWithDelimiters;
 import static org.mybatis.generator.internal.util.StringUtility.isTrue;
 import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
 import static org.mybatis.generator.internal.util.messages.Messages.getString;
@@ -222,8 +223,16 @@ public class MyBatisGeneratorConfigurationParser {
         Properties attributes = parseAttributes(node);
         TableSetConfiguration tableSetConfiguration = new TableSetConfiguration(context);
 
-        tableSetConfiguration.setSuffixAsPackage(isTrue(attributes.getProperty(ATTR_SUFFIX_AS_PACKAGE)));
-        tableSetConfiguration.setSpringEnabled(isTrue(attributes.getProperty("springEnabled")));
+        String suffixAsPackage = attributes.getProperty(ATTR_SUFFIX_AS_PACKAGE); //$NON-NLS-1$
+        if (stringHasValue(suffixAsPackage)) {
+            tableSetConfiguration.setSuffixAsPackage(isTrue(suffixAsPackage));
+        }
+
+        String springEnabled = attributes.getProperty("springEnabled"); //$NON-NLS-1$
+        if (stringHasValue(springEnabled)) {
+            tableSetConfiguration.setSpringEnabled(isTrue(springEnabled));
+        }
+
         context.setTableSetConfiguration(tableSetConfiguration);
 
         NodeList nodeList = node.getChildNodes();
@@ -265,12 +274,34 @@ public class MyBatisGeneratorConfigurationParser {
         }
 
         String alias = attributes.getProperty("alias"); //$NON-NLS-1$
-        if (stringHasValue(alias)) {
-            tc.setAlias(alias);
+        if("".equals(alias)) {
+                String[] strings = splitWithDelimiters(tableName);
+                if (strings.length == 1) {
+                    if (strings[0].length() >= 3) {
+                        tc.setAlias(strings[0].substring(0, 3).toLowerCase());
+                    } else {
+                        tc.setAlias(strings[0].toLowerCase());
+                    }
+                } else {
+                    StringBuilder sb = new StringBuilder();
+                    for (String s : strings) {
+                        sb.append(s.substring(0, 1).toLowerCase());
+                    }
+                    tc.setAlias(sb.toString());
+                }
+        } else if (stringHasValue(alias)) {
+            tc.setAlias(alias.trim());
         }
 
-        tc.setSuffixAsPackage(isTrue(attributes.getProperty(ATTR_SUFFIX_AS_PACKAGE)));
-        tc.setSpringEnabled(isTrue(attributes.getProperty("springEnabled")));
+        String suffixAsPackage = attributes.getProperty(ATTR_SUFFIX_AS_PACKAGE); //$NON-NLS-1$
+        if (stringHasValue(suffixAsPackage)) {
+            tc.setSuffixAsPackage(isTrue(suffixAsPackage));
+        }
+
+        String springEnabled = attributes.getProperty("springEnabled"); //$NON-NLS-1$
+        if (stringHasValue(springEnabled)) {
+            tc.setSpringEnabled(isTrue(springEnabled));
+        }
 
         String enableInsert = attributes.getProperty("enableInsert"); //$NON-NLS-1$
         if (stringHasValue(enableInsert)) {

@@ -280,4 +280,8 @@ public class JavaBeansUtil {
         }
         return isTrimStringsEnabled(column.getIntrospectedTable());
     }
+
+    public static String[] splitWithDelimiters(String value) {
+        return value.split("_|-|\\$|#| |/|&");
+    }
 }

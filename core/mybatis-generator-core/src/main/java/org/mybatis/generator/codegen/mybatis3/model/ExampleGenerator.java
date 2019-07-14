@@ -337,7 +337,7 @@ public class ExampleGenerator extends AbstractJavaGenerator {
 
         for (IntrospectedColumn introspectedColumn : introspectedTable.getNonBLOBColumns()) {
             if (stringHasValue(introspectedColumn.getTypeHandler())) {
-                String name = addtypeHandledObjectsAndMethods(introspectedColumn, method, answer);
+                String name = addTypeHandledObjectsAndMethods(introspectedColumn, method, answer);
                 criteriaLists.add(name);
             }
         }
@@ -819,8 +819,8 @@ public class ExampleGenerator extends AbstractJavaGenerator {
      *            the enclosing class
      * @return the name of the List added to the class by this method
      */
-    private String addtypeHandledObjectsAndMethods(IntrospectedColumn introspectedColumn, Method constructor,
-            InnerClass innerClass) {
+    private String addTypeHandledObjectsAndMethods(IntrospectedColumn introspectedColumn, Method constructor,
+                                                   InnerClass innerClass) {
         StringBuilder sb = new StringBuilder();
 
         // add new private field and public accessor in the class

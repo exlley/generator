@@ -856,7 +856,7 @@ public abstract class IntrospectedTable {
             }
             sb.append(".xml"); //$NON-NLS-1$
         } else {
-            sb.append(fullyQualifiedTable.getDomainObjectName());
+            sb.append(fullyQualifiedTable.getXmlMapperName());
             sb.append("Mapper.xml"); //$NON-NLS-1$
         }
         return sb.toString();
