@@ -339,9 +339,13 @@ public class MyBatisGenerator {
             } else {
                 source = gxf.getFormattedContent();
             }
-
             callback.checkCancel();
             callback.startTask(getString("Progress.15", targetFile.getName())); //$NON-NLS-1$
+            String path = targetFile.getAbsolutePath();
+            File dir = new File(path.substring(0, path.lastIndexOf(File.separatorChar)));
+            if(!dir.exists()) {//判断上级目录是否是目录
+                dir.mkdirs();
+            }
             writeFile(targetFile, source, "UTF-8"); //$NON-NLS-1$
         } catch (ShellException e) {
             warnings.add(e.getMessage());

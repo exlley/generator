@@ -22,6 +22,7 @@ import static org.mybatis.generator.internal.util.JavaBeansUtil.*;
 import static org.mybatis.generator.internal.util.StringUtility.composeFullyQualifiedTableName;
 import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
 
+import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -219,7 +220,7 @@ public class FullyQualifiedTable {
         if(suffixAsPackage) {
             int pos = xmlMapperName.indexOf('.');
             if(pos > 1 || pos <= xmlMapperName.length()-2) {
-                return xmlMapperName.substring(0, pos) + '/' + xmlMapperName.substring(pos+1);
+                return xmlMapperName.substring(0, pos) + File.separator + xmlMapperName.substring(pos+1);
             }
         }
         return xmlMapperName;
