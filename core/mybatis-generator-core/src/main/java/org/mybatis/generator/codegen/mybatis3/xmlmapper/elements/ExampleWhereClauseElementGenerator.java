@@ -60,7 +60,7 @@ public class ExampleWhereClauseElementGenerator extends AbstractXmlElementGenera
         outerForEachElement.addAttribute(new Attribute("item", "criteria")); //$NON-NLS-1$ //$NON-NLS-2$
         outerForEachElement.addAttribute(new Attribute("separator", "or")); //$NON-NLS-1$ //$NON-NLS-2$
         whereElement.addElement(outerForEachElement);
-
+        whereElement.addElement(new TextElement("AND 1=1"));
         XmlElement ifElement = new XmlElement("if"); //$NON-NLS-1$
         ifElement.addAttribute(new Attribute("test", "criteria.valid")); //$NON-NLS-1$ //$NON-NLS-2$
         outerForEachElement.addElement(ifElement);

@@ -335,4 +335,7 @@ public class FullyQualifiedTable {
         return domainObjectSubPackage;
     }
 
+    public String getInputTableName() {
+        return name;
+    }
 }

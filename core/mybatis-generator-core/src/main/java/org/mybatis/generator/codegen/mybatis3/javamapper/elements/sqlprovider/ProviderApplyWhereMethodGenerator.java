@@ -116,12 +116,12 @@ public class ProviderApplyWhereMethodGenerator extends AbstractJavaProviderMetho
     };
 
     private static final String[] LEGACY_ENDING_METHOD_LINES = { "if (sb.length() > 0) {", //$NON-NLS-1$
-            "WHERE(sb.toString());", //$NON-NLS-1$
+            "WHERE(sb.toString() + \"AND 1=1\");", //$NON-NLS-1$
             "}" //$NON-NLS-1$
     };
 
     private static final String[] ENDING_METHOD_LINES = { "if (sb.length() > 0) {", //$NON-NLS-1$
-            "sql.WHERE(sb.toString());", //$NON-NLS-1$
+            "sql.WHERE(sb.toString() + \"AND 1=1\");", //$NON-NLS-1$
             "}" //$NON-NLS-1$
     };
 

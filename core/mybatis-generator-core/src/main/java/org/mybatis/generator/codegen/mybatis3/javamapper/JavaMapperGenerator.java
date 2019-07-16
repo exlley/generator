@@ -15,12 +15,15 @@
  */
 package org.mybatis.generator.codegen.mybatis3.javamapper;
 
+import static org.mybatis.generator.internal.util.JavaBeansUtil.splitWithDelimiters;
 import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
 import static org.mybatis.generator.internal.util.messages.Messages.getString;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.dom.java.CompilationUnit;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
@@ -68,7 +71,19 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
         if (introspectedTable.getTableConfiguration().isSpringEnabled()) {
             interfaze.addImportedType(
                     new FullyQualifiedJavaType("org.springframework.stereotype.Repository")); //$NON-NLS-1$
-            interfaze.addAnnotation("@Repository"); //$NON-NLS-1$
+            String[] str = splitWithDelimiters(introspectedTable.getFullyQualifiedTable().getInputTableName());
+            for (int i = 0; i < str.length; i++) {
+                if(str[i].length() <= 0) {
+                    continue;
+                }
+                if(str[i].length() == 1) {
+                    str[i] = str[i].toUpperCase();
+                } else {
+                    str[i] = (str[i].toLowerCase().charAt(0) + "").toUpperCase() + str[i].substring(1);
+                }
+            }
+            String repoName = StringUtils.join(str, "");
+            interfaze.addAnnotation("@Repository(\"" +  repoName  + "Mapper\")"); //$NON-NLS-1$
         }
 
         addCountByExampleMethod(interfaze);
